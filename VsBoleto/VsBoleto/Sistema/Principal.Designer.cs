@@ -39,24 +39,25 @@
             this.xtraTabConfig = new DevExpress.XtraTab.XtraTabPage();
             this.xTabRetorno = new DevExpress.XtraTab.XtraTabPage();
             this.groupControl3 = new DevExpress.XtraEditors.GroupControl();
-            this.checkButton1 = new DevExpress.XtraEditors.CheckButton();
-            this.checkEdit1 = new DevExpress.XtraEditors.CheckEdit();
-            this.checkEdit2 = new DevExpress.XtraEditors.CheckEdit();
+            this.chkBtnImpressaoAutomatica = new DevExpress.XtraEditors.CheckButton();
+            this.chkPDF = new DevExpress.XtraEditors.CheckEdit();
+            this.chkExibirImpressos = new DevExpress.XtraEditors.CheckEdit();
             this.groupControl4 = new DevExpress.XtraEditors.GroupControl();
-            this.checkEdit3 = new DevExpress.XtraEditors.CheckEdit();
-            this.checkEdit4 = new DevExpress.XtraEditors.CheckEdit();
-            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
-            this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
+            this.chkExibirRemessa = new DevExpress.XtraEditors.CheckEdit();
+            this.chkSelecionarRemessa = new DevExpress.XtraEditors.CheckEdit();
+            this.btnGerarRemessas = new DevExpress.XtraEditors.SimpleButton();
+            this.btnAbrirPasta = new DevExpress.XtraEditors.SimpleButton();
             this.groupControl5 = new DevExpress.XtraEditors.GroupControl();
-            this.simpleButton3 = new DevExpress.XtraEditors.SimpleButton();
+            this.btnRefresh = new DevExpress.XtraEditors.SimpleButton();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
-            this.dateEdit1 = new DevExpress.XtraEditors.DateEdit();
-            this.dateEdit2 = new DevExpress.XtraEditors.DateEdit();
+            this.dtpDe = new DevExpress.XtraEditors.DateEdit();
+            this.dtpAte = new DevExpress.XtraEditors.DateEdit();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
-            this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
+            this.tbxPesquisaNN = new DevExpress.XtraEditors.TextEdit();
             this.groupControl6 = new DevExpress.XtraEditors.GroupControl();
-            this.simpleButton4 = new DevExpress.XtraEditors.SimpleButton();
+            this.barBtnInfoBD = new DevExpress.XtraEditors.SimpleButton();
+            this.btnPesquisaNN = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
             this.xtraTabControl1.SuspendLayout();
             this.xtraTabMonitor.SuspendLayout();
@@ -69,19 +70,19 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).BeginInit();
             this.groupControl3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEdit1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEdit2.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkPDF.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkExibirImpressos.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl4)).BeginInit();
             this.groupControl4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEdit3.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEdit4.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkExibirRemessa.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkSelecionarRemessa.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl5)).BeginInit();
             this.groupControl5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties.CalendarTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateEdit2.Properties.CalendarTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateEdit2.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtpDe.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtpDe.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtpAte.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtpAte.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxPesquisaNN.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl6)).BeginInit();
             this.groupControl6.SuspendLayout();
             this.SuspendLayout();
@@ -118,6 +119,7 @@
             // 
             // groupControl1
             // 
+            this.groupControl1.Controls.Add(this.groupControl6);
             this.groupControl1.Controls.Add(this.groupControl5);
             this.groupControl1.Controls.Add(this.panelControl1);
             this.groupControl1.Dock = System.Windows.Forms.DockStyle.Top;
@@ -129,7 +131,6 @@
             // 
             // panelControl1
             // 
-            this.panelControl1.Controls.Add(this.groupControl6);
             this.panelControl1.Controls.Add(this.groupControl4);
             this.panelControl1.Controls.Add(this.groupControl3);
             this.panelControl1.Controls.Add(this.pictureEdit2);
@@ -178,110 +179,111 @@
             // 
             // groupControl3
             // 
-            this.groupControl3.Controls.Add(this.checkEdit2);
-            this.groupControl3.Controls.Add(this.checkEdit1);
-            this.groupControl3.Controls.Add(this.checkButton1);
+            this.groupControl3.Controls.Add(this.chkExibirImpressos);
+            this.groupControl3.Controls.Add(this.chkPDF);
+            this.groupControl3.Controls.Add(this.chkBtnImpressaoAutomatica);
             this.groupControl3.Location = new System.Drawing.Point(105, 0);
             this.groupControl3.Name = "groupControl3";
             this.groupControl3.Size = new System.Drawing.Size(129, 94);
             this.groupControl3.TabIndex = 2;
             this.groupControl3.Text = "Impressão";
             // 
-            // checkButton1
+            // chkBtnImpressaoAutomatica
             // 
-            this.checkButton1.Location = new System.Drawing.Point(29, 23);
-            this.checkButton1.Name = "checkButton1";
-            this.checkButton1.Size = new System.Drawing.Size(75, 23);
-            this.checkButton1.TabIndex = 0;
-            this.checkButton1.Text = "Automática";
+            this.chkBtnImpressaoAutomatica.Location = new System.Drawing.Point(29, 23);
+            this.chkBtnImpressaoAutomatica.Name = "chkBtnImpressaoAutomatica";
+            this.chkBtnImpressaoAutomatica.Size = new System.Drawing.Size(75, 23);
+            this.chkBtnImpressaoAutomatica.TabIndex = 0;
+            this.chkBtnImpressaoAutomatica.Text = "Automática";
             // 
-            // checkEdit1
+            // chkPDF
             // 
-            this.checkEdit1.Location = new System.Drawing.Point(5, 52);
-            this.checkEdit1.Name = "checkEdit1";
-            this.checkEdit1.Properties.Caption = "Gerar PDF das Notas";
-            this.checkEdit1.Size = new System.Drawing.Size(124, 19);
-            this.checkEdit1.TabIndex = 1;
+            this.chkPDF.Location = new System.Drawing.Point(5, 52);
+            this.chkPDF.Name = "chkPDF";
+            this.chkPDF.Properties.Caption = "Gerar PDF das Notas";
+            this.chkPDF.Size = new System.Drawing.Size(124, 19);
+            this.chkPDF.TabIndex = 1;
             // 
-            // checkEdit2
+            // chkExibirImpressos
             // 
-            this.checkEdit2.EditValue = true;
-            this.checkEdit2.Location = new System.Drawing.Point(5, 70);
-            this.checkEdit2.Name = "checkEdit2";
-            this.checkEdit2.Properties.Caption = "Exibir Impressos";
-            this.checkEdit2.Size = new System.Drawing.Size(124, 19);
-            this.checkEdit2.TabIndex = 2;
+            this.chkExibirImpressos.EditValue = true;
+            this.chkExibirImpressos.Location = new System.Drawing.Point(5, 70);
+            this.chkExibirImpressos.Name = "chkExibirImpressos";
+            this.chkExibirImpressos.Properties.Caption = "Exibir Impressos";
+            this.chkExibirImpressos.Size = new System.Drawing.Size(124, 19);
+            this.chkExibirImpressos.TabIndex = 2;
             // 
             // groupControl4
             // 
-            this.groupControl4.Controls.Add(this.simpleButton2);
-            this.groupControl4.Controls.Add(this.simpleButton1);
-            this.groupControl4.Controls.Add(this.checkEdit3);
-            this.groupControl4.Controls.Add(this.checkEdit4);
+            this.groupControl4.Controls.Add(this.btnAbrirPasta);
+            this.groupControl4.Controls.Add(this.btnGerarRemessas);
+            this.groupControl4.Controls.Add(this.chkExibirRemessa);
+            this.groupControl4.Controls.Add(this.chkSelecionarRemessa);
             this.groupControl4.Location = new System.Drawing.Point(237, 0);
             this.groupControl4.Name = "groupControl4";
             this.groupControl4.Size = new System.Drawing.Size(146, 94);
             this.groupControl4.TabIndex = 3;
             this.groupControl4.Text = "Remessa";
             // 
-            // checkEdit3
+            // chkExibirRemessa
             // 
-            this.checkEdit3.EditValue = true;
-            this.checkEdit3.Location = new System.Drawing.Point(5, 70);
-            this.checkEdit3.Name = "checkEdit3";
-            this.checkEdit3.Properties.Caption = "Exibir Remessa";
-            this.checkEdit3.Size = new System.Drawing.Size(124, 19);
-            this.checkEdit3.TabIndex = 2;
+            this.chkExibirRemessa.EditValue = true;
+            this.chkExibirRemessa.Location = new System.Drawing.Point(5, 70);
+            this.chkExibirRemessa.Name = "chkExibirRemessa";
+            this.chkExibirRemessa.Properties.Caption = "Exibir Remessa";
+            this.chkExibirRemessa.Size = new System.Drawing.Size(124, 19);
+            this.chkExibirRemessa.TabIndex = 2;
             // 
-            // checkEdit4
+            // chkSelecionarRemessa
             // 
-            this.checkEdit4.EditValue = true;
-            this.checkEdit4.Location = new System.Drawing.Point(5, 52);
-            this.checkEdit4.Name = "checkEdit4";
-            this.checkEdit4.Properties.Caption = "Selecionar Todas";
-            this.checkEdit4.Size = new System.Drawing.Size(124, 19);
-            this.checkEdit4.TabIndex = 1;
+            this.chkSelecionarRemessa.EditValue = true;
+            this.chkSelecionarRemessa.Location = new System.Drawing.Point(5, 52);
+            this.chkSelecionarRemessa.Name = "chkSelecionarRemessa";
+            this.chkSelecionarRemessa.Properties.Caption = "Selecionar Todas";
+            this.chkSelecionarRemessa.Size = new System.Drawing.Size(124, 19);
+            this.chkSelecionarRemessa.TabIndex = 1;
             // 
-            // simpleButton1
+            // btnGerarRemessas
             // 
-            this.simpleButton1.Location = new System.Drawing.Point(5, 23);
-            this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.Size = new System.Drawing.Size(100, 23);
-            this.simpleButton1.TabIndex = 3;
-            this.simpleButton1.Text = "Gerar Selecionadas";
+            this.btnGerarRemessas.Location = new System.Drawing.Point(5, 23);
+            this.btnGerarRemessas.Name = "btnGerarRemessas";
+            this.btnGerarRemessas.Size = new System.Drawing.Size(100, 23);
+            this.btnGerarRemessas.TabIndex = 3;
+            this.btnGerarRemessas.Text = "Gerar Selecionadas";
             // 
-            // simpleButton2
+            // btnAbrirPasta
             // 
-            this.simpleButton2.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton2.ImageOptions.Image")));
-            this.simpleButton2.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            this.simpleButton2.Location = new System.Drawing.Point(111, 23);
-            this.simpleButton2.Name = "simpleButton2";
-            this.simpleButton2.Size = new System.Drawing.Size(30, 23);
-            this.simpleButton2.TabIndex = 4;
+            this.btnAbrirPasta.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton2.ImageOptions.Image")));
+            this.btnAbrirPasta.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
+            this.btnAbrirPasta.Location = new System.Drawing.Point(111, 23);
+            this.btnAbrirPasta.Name = "btnAbrirPasta";
+            this.btnAbrirPasta.Size = new System.Drawing.Size(30, 23);
+            this.btnAbrirPasta.TabIndex = 4;
             // 
             // groupControl5
             // 
-            this.groupControl5.Controls.Add(this.textEdit1);
+            this.groupControl5.Controls.Add(this.btnPesquisaNN);
+            this.groupControl5.Controls.Add(this.tbxPesquisaNN);
             this.groupControl5.Controls.Add(this.labelControl3);
-            this.groupControl5.Controls.Add(this.dateEdit2);
-            this.groupControl5.Controls.Add(this.dateEdit1);
+            this.groupControl5.Controls.Add(this.dtpAte);
+            this.groupControl5.Controls.Add(this.dtpDe);
             this.groupControl5.Controls.Add(this.labelControl2);
             this.groupControl5.Controls.Add(this.labelControl1);
-            this.groupControl5.Controls.Add(this.simpleButton3);
+            this.groupControl5.Controls.Add(this.btnRefresh);
             this.groupControl5.Location = new System.Drawing.Point(388, 20);
             this.groupControl5.Name = "groupControl5";
-            this.groupControl5.Size = new System.Drawing.Size(226, 94);
+            this.groupControl5.Size = new System.Drawing.Size(253, 94);
             this.groupControl5.TabIndex = 4;
             this.groupControl5.Text = "Pesquisa";
             // 
-            // simpleButton3
+            // btnRefresh
             // 
-            this.simpleButton3.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton3.ImageOptions.Image")));
-            this.simpleButton3.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            this.simpleButton3.Location = new System.Drawing.Point(166, 26);
-            this.simpleButton3.Name = "simpleButton3";
-            this.simpleButton3.Size = new System.Drawing.Size(30, 23);
-            this.simpleButton3.TabIndex = 4;
+            this.btnRefresh.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton3.ImageOptions.Image")));
+            this.btnRefresh.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
+            this.btnRefresh.Location = new System.Drawing.Point(138, 46);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(30, 23);
+            this.btnRefresh.TabIndex = 4;
             // 
             // labelControl1
             // 
@@ -293,68 +295,76 @@
             // 
             // labelControl2
             // 
-            this.labelControl2.Location = new System.Drawing.Point(5, 74);
+            this.labelControl2.Location = new System.Drawing.Point(5, 71);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(21, 13);
             this.labelControl2.TabIndex = 6;
             this.labelControl2.Text = "Até:";
             // 
-            // dateEdit1
+            // dtpDe
             // 
-            this.dateEdit1.EditValue = null;
-            this.dateEdit1.Location = new System.Drawing.Point(32, 30);
-            this.dateEdit1.Name = "dateEdit1";
-            this.dateEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.dtpDe.EditValue = null;
+            this.dtpDe.Location = new System.Drawing.Point(32, 30);
+            this.dtpDe.Name = "dtpDe";
+            this.dtpDe.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateEdit1.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.dtpDe.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateEdit1.Size = new System.Drawing.Size(100, 20);
-            this.dateEdit1.TabIndex = 7;
+            this.dtpDe.Size = new System.Drawing.Size(100, 20);
+            this.dtpDe.TabIndex = 7;
             // 
-            // dateEdit2
+            // dtpAte
             // 
-            this.dateEdit2.EditValue = null;
-            this.dateEdit2.Location = new System.Drawing.Point(32, 67);
-            this.dateEdit2.Name = "dateEdit2";
-            this.dateEdit2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.dtpAte.EditValue = null;
+            this.dtpAte.Location = new System.Drawing.Point(32, 64);
+            this.dtpAte.Name = "dtpAte";
+            this.dtpAte.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateEdit2.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.dtpAte.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateEdit2.Size = new System.Drawing.Size(100, 20);
-            this.dateEdit2.TabIndex = 8;
+            this.dtpAte.Size = new System.Drawing.Size(100, 20);
+            this.dtpAte.TabIndex = 8;
             // 
             // labelControl3
             // 
-            this.labelControl3.Location = new System.Drawing.Point(148, 51);
+            this.labelControl3.Location = new System.Drawing.Point(174, 19);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(73, 13);
             this.labelControl3.TabIndex = 9;
             this.labelControl3.Text = "Nosso Número:";
             // 
-            // textEdit1
+            // tbxPesquisaNN
             // 
-            this.textEdit1.Location = new System.Drawing.Point(148, 67);
-            this.textEdit1.Name = "textEdit1";
-            this.textEdit1.Size = new System.Drawing.Size(73, 20);
-            this.textEdit1.TabIndex = 10;
+            this.tbxPesquisaNN.Location = new System.Drawing.Point(174, 35);
+            this.tbxPesquisaNN.Name = "tbxPesquisaNN";
+            this.tbxPesquisaNN.Size = new System.Drawing.Size(73, 20);
+            this.tbxPesquisaNN.TabIndex = 10;
             // 
             // groupControl6
             // 
-            this.groupControl6.Controls.Add(this.simpleButton4);
-            this.groupControl6.Location = new System.Drawing.Point(615, 0);
+            this.groupControl6.Controls.Add(this.barBtnInfoBD);
+            this.groupControl6.Location = new System.Drawing.Point(647, 20);
             this.groupControl6.Name = "groupControl6";
-            this.groupControl6.Size = new System.Drawing.Size(96, 94);
+            this.groupControl6.Size = new System.Drawing.Size(62, 94);
             this.groupControl6.TabIndex = 5;
-            this.groupControl6.Text = "Configurações";
+            this.groupControl6.Text = "Ajustes";
             // 
-            // simpleButton4
+            // barBtnInfoBD
             // 
-            this.simpleButton4.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton4.ImageOptions.Image")));
-            this.simpleButton4.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            this.simpleButton4.Location = new System.Drawing.Point(20, 26);
-            this.simpleButton4.Name = "simpleButton4";
-            this.simpleButton4.Size = new System.Drawing.Size(59, 61);
-            this.simpleButton4.TabIndex = 4;
+            this.barBtnInfoBD.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton4.ImageOptions.Image")));
+            this.barBtnInfoBD.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
+            this.barBtnInfoBD.Location = new System.Drawing.Point(13, 36);
+            this.barBtnInfoBD.Name = "barBtnInfoBD";
+            this.barBtnInfoBD.Size = new System.Drawing.Size(35, 38);
+            this.barBtnInfoBD.TabIndex = 4;
+            // 
+            // btnPesquisaNN
+            // 
+            this.btnPesquisaNN.Location = new System.Drawing.Point(174, 61);
+            this.btnPesquisaNN.Name = "btnPesquisaNN";
+            this.btnPesquisaNN.Size = new System.Drawing.Size(75, 23);
+            this.btnPesquisaNN.TabIndex = 11;
+            this.btnPesquisaNN.Text = "Pesquisar";
             // 
             // Principal
             // 
@@ -379,20 +389,20 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).EndInit();
             this.groupControl3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.checkEdit1.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEdit2.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkPDF.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkExibirImpressos.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl4)).EndInit();
             this.groupControl4.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.checkEdit3.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEdit4.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkExibirRemessa.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkSelecionarRemessa.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl5)).EndInit();
             this.groupControl5.ResumeLayout(false);
             this.groupControl5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties.CalendarTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateEdit2.Properties.CalendarTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateEdit2.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtpDe.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtpDe.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtpAte.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtpAte.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxPesquisaNN.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl6)).EndInit();
             this.groupControl6.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -411,23 +421,24 @@
         private DevExpress.XtraEditors.PictureEdit pictureEdit1;
         private DevExpress.XtraEditors.PictureEdit pictureEdit2;
         private DevExpress.XtraEditors.GroupControl groupControl3;
-        private DevExpress.XtraEditors.CheckEdit checkEdit2;
-        private DevExpress.XtraEditors.CheckEdit checkEdit1;
-        private DevExpress.XtraEditors.CheckButton checkButton1;
+        private DevExpress.XtraEditors.CheckEdit chkExibirImpressos;
+        private DevExpress.XtraEditors.CheckEdit chkPDF;
+        private DevExpress.XtraEditors.CheckButton chkBtnImpressaoAutomatica;
         private DevExpress.XtraEditors.GroupControl groupControl5;
-        private DevExpress.XtraEditors.TextEdit textEdit1;
+        private DevExpress.XtraEditors.TextEdit tbxPesquisaNN;
         private DevExpress.XtraEditors.LabelControl labelControl3;
-        private DevExpress.XtraEditors.DateEdit dateEdit2;
-        private DevExpress.XtraEditors.DateEdit dateEdit1;
+        private DevExpress.XtraEditors.DateEdit dtpAte;
+        private DevExpress.XtraEditors.DateEdit dtpDe;
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private DevExpress.XtraEditors.LabelControl labelControl1;
-        private DevExpress.XtraEditors.SimpleButton simpleButton3;
+        private DevExpress.XtraEditors.SimpleButton btnRefresh;
         private DevExpress.XtraEditors.GroupControl groupControl6;
-        private DevExpress.XtraEditors.SimpleButton simpleButton4;
+        private DevExpress.XtraEditors.SimpleButton barBtnInfoBD;
         private DevExpress.XtraEditors.GroupControl groupControl4;
-        private DevExpress.XtraEditors.SimpleButton simpleButton2;
-        private DevExpress.XtraEditors.SimpleButton simpleButton1;
-        private DevExpress.XtraEditors.CheckEdit checkEdit3;
-        private DevExpress.XtraEditors.CheckEdit checkEdit4;
+        private DevExpress.XtraEditors.SimpleButton btnAbrirPasta;
+        private DevExpress.XtraEditors.SimpleButton btnGerarRemessas;
+        private DevExpress.XtraEditors.CheckEdit chkExibirRemessa;
+        private DevExpress.XtraEditors.CheckEdit chkSelecionarRemessa;
+        private DevExpress.XtraEditors.SimpleButton btnPesquisaNN;
     }
 }
