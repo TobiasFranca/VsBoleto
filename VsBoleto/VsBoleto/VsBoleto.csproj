@@ -105,6 +105,7 @@
     <Compile Include="Utilitarios\ListItem.cs" />
     <Compile Include="Utilitarios\SqlHelper.cs" />
     <Compile Include="Utilitarios\Util.cs" />
+    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -113,6 +114,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="Sistema\FormConfig.resx">
       <DependentUpon>FormConfig.cs</DependentUpon>
@@ -137,6 +139,12 @@
       <Project>{3c410713-7615-4497-8b5d-cded967d8483}</Project>
       <Name>BoletoBancario</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\lmSIG_peq.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\lmRGB_peq.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />

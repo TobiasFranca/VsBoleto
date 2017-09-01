@@ -15,13 +15,8 @@ namespace VsBoleto.Sistema
         public Principal()
         {
             InitializeComponent();
+            Text = "VsBoleto - Versão: " + Application.ProductVersion.ToString();
         }
 
-        private void simpleButton1_Click(object sender, EventArgs e)
-        {
-            FormConfig form = new FormConfig();
-            form.Show();
-
-        }
     }
 }
