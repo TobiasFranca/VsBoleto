@@ -29,6 +29,13 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Principal));
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions2 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
             this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
             this.xtraTabMonitor = new DevExpress.XtraTab.XtraTabPage();
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
@@ -101,10 +108,28 @@
             this.groupControl8 = new DevExpress.XtraEditors.GroupControl();
             this.ddlNomeCedente = new DevExpress.XtraEditors.ComboBoxEdit();
             this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
+            this.lblAgencia = new DevExpress.XtraEditors.LabelControl();
             this.tbxAgencia = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
+            this.lblConta = new DevExpress.XtraEditors.LabelControl();
             this.tbxConta = new DevExpress.XtraEditors.TextEdit();
+            this.tbxNNAtual = new DevExpress.XtraEditors.ButtonEdit();
+            this.labelControl10 = new DevExpress.XtraEditors.LabelControl();
+            this.lblCodigo = new DevExpress.XtraEditors.LabelControl();
+            this.tbxCodigo = new DevExpress.XtraEditors.TextEdit();
+            this.lblOD1 = new DevExpress.XtraEditors.LabelControl();
+            this.tbxOutros1 = new DevExpress.XtraEditors.TextEdit();
+            this.lblOD2 = new DevExpress.XtraEditors.LabelControl();
+            this.tbxOutros2 = new DevExpress.XtraEditors.TextEdit();
+            this.lblInicioNN = new DevExpress.XtraEditors.LabelControl();
+            this.tbxInicioNossoN = new DevExpress.XtraEditors.TextEdit();
+            this.lblFimNN = new DevExpress.XtraEditors.LabelControl();
+            this.tbxFimNossoN = new DevExpress.XtraEditors.TextEdit();
+            this.groupControl9 = new DevExpress.XtraEditors.GroupControl();
+            this.groupControl10 = new DevExpress.XtraEditors.GroupControl();
+            this.ddlLayoutRemessa = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
+            this.tbxArquivoRemessa = new DevExpress.XtraEditors.ButtonEdit();
+            this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
             this.xtraTabControl1.SuspendLayout();
             this.xtraTabMonitor.SuspendLayout();
@@ -159,6 +184,17 @@
             ((System.ComponentModel.ISupportInitialize)(this.ddlNomeCedente.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxAgencia.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxConta.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxNNAtual.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxCodigo.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxOutros1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxOutros2.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxInicioNossoN.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxFimNossoN.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl10)).BeginInit();
+            this.groupControl10.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlLayoutRemessa.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxArquivoRemessa.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // xtraTabControl1
@@ -693,6 +729,8 @@
             // 
             // xtraTabConfig
             // 
+            this.xtraTabConfig.Controls.Add(this.groupControl10);
+            this.xtraTabConfig.Controls.Add(this.groupControl9);
             this.xtraTabConfig.Controls.Add(this.groupControl8);
             this.xtraTabConfig.Controls.Add(this.groupControl7);
             this.xtraTabConfig.Name = "xtraTabConfig";
@@ -832,16 +870,28 @@
             // 
             // groupControl8
             // 
+            this.groupControl8.Controls.Add(this.tbxNNAtual);
             this.groupControl8.Controls.Add(this.ddlNomeCedente);
             this.groupControl8.Controls.Add(this.labelControl7);
             this.groupControl8.Controls.Add(this.tbxConta);
-            this.groupControl8.Controls.Add(this.labelControl9);
+            this.groupControl8.Controls.Add(this.labelControl10);
+            this.groupControl8.Controls.Add(this.lblConta);
+            this.groupControl8.Controls.Add(this.tbxFimNossoN);
+            this.groupControl8.Controls.Add(this.lblFimNN);
+            this.groupControl8.Controls.Add(this.tbxInicioNossoN);
+            this.groupControl8.Controls.Add(this.lblInicioNN);
+            this.groupControl8.Controls.Add(this.tbxOutros2);
+            this.groupControl8.Controls.Add(this.lblOD2);
+            this.groupControl8.Controls.Add(this.tbxOutros1);
+            this.groupControl8.Controls.Add(this.lblOD1);
+            this.groupControl8.Controls.Add(this.tbxCodigo);
+            this.groupControl8.Controls.Add(this.lblCodigo);
             this.groupControl8.Controls.Add(this.tbxAgencia);
-            this.groupControl8.Controls.Add(this.labelControl8);
+            this.groupControl8.Controls.Add(this.lblAgencia);
             this.groupControl8.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupControl8.Location = new System.Drawing.Point(0, 127);
             this.groupControl8.Name = "groupControl8";
-            this.groupControl8.Size = new System.Drawing.Size(829, 194);
+            this.groupControl8.Size = new System.Drawing.Size(829, 118);
             this.groupControl8.TabIndex = 1;
             this.groupControl8.Text = "Cedente";
             // 
@@ -862,13 +912,13 @@
             this.labelControl7.TabIndex = 2;
             this.labelControl7.Text = "Filial Padrão";
             // 
-            // labelControl8
+            // lblAgencia
             // 
-            this.labelControl8.Location = new System.Drawing.Point(326, 23);
-            this.labelControl8.Name = "labelControl8";
-            this.labelControl8.Size = new System.Drawing.Size(38, 13);
-            this.labelControl8.TabIndex = 2;
-            this.labelControl8.Text = "Agência";
+            this.lblAgencia.Location = new System.Drawing.Point(326, 23);
+            this.lblAgencia.Name = "lblAgencia";
+            this.lblAgencia.Size = new System.Drawing.Size(38, 13);
+            this.lblAgencia.TabIndex = 2;
+            this.lblAgencia.Text = "Agência";
             // 
             // tbxAgencia
             // 
@@ -877,13 +927,13 @@
             this.tbxAgencia.Size = new System.Drawing.Size(135, 20);
             this.tbxAgencia.TabIndex = 3;
             // 
-            // labelControl9
+            // lblConta
             // 
-            this.labelControl9.Location = new System.Drawing.Point(467, 23);
-            this.labelControl9.Name = "labelControl9";
-            this.labelControl9.Size = new System.Drawing.Size(29, 13);
-            this.labelControl9.TabIndex = 2;
-            this.labelControl9.Text = "Conta";
+            this.lblConta.Location = new System.Drawing.Point(467, 23);
+            this.lblConta.Name = "lblConta";
+            this.lblConta.Size = new System.Drawing.Size(29, 13);
+            this.lblConta.TabIndex = 2;
+            this.lblConta.Text = "Conta";
             // 
             // tbxConta
             // 
@@ -891,6 +941,164 @@
             this.tbxConta.Name = "tbxConta";
             this.tbxConta.Size = new System.Drawing.Size(135, 20);
             this.tbxConta.TabIndex = 3;
+            // 
+            // tbxNNAtual
+            // 
+            this.tbxNNAtual.Location = new System.Drawing.Point(608, 43);
+            this.tbxNNAtual.Name = "tbxNNAtual";
+            serializableAppearanceObject5.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject5.Image")));
+            serializableAppearanceObject5.Options.UseImage = true;
+            this.tbxNNAtual.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, true, false, editorButtonImageOptions2, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5)});
+            this.tbxNNAtual.Size = new System.Drawing.Size(102, 20);
+            this.tbxNNAtual.TabIndex = 4;
+            // 
+            // labelControl10
+            // 
+            this.labelControl10.Location = new System.Drawing.Point(608, 23);
+            this.labelControl10.Name = "labelControl10";
+            this.labelControl10.Size = new System.Drawing.Size(97, 13);
+            this.labelControl10.TabIndex = 2;
+            this.labelControl10.Text = "Nosso Número Atual";
+            // 
+            // lblCodigo
+            // 
+            this.lblCodigo.Location = new System.Drawing.Point(11, 69);
+            this.lblCodigo.Name = "lblCodigo";
+            this.lblCodigo.Size = new System.Drawing.Size(82, 13);
+            this.lblCodigo.TabIndex = 2;
+            this.lblCodigo.Text = "Código/Convênio";
+            // 
+            // tbxCodigo
+            // 
+            this.tbxCodigo.Location = new System.Drawing.Point(11, 89);
+            this.tbxCodigo.Name = "tbxCodigo";
+            this.tbxCodigo.Size = new System.Drawing.Size(135, 20);
+            this.tbxCodigo.TabIndex = 3;
+            // 
+            // lblOD1
+            // 
+            this.lblOD1.Location = new System.Drawing.Point(152, 69);
+            this.lblOD1.Name = "lblOD1";
+            this.lblOD1.Size = new System.Drawing.Size(75, 13);
+            this.lblOD1.TabIndex = 2;
+            this.lblOD1.Text = "Outros Dados 1";
+            // 
+            // tbxOutros1
+            // 
+            this.tbxOutros1.Location = new System.Drawing.Point(152, 89);
+            this.tbxOutros1.Name = "tbxOutros1";
+            this.tbxOutros1.Size = new System.Drawing.Size(135, 20);
+            this.tbxOutros1.TabIndex = 3;
+            // 
+            // lblOD2
+            // 
+            this.lblOD2.Location = new System.Drawing.Point(293, 69);
+            this.lblOD2.Name = "lblOD2";
+            this.lblOD2.Size = new System.Drawing.Size(75, 13);
+            this.lblOD2.TabIndex = 2;
+            this.lblOD2.Text = "Outros Dados 2";
+            // 
+            // tbxOutros2
+            // 
+            this.tbxOutros2.Location = new System.Drawing.Point(293, 89);
+            this.tbxOutros2.Name = "tbxOutros2";
+            this.tbxOutros2.Size = new System.Drawing.Size(135, 20);
+            this.tbxOutros2.TabIndex = 3;
+            // 
+            // lblInicioNN
+            // 
+            this.lblInicioNN.Location = new System.Drawing.Point(434, 69);
+            this.lblInicioNN.Name = "lblInicioNN";
+            this.lblInicioNN.Size = new System.Drawing.Size(71, 13);
+            this.lblInicioNN.TabIndex = 2;
+            this.lblInicioNN.Text = "Início nosso Nº";
+            // 
+            // tbxInicioNossoN
+            // 
+            this.tbxInicioNossoN.Location = new System.Drawing.Point(434, 89);
+            this.tbxInicioNossoN.Name = "tbxInicioNossoN";
+            this.tbxInicioNossoN.Size = new System.Drawing.Size(135, 20);
+            this.tbxInicioNossoN.TabIndex = 3;
+            // 
+            // lblFimNN
+            // 
+            this.lblFimNN.Location = new System.Drawing.Point(575, 69);
+            this.lblFimNN.Name = "lblFimNN";
+            this.lblFimNN.Size = new System.Drawing.Size(62, 13);
+            this.lblFimNN.TabIndex = 2;
+            this.lblFimNN.Text = "Fim nosso Nº";
+            // 
+            // tbxFimNossoN
+            // 
+            this.tbxFimNossoN.Location = new System.Drawing.Point(575, 89);
+            this.tbxFimNossoN.Name = "tbxFimNossoN";
+            this.tbxFimNossoN.Size = new System.Drawing.Size(135, 20);
+            this.tbxFimNossoN.TabIndex = 3;
+            // 
+            // groupControl9
+            // 
+            this.groupControl9.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupControl9.Location = new System.Drawing.Point(0, 245);
+            this.groupControl9.Name = "groupControl9";
+            this.groupControl9.Size = new System.Drawing.Size(829, 237);
+            this.groupControl9.TabIndex = 2;
+            this.groupControl9.Text = "Boleto";
+            // 
+            // groupControl10
+            // 
+            this.groupControl10.Controls.Add(this.tbxArquivoRemessa);
+            this.groupControl10.Controls.Add(this.labelControl9);
+            this.groupControl10.Controls.Add(this.labelControl8);
+            this.groupControl10.Controls.Add(this.ddlLayoutRemessa);
+            this.groupControl10.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupControl10.Location = new System.Drawing.Point(0, 482);
+            this.groupControl10.Name = "groupControl10";
+            this.groupControl10.Size = new System.Drawing.Size(829, 74);
+            this.groupControl10.TabIndex = 3;
+            this.groupControl10.Text = "Remessa";
+            // 
+            // ddlLayoutRemessa
+            // 
+            this.ddlLayoutRemessa.Location = new System.Drawing.Point(11, 47);
+            this.ddlLayoutRemessa.Name = "ddlLayoutRemessa";
+            this.ddlLayoutRemessa.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.ddlLayoutRemessa.Size = new System.Drawing.Size(135, 20);
+            this.ddlLayoutRemessa.TabIndex = 0;
+            // 
+            // labelControl8
+            // 
+            this.labelControl8.Location = new System.Drawing.Point(11, 28);
+            this.labelControl8.Name = "labelControl8";
+            this.labelControl8.Size = new System.Drawing.Size(33, 13);
+            this.labelControl8.TabIndex = 3;
+            this.labelControl8.Text = "Layout";
+            // 
+            // tbxArquivoRemessa
+            // 
+            this.tbxArquivoRemessa.Location = new System.Drawing.Point(152, 47);
+            this.tbxArquivoRemessa.Name = "tbxArquivoRemessa";
+            serializableAppearanceObject1.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject1.Image")));
+            serializableAppearanceObject1.Options.UseImage = true;
+            serializableAppearanceObject2.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject2.Image")));
+            serializableAppearanceObject2.Options.UseImage = true;
+            serializableAppearanceObject3.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject3.Image")));
+            serializableAppearanceObject3.Options.UseImage = true;
+            serializableAppearanceObject4.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject4.Image")));
+            serializableAppearanceObject4.Options.UseImage = true;
+            this.tbxArquivoRemessa.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, true, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null)});
+            this.tbxArquivoRemessa.Size = new System.Drawing.Size(417, 20);
+            this.tbxArquivoRemessa.TabIndex = 6;
+            // 
+            // labelControl9
+            // 
+            this.labelControl9.Location = new System.Drawing.Point(152, 27);
+            this.labelControl9.Name = "labelControl9";
+            this.labelControl9.Size = new System.Drawing.Size(41, 13);
+            this.labelControl9.TabIndex = 5;
+            this.labelControl9.Text = "Caminho";
             // 
             // Principal
             // 
@@ -960,6 +1168,18 @@
             ((System.ComponentModel.ISupportInitialize)(this.ddlNomeCedente.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxAgencia.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxConta.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxNNAtual.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxCodigo.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxOutros1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxOutros2.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxInicioNossoN.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxFimNossoN.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl10)).EndInit();
+            this.groupControl10.ResumeLayout(false);
+            this.groupControl10.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlLayoutRemessa.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxArquivoRemessa.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1035,12 +1255,30 @@
         private DevExpress.XtraEditors.ComboBoxEdit ddlNomeCedente;
         private DevExpress.XtraEditors.LabelControl labelControl7;
         private DevExpress.XtraEditors.TextEdit tbxConta;
-        private DevExpress.XtraEditors.LabelControl labelControl9;
+        private DevExpress.XtraEditors.LabelControl lblConta;
         private DevExpress.XtraEditors.TextEdit tbxAgencia;
-        private DevExpress.XtraEditors.LabelControl labelControl8;
+        private DevExpress.XtraEditors.LabelControl lblAgencia;
         private DevExpress.XtraEditors.SimpleButton btnLimpar;
         private DevExpress.XtraEditors.SimpleButton btnSalvar;
         private DevExpress.XtraEditors.SimpleButton btnCriarEditar;
         private DevExpress.XtraEditors.SimpleButton btnCancelar;
+        private DevExpress.XtraEditors.ButtonEdit tbxNNAtual;
+        private DevExpress.XtraEditors.LabelControl labelControl10;
+        private DevExpress.XtraEditors.TextEdit tbxFimNossoN;
+        private DevExpress.XtraEditors.LabelControl lblFimNN;
+        private DevExpress.XtraEditors.TextEdit tbxInicioNossoN;
+        private DevExpress.XtraEditors.LabelControl lblInicioNN;
+        private DevExpress.XtraEditors.TextEdit tbxOutros2;
+        private DevExpress.XtraEditors.LabelControl lblOD2;
+        private DevExpress.XtraEditors.TextEdit tbxOutros1;
+        private DevExpress.XtraEditors.LabelControl lblOD1;
+        private DevExpress.XtraEditors.TextEdit tbxCodigo;
+        private DevExpress.XtraEditors.LabelControl lblCodigo;
+        private DevExpress.XtraEditors.GroupControl groupControl10;
+        private DevExpress.XtraEditors.ButtonEdit tbxArquivoRemessa;
+        private DevExpress.XtraEditors.LabelControl labelControl9;
+        private DevExpress.XtraEditors.LabelControl labelControl8;
+        private DevExpress.XtraEditors.ComboBoxEdit ddlLayoutRemessa;
+        private DevExpress.XtraEditors.GroupControl groupControl9;
     }
 }
