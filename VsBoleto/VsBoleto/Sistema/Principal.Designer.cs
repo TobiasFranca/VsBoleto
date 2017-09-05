@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Principal));
             DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions4 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject13 = new DevExpress.Utils.SerializableAppearanceObject();
@@ -57,7 +58,7 @@
             this.repositoryItemCheckEdit4 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.gridColumn18 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemCheckEdit5 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
-            this.gridColumn13 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn19 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemCheckEdit6 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.repositoryItemCheckEdit3 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.repositoryItemCheckEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
@@ -76,7 +77,7 @@
             this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.groupControl6 = new DevExpress.XtraEditors.GroupControl();
             this.barBtnInfoBD = new DevExpress.XtraEditors.SimpleButton();
-            this.groupControl5 = new DevExpress.XtraEditors.GroupControl();
+            this.groupPesquisa = new DevExpress.XtraEditors.GroupControl();
             this.btnPesquisaNN = new DevExpress.XtraEditors.SimpleButton();
             this.tbxPesquisaNN = new DevExpress.XtraEditors.TextEdit();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
@@ -86,7 +87,7 @@
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.btnRefresh = new DevExpress.XtraEditors.SimpleButton();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
-            this.groupControl4 = new DevExpress.XtraEditors.GroupControl();
+            this.groupRemessa = new DevExpress.XtraEditors.GroupControl();
             this.btnAbrirPasta = new DevExpress.XtraEditors.SimpleButton();
             this.btnGerarRemessas = new DevExpress.XtraEditors.SimpleButton();
             this.chkExibirRemessa = new DevExpress.XtraEditors.CheckEdit();
@@ -104,10 +105,20 @@
             this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
             this.ddlLayoutRemessa = new DevExpress.XtraEditors.ComboBoxEdit();
             this.groupControl9 = new DevExpress.XtraEditors.GroupControl();
+            this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
+            this.chkDesconto = new DevExpress.XtraEditors.CheckEdit();
+            this.txtDescontoVencimento = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl19 = new DevExpress.XtraEditors.LabelControl();
+            this.ddlEspecieTitulo = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.labelControl20 = new DevExpress.XtraEditors.LabelControl();
             this.tbxMulta = new DevExpress.XtraEditors.TextEdit();
+            this.tbxInstrucao1 = new DevExpress.XtraEditors.TextEdit();
             this.labelControl16 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl18 = new DevExpress.XtraEditors.LabelControl();
             this.tbxJurosMes = new DevExpress.XtraEditors.TextEdit();
+            this.tbxInstrucao2 = new DevExpress.XtraEditors.TextEdit();
             this.labelControl15 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl17 = new DevExpress.XtraEditors.LabelControl();
             this.tbxProtesto = new DevExpress.XtraEditors.TextEdit();
             this.labelControl14 = new DevExpress.XtraEditors.LabelControl();
             this.tbxPathLayoutBoleto = new DevExpress.XtraEditors.ButtonEdit();
@@ -135,7 +146,7 @@
             this.lblCodigo = new DevExpress.XtraEditors.LabelControl();
             this.tbxAgencia = new DevExpress.XtraEditors.TextEdit();
             this.lblAgencia = new DevExpress.XtraEditors.LabelControl();
-            this.groupControl7 = new DevExpress.XtraEditors.GroupControl();
+            this.groupBanco = new DevExpress.XtraEditors.GroupControl();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.btnLimpar = new DevExpress.XtraEditors.SimpleButton();
             this.btnSalvar = new DevExpress.XtraEditors.SimpleButton();
@@ -150,26 +161,30 @@
             this.ddlBanco = new DevExpress.XtraEditors.ComboBoxEdit();
             this.lbxPosicoes = new DevExpress.XtraEditors.ListBoxControl();
             this.xTabRetorno = new DevExpress.XtraTab.XtraTabPage();
-            this.labelControl17 = new DevExpress.XtraEditors.LabelControl();
-            this.tbxInstrucao2 = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl18 = new DevExpress.XtraEditors.LabelControl();
-            this.tbxInstrucao1 = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl19 = new DevExpress.XtraEditors.LabelControl();
-            this.txtDescontoVencimento = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl20 = new DevExpress.XtraEditors.LabelControl();
-            this.ddlEspecieTitulo = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.chkDesconto = new DevExpress.XtraEditors.CheckEdit();
-            this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
-            this.groupControl11 = new DevExpress.XtraEditors.GroupControl();
-            this.labelControl21 = new DevExpress.XtraEditors.LabelControl();
-            this.ddlPosicoes = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.labelControl22 = new DevExpress.XtraEditors.LabelControl();
-            this.ddlLayoutRetorno = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.tbxArquivoRetorno = new DevExpress.XtraEditors.ButtonEdit();
-            this.labelControl23 = new DevExpress.XtraEditors.LabelControl();
-            this.btnCarregar = new DevExpress.XtraEditors.SimpleButton();
             this.controlRetorno = new DevExpress.XtraGrid.GridControl();
             this.gridRetorno = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.groupControl11 = new DevExpress.XtraEditors.GroupControl();
+            this.btnCarregar = new DevExpress.XtraEditors.SimpleButton();
+            this.tbxArquivoRetorno = new DevExpress.XtraEditors.ButtonEdit();
+            this.ddlLayoutRetorno = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.labelControl23 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl22 = new DevExpress.XtraEditors.LabelControl();
+            this.ddlPosicoes = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.labelControl21 = new DevExpress.XtraEditors.LabelControl();
+            this.popupMenu1 = new DevExpress.XtraBars.PopupMenu(this.components);
+            this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
+            this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
+            this.barBtnImprimir = new DevExpress.XtraBars.BarButtonItem();
+            this.barBtnVisualizar = new DevExpress.XtraBars.BarButtonItem();
+            this.barBtnGerarRemessa = new DevExpress.XtraBars.BarButtonItem();
+            this.barSubItem1 = new DevExpress.XtraBars.BarSubItem();
+            this.barBtnEmail = new DevExpress.XtraBars.BarButtonItem();
+            this.barBtnDesenharBoleto = new DevExpress.XtraBars.BarButtonItem();
+            this.barBtnAtualizar = new DevExpress.XtraBars.BarButtonItem();
+            this.barBtnSair = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
             this.xtraTabControl1.SuspendLayout();
             this.xtraTabMonitor.SuspendLayout();
@@ -190,8 +205,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl6)).BeginInit();
             this.groupControl6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl5)).BeginInit();
-            this.groupControl5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.groupPesquisa)).BeginInit();
+            this.groupPesquisa.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tbxPesquisaNN.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpAte.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpAte.Properties)).BeginInit();
@@ -199,8 +214,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dtpDe.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl4)).BeginInit();
-            this.groupControl4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.groupRemessa)).BeginInit();
+            this.groupRemessa.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chkExibirRemessa.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkSelecionarRemessa.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).BeginInit();
@@ -216,8 +231,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.ddlLayoutRemessa.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl9)).BeginInit();
             this.groupControl9.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).BeginInit();
+            this.panelControl3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chkDesconto.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtDescontoVencimento.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlEspecieTitulo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxMulta.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxInstrucao1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxJurosMes.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxInstrucao2.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxProtesto.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxPathLayoutBoleto.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxInstrucoes.Properties)).BeginInit();
@@ -233,8 +255,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.tbxOutros1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxCodigo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxAgencia.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl7)).BeginInit();
-            this.groupControl7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.groupBanco)).BeginInit();
+            this.groupBanco.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chkUtilizaNumBanco.Properties)).BeginInit();
@@ -243,20 +265,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.ddlBanco.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lbxPosicoes)).BeginInit();
             this.xTabRetorno.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tbxInstrucao2.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbxInstrucao1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtDescontoVencimento.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ddlEspecieTitulo.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkDesconto.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).BeginInit();
-            this.panelControl3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl11)).BeginInit();
-            this.groupControl11.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ddlPosicoes.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ddlLayoutRetorno.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbxArquivoRetorno.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.controlRetorno)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridRetorno)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl11)).BeginInit();
+            this.groupControl11.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxArquivoRetorno.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlLayoutRetorno.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlPosicoes.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.popupMenu1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             this.SuspendLayout();
             // 
             // xtraTabControl1
@@ -317,7 +334,7 @@
             this.gridColumn10,
             this.gridColumn17,
             this.gridColumn18,
-            this.gridColumn13});
+            this.gridColumn19});
             this.gridParcelas.GridControl = this.controlParcelas;
             this.gridParcelas.Name = "gridParcelas";
             this.gridParcelas.OptionsBehavior.Editable = false;
@@ -395,15 +412,15 @@
             this.repositoryItemCheckEdit5.AutoHeight = false;
             this.repositoryItemCheckEdit5.Name = "repositoryItemCheckEdit5";
             // 
-            // gridColumn13
+            // gridColumn19
             // 
-            this.gridColumn13.Caption = "Email";
-            this.gridColumn13.ColumnEdit = this.repositoryItemCheckEdit6;
-            this.gridColumn13.FieldName = "emailCheck";
-            this.gridColumn13.Name = "gridColumn13";
-            this.gridColumn13.Visible = true;
-            this.gridColumn13.VisibleIndex = 6;
-            this.gridColumn13.Width = 85;
+            this.gridColumn19.Caption = "Email";
+            this.gridColumn19.ColumnEdit = this.repositoryItemCheckEdit6;
+            this.gridColumn19.FieldName = "emailCheck";
+            this.gridColumn19.Name = "gridColumn19";
+            this.gridColumn19.Visible = true;
+            this.gridColumn19.VisibleIndex = 6;
+            this.gridColumn19.Width = 85;
             // 
             // repositoryItemCheckEdit6
             // 
@@ -424,7 +441,7 @@
             // 
             this.groupControl1.Controls.Add(this.controlNotas);
             this.groupControl1.Controls.Add(this.groupControl6);
-            this.groupControl1.Controls.Add(this.groupControl5);
+            this.groupControl1.Controls.Add(this.groupPesquisa);
             this.groupControl1.Controls.Add(this.panelControl1);
             this.groupControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupControl1.Location = new System.Drawing.Point(0, 0);
@@ -582,21 +599,21 @@
             this.barBtnInfoBD.Size = new System.Drawing.Size(35, 38);
             this.barBtnInfoBD.TabIndex = 4;
             // 
-            // groupControl5
+            // groupPesquisa
             // 
-            this.groupControl5.Controls.Add(this.btnPesquisaNN);
-            this.groupControl5.Controls.Add(this.tbxPesquisaNN);
-            this.groupControl5.Controls.Add(this.labelControl3);
-            this.groupControl5.Controls.Add(this.dtpAte);
-            this.groupControl5.Controls.Add(this.dtpDe);
-            this.groupControl5.Controls.Add(this.labelControl2);
-            this.groupControl5.Controls.Add(this.labelControl1);
-            this.groupControl5.Controls.Add(this.btnRefresh);
-            this.groupControl5.Location = new System.Drawing.Point(388, 20);
-            this.groupControl5.Name = "groupControl5";
-            this.groupControl5.Size = new System.Drawing.Size(253, 92);
-            this.groupControl5.TabIndex = 4;
-            this.groupControl5.Text = "Pesquisa";
+            this.groupPesquisa.Controls.Add(this.btnPesquisaNN);
+            this.groupPesquisa.Controls.Add(this.tbxPesquisaNN);
+            this.groupPesquisa.Controls.Add(this.labelControl3);
+            this.groupPesquisa.Controls.Add(this.dtpAte);
+            this.groupPesquisa.Controls.Add(this.dtpDe);
+            this.groupPesquisa.Controls.Add(this.labelControl2);
+            this.groupPesquisa.Controls.Add(this.labelControl1);
+            this.groupPesquisa.Controls.Add(this.btnRefresh);
+            this.groupPesquisa.Location = new System.Drawing.Point(388, 20);
+            this.groupPesquisa.Name = "groupPesquisa";
+            this.groupPesquisa.Size = new System.Drawing.Size(253, 92);
+            this.groupPesquisa.TabIndex = 4;
+            this.groupPesquisa.Text = "Pesquisa";
             // 
             // btnPesquisaNN
             // 
@@ -672,7 +689,7 @@
             // 
             // panelControl1
             // 
-            this.panelControl1.Controls.Add(this.groupControl4);
+            this.panelControl1.Controls.Add(this.groupRemessa);
             this.panelControl1.Controls.Add(this.groupControl3);
             this.panelControl1.Controls.Add(this.pictureEdit2);
             this.panelControl1.Controls.Add(this.pictureEdit1);
@@ -682,17 +699,17 @@
             this.panelControl1.Size = new System.Drawing.Size(825, 94);
             this.panelControl1.TabIndex = 0;
             // 
-            // groupControl4
+            // groupRemessa
             // 
-            this.groupControl4.Controls.Add(this.btnAbrirPasta);
-            this.groupControl4.Controls.Add(this.btnGerarRemessas);
-            this.groupControl4.Controls.Add(this.chkExibirRemessa);
-            this.groupControl4.Controls.Add(this.chkSelecionarRemessa);
-            this.groupControl4.Location = new System.Drawing.Point(237, 0);
-            this.groupControl4.Name = "groupControl4";
-            this.groupControl4.Size = new System.Drawing.Size(146, 92);
-            this.groupControl4.TabIndex = 3;
-            this.groupControl4.Text = "Remessa";
+            this.groupRemessa.Controls.Add(this.btnAbrirPasta);
+            this.groupRemessa.Controls.Add(this.btnGerarRemessas);
+            this.groupRemessa.Controls.Add(this.chkExibirRemessa);
+            this.groupRemessa.Controls.Add(this.chkSelecionarRemessa);
+            this.groupRemessa.Location = new System.Drawing.Point(237, 0);
+            this.groupRemessa.Name = "groupRemessa";
+            this.groupRemessa.Size = new System.Drawing.Size(146, 92);
+            this.groupRemessa.TabIndex = 3;
+            this.groupRemessa.Text = "Remessa";
             // 
             // btnAbrirPasta
             // 
@@ -710,6 +727,7 @@
             this.btnGerarRemessas.Size = new System.Drawing.Size(100, 23);
             this.btnGerarRemessas.TabIndex = 3;
             this.btnGerarRemessas.Text = "Gerar Selecionadas";
+            this.btnGerarRemessas.Click += new System.EventHandler(this.btnGerarRemessas_Click);
             // 
             // chkExibirRemessa
             // 
@@ -728,6 +746,7 @@
             this.chkSelecionarRemessa.Properties.Caption = "Selecionar Todas";
             this.chkSelecionarRemessa.Size = new System.Drawing.Size(124, 19);
             this.chkSelecionarRemessa.TabIndex = 1;
+            this.chkSelecionarRemessa.CheckedChanged += new System.EventHandler(this.chkSelecionarRemessa_CheckedChanged);
             // 
             // groupControl3
             // 
@@ -794,7 +813,7 @@
             this.xtraTabConfig.Controls.Add(this.groupControl10);
             this.xtraTabConfig.Controls.Add(this.groupControl9);
             this.xtraTabConfig.Controls.Add(this.groupControl8);
-            this.xtraTabConfig.Controls.Add(this.groupControl7);
+            this.xtraTabConfig.Controls.Add(this.groupBanco);
             this.xtraTabConfig.Name = "xtraTabConfig";
             this.xtraTabConfig.Size = new System.Drawing.Size(829, 556);
             this.xtraTabConfig.Text = "Configurações";
@@ -882,12 +901,69 @@
             this.groupControl9.TabIndex = 2;
             this.groupControl9.Text = "Boleto";
             // 
+            // panelControl3
+            // 
+            this.panelControl3.Controls.Add(this.chkDesconto);
+            this.panelControl3.Controls.Add(this.txtDescontoVencimento);
+            this.panelControl3.Controls.Add(this.labelControl19);
+            this.panelControl3.Location = new System.Drawing.Point(478, 160);
+            this.panelControl3.Name = "panelControl3";
+            this.panelControl3.Size = new System.Drawing.Size(344, 68);
+            this.panelControl3.TabIndex = 15;
+            // 
+            // chkDesconto
+            // 
+            this.chkDesconto.Location = new System.Drawing.Point(5, 25);
+            this.chkDesconto.Name = "chkDesconto";
+            this.chkDesconto.Properties.Caption = "Desconto Até o Vencimento";
+            this.chkDesconto.Size = new System.Drawing.Size(154, 19);
+            this.chkDesconto.TabIndex = 14;
+            // 
+            // txtDescontoVencimento
+            // 
+            this.txtDescontoVencimento.Location = new System.Drawing.Point(202, 25);
+            this.txtDescontoVencimento.Name = "txtDescontoVencimento";
+            this.txtDescontoVencimento.Size = new System.Drawing.Size(135, 20);
+            this.txtDescontoVencimento.TabIndex = 13;
+            // 
+            // labelControl19
+            // 
+            this.labelControl19.Location = new System.Drawing.Point(202, 5);
+            this.labelControl19.Name = "labelControl19";
+            this.labelControl19.Size = new System.Drawing.Size(67, 13);
+            this.labelControl19.TabIndex = 12;
+            this.labelControl19.Text = "Desconto (%)";
+            // 
+            // ddlEspecieTitulo
+            // 
+            this.ddlEspecieTitulo.Location = new System.Drawing.Point(478, 42);
+            this.ddlEspecieTitulo.Name = "ddlEspecieTitulo";
+            this.ddlEspecieTitulo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.ddlEspecieTitulo.Size = new System.Drawing.Size(203, 20);
+            this.ddlEspecieTitulo.TabIndex = 1;
+            // 
+            // labelControl20
+            // 
+            this.labelControl20.Location = new System.Drawing.Point(478, 23);
+            this.labelControl20.Name = "labelControl20";
+            this.labelControl20.Size = new System.Drawing.Size(65, 13);
+            this.labelControl20.TabIndex = 2;
+            this.labelControl20.Text = "Espécie Título";
+            // 
             // tbxMulta
             // 
             this.tbxMulta.Location = new System.Drawing.Point(687, 134);
             this.tbxMulta.Name = "tbxMulta";
             this.tbxMulta.Size = new System.Drawing.Size(135, 20);
             this.tbxMulta.TabIndex = 13;
+            // 
+            // tbxInstrucao1
+            // 
+            this.tbxInstrucao1.Location = new System.Drawing.Point(478, 88);
+            this.tbxInstrucao1.Name = "tbxInstrucao1";
+            this.tbxInstrucao1.Size = new System.Drawing.Size(135, 20);
+            this.tbxInstrucao1.TabIndex = 11;
             // 
             // labelControl16
             // 
@@ -897,12 +973,27 @@
             this.labelControl16.TabIndex = 12;
             this.labelControl16.Text = "Multa (%)";
             // 
+            // labelControl18
+            // 
+            this.labelControl18.Location = new System.Drawing.Point(478, 68);
+            this.labelControl18.Name = "labelControl18";
+            this.labelControl18.Size = new System.Drawing.Size(55, 13);
+            this.labelControl18.TabIndex = 10;
+            this.labelControl18.Text = "Instrução 1";
+            // 
             // tbxJurosMes
             // 
             this.tbxJurosMes.Location = new System.Drawing.Point(478, 134);
             this.tbxJurosMes.Name = "tbxJurosMes";
             this.tbxJurosMes.Size = new System.Drawing.Size(135, 20);
             this.tbxJurosMes.TabIndex = 11;
+            // 
+            // tbxInstrucao2
+            // 
+            this.tbxInstrucao2.Location = new System.Drawing.Point(687, 88);
+            this.tbxInstrucao2.Name = "tbxInstrucao2";
+            this.tbxInstrucao2.Size = new System.Drawing.Size(135, 20);
+            this.tbxInstrucao2.TabIndex = 9;
             // 
             // labelControl15
             // 
@@ -911,6 +1002,14 @@
             this.labelControl15.Size = new System.Drawing.Size(89, 13);
             this.labelControl15.TabIndex = 10;
             this.labelControl15.Text = "Juros por Mês (%)";
+            // 
+            // labelControl17
+            // 
+            this.labelControl17.Location = new System.Drawing.Point(687, 68);
+            this.labelControl17.Name = "labelControl17";
+            this.labelControl17.Size = new System.Drawing.Size(55, 13);
+            this.labelControl17.TabIndex = 8;
+            this.labelControl17.Text = "Instrução 2";
             // 
             // tbxProtesto
             // 
@@ -1158,23 +1257,23 @@
             this.lblAgencia.TabIndex = 2;
             this.lblAgencia.Text = "Agência";
             // 
-            // groupControl7
+            // groupBanco
             // 
-            this.groupControl7.Controls.Add(this.panelControl2);
-            this.groupControl7.Controls.Add(this.chkUtilizaNumBanco);
-            this.groupControl7.Controls.Add(this.tbxIdentificacao);
-            this.groupControl7.Controls.Add(this.labelControl6);
-            this.groupControl7.Controls.Add(this.tbxCarteira);
-            this.groupControl7.Controls.Add(this.labelControl5);
-            this.groupControl7.Controls.Add(this.labelControl4);
-            this.groupControl7.Controls.Add(this.ddlBanco);
-            this.groupControl7.Controls.Add(this.lbxPosicoes);
-            this.groupControl7.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupControl7.Location = new System.Drawing.Point(0, 0);
-            this.groupControl7.Name = "groupControl7";
-            this.groupControl7.Size = new System.Drawing.Size(829, 127);
-            this.groupControl7.TabIndex = 0;
-            this.groupControl7.Text = "Banco";
+            this.groupBanco.Controls.Add(this.panelControl2);
+            this.groupBanco.Controls.Add(this.chkUtilizaNumBanco);
+            this.groupBanco.Controls.Add(this.tbxIdentificacao);
+            this.groupBanco.Controls.Add(this.labelControl6);
+            this.groupBanco.Controls.Add(this.tbxCarteira);
+            this.groupBanco.Controls.Add(this.labelControl5);
+            this.groupBanco.Controls.Add(this.labelControl4);
+            this.groupBanco.Controls.Add(this.ddlBanco);
+            this.groupBanco.Controls.Add(this.lbxPosicoes);
+            this.groupBanco.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBanco.Location = new System.Drawing.Point(0, 0);
+            this.groupBanco.Name = "groupBanco";
+            this.groupBanco.Size = new System.Drawing.Size(829, 127);
+            this.groupBanco.TabIndex = 0;
+            this.groupBanco.Text = "Banco";
             // 
             // panelControl2
             // 
@@ -1291,85 +1390,21 @@
             this.xTabRetorno.Size = new System.Drawing.Size(829, 556);
             this.xTabRetorno.Text = "Retorno";
             // 
-            // labelControl17
+            // controlRetorno
             // 
-            this.labelControl17.Location = new System.Drawing.Point(687, 68);
-            this.labelControl17.Name = "labelControl17";
-            this.labelControl17.Size = new System.Drawing.Size(55, 13);
-            this.labelControl17.TabIndex = 8;
-            this.labelControl17.Text = "Instrução 2";
+            this.controlRetorno.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.controlRetorno.Location = new System.Drawing.Point(0, 102);
+            this.controlRetorno.MainView = this.gridRetorno;
+            this.controlRetorno.Name = "controlRetorno";
+            this.controlRetorno.Size = new System.Drawing.Size(829, 454);
+            this.controlRetorno.TabIndex = 1;
+            this.controlRetorno.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridRetorno});
             // 
-            // tbxInstrucao2
+            // gridRetorno
             // 
-            this.tbxInstrucao2.Location = new System.Drawing.Point(687, 88);
-            this.tbxInstrucao2.Name = "tbxInstrucao2";
-            this.tbxInstrucao2.Size = new System.Drawing.Size(135, 20);
-            this.tbxInstrucao2.TabIndex = 9;
-            // 
-            // labelControl18
-            // 
-            this.labelControl18.Location = new System.Drawing.Point(478, 68);
-            this.labelControl18.Name = "labelControl18";
-            this.labelControl18.Size = new System.Drawing.Size(55, 13);
-            this.labelControl18.TabIndex = 10;
-            this.labelControl18.Text = "Instrução 1";
-            // 
-            // tbxInstrucao1
-            // 
-            this.tbxInstrucao1.Location = new System.Drawing.Point(478, 88);
-            this.tbxInstrucao1.Name = "tbxInstrucao1";
-            this.tbxInstrucao1.Size = new System.Drawing.Size(135, 20);
-            this.tbxInstrucao1.TabIndex = 11;
-            // 
-            // labelControl19
-            // 
-            this.labelControl19.Location = new System.Drawing.Point(202, 5);
-            this.labelControl19.Name = "labelControl19";
-            this.labelControl19.Size = new System.Drawing.Size(67, 13);
-            this.labelControl19.TabIndex = 12;
-            this.labelControl19.Text = "Desconto (%)";
-            // 
-            // txtDescontoVencimento
-            // 
-            this.txtDescontoVencimento.Location = new System.Drawing.Point(202, 25);
-            this.txtDescontoVencimento.Name = "txtDescontoVencimento";
-            this.txtDescontoVencimento.Size = new System.Drawing.Size(135, 20);
-            this.txtDescontoVencimento.TabIndex = 13;
-            // 
-            // labelControl20
-            // 
-            this.labelControl20.Location = new System.Drawing.Point(478, 23);
-            this.labelControl20.Name = "labelControl20";
-            this.labelControl20.Size = new System.Drawing.Size(65, 13);
-            this.labelControl20.TabIndex = 2;
-            this.labelControl20.Text = "Espécie Título";
-            // 
-            // ddlEspecieTitulo
-            // 
-            this.ddlEspecieTitulo.Location = new System.Drawing.Point(478, 42);
-            this.ddlEspecieTitulo.Name = "ddlEspecieTitulo";
-            this.ddlEspecieTitulo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.ddlEspecieTitulo.Size = new System.Drawing.Size(203, 20);
-            this.ddlEspecieTitulo.TabIndex = 1;
-            // 
-            // chkDesconto
-            // 
-            this.chkDesconto.Location = new System.Drawing.Point(5, 25);
-            this.chkDesconto.Name = "chkDesconto";
-            this.chkDesconto.Properties.Caption = "Desconto Até o Vencimento";
-            this.chkDesconto.Size = new System.Drawing.Size(154, 19);
-            this.chkDesconto.TabIndex = 14;
-            // 
-            // panelControl3
-            // 
-            this.panelControl3.Controls.Add(this.chkDesconto);
-            this.panelControl3.Controls.Add(this.txtDescontoVencimento);
-            this.panelControl3.Controls.Add(this.labelControl19);
-            this.panelControl3.Location = new System.Drawing.Point(478, 160);
-            this.panelControl3.Name = "panelControl3";
-            this.panelControl3.Size = new System.Drawing.Size(344, 68);
-            this.panelControl3.TabIndex = 15;
+            this.gridRetorno.GridControl = this.controlRetorno;
+            this.gridRetorno.Name = "gridRetorno";
             // 
             // groupControl11
             // 
@@ -1387,39 +1422,13 @@
             this.groupControl11.TabIndex = 0;
             this.groupControl11.Text = "Arquivo de Retorno";
             // 
-            // labelControl21
+            // btnCarregar
             // 
-            this.labelControl21.Location = new System.Drawing.Point(11, 33);
-            this.labelControl21.Name = "labelControl21";
-            this.labelControl21.Size = new System.Drawing.Size(36, 13);
-            this.labelControl21.TabIndex = 0;
-            this.labelControl21.Text = "Posição";
-            // 
-            // ddlPosicoes
-            // 
-            this.ddlPosicoes.Location = new System.Drawing.Point(11, 52);
-            this.ddlPosicoes.Name = "ddlPosicoes";
-            this.ddlPosicoes.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.ddlPosicoes.Size = new System.Drawing.Size(212, 20);
-            this.ddlPosicoes.TabIndex = 1;
-            // 
-            // labelControl22
-            // 
-            this.labelControl22.Location = new System.Drawing.Point(229, 33);
-            this.labelControl22.Name = "labelControl22";
-            this.labelControl22.Size = new System.Drawing.Size(33, 13);
-            this.labelControl22.TabIndex = 0;
-            this.labelControl22.Text = "Layout";
-            // 
-            // ddlLayoutRetorno
-            // 
-            this.ddlLayoutRetorno.Location = new System.Drawing.Point(229, 52);
-            this.ddlLayoutRetorno.Name = "ddlLayoutRetorno";
-            this.ddlLayoutRetorno.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.ddlLayoutRetorno.Size = new System.Drawing.Size(177, 20);
-            this.ddlLayoutRetorno.TabIndex = 1;
+            this.btnCarregar.Location = new System.Drawing.Point(745, 50);
+            this.btnCarregar.Name = "btnCarregar";
+            this.btnCarregar.Size = new System.Drawing.Size(75, 23);
+            this.btnCarregar.TabIndex = 3;
+            this.btnCarregar.Text = "Carregar";
             // 
             // tbxArquivoRetorno
             // 
@@ -1430,6 +1439,15 @@
             this.tbxArquivoRetorno.Size = new System.Drawing.Size(327, 20);
             this.tbxArquivoRetorno.TabIndex = 2;
             // 
+            // ddlLayoutRetorno
+            // 
+            this.ddlLayoutRetorno.Location = new System.Drawing.Point(229, 52);
+            this.ddlLayoutRetorno.Name = "ddlLayoutRetorno";
+            this.ddlLayoutRetorno.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.ddlLayoutRetorno.Size = new System.Drawing.Size(177, 20);
+            this.ddlLayoutRetorno.TabIndex = 1;
+            // 
             // labelControl23
             // 
             this.labelControl23.Location = new System.Drawing.Point(412, 33);
@@ -1438,29 +1456,142 @@
             this.labelControl23.TabIndex = 0;
             this.labelControl23.Text = "Caminho";
             // 
-            // btnCarregar
+            // labelControl22
             // 
-            this.btnCarregar.Location = new System.Drawing.Point(745, 50);
-            this.btnCarregar.Name = "btnCarregar";
-            this.btnCarregar.Size = new System.Drawing.Size(75, 23);
-            this.btnCarregar.TabIndex = 3;
-            this.btnCarregar.Text = "Carregar";
+            this.labelControl22.Location = new System.Drawing.Point(229, 33);
+            this.labelControl22.Name = "labelControl22";
+            this.labelControl22.Size = new System.Drawing.Size(33, 13);
+            this.labelControl22.TabIndex = 0;
+            this.labelControl22.Text = "Layout";
             // 
-            // controlRetorno
+            // ddlPosicoes
             // 
-            this.controlRetorno.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.controlRetorno.Location = new System.Drawing.Point(0, 102);
-            this.controlRetorno.MainView = this.gridRetorno;
-            this.controlRetorno.Name = "controlRetorno";
-            this.controlRetorno.Size = new System.Drawing.Size(829, 454);
-            this.controlRetorno.TabIndex = 1;
-            this.controlRetorno.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridRetorno});
+            this.ddlPosicoes.Location = new System.Drawing.Point(11, 52);
+            this.ddlPosicoes.Name = "ddlPosicoes";
+            this.ddlPosicoes.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.ddlPosicoes.Size = new System.Drawing.Size(212, 20);
+            this.ddlPosicoes.TabIndex = 1;
             // 
-            // gridRetorno
+            // labelControl21
             // 
-            this.gridRetorno.GridControl = this.controlRetorno;
-            this.gridRetorno.Name = "gridRetorno";
+            this.labelControl21.Location = new System.Drawing.Point(11, 33);
+            this.labelControl21.Name = "labelControl21";
+            this.labelControl21.Size = new System.Drawing.Size(36, 13);
+            this.labelControl21.TabIndex = 0;
+            this.labelControl21.Text = "Posição";
+            // 
+            // popupMenu1
+            // 
+            this.popupMenu1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.barBtnImprimir),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barBtnVisualizar),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barBtnGerarRemessa),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barBtnEmail),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barBtnDesenharBoleto),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barBtnAtualizar),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barBtnSair)});
+            this.popupMenu1.Manager = this.barManager1;
+            this.popupMenu1.Name = "popupMenu1";
+            // 
+            // barManager1
+            // 
+            this.barManager1.DockControls.Add(this.barDockControlTop);
+            this.barManager1.DockControls.Add(this.barDockControlBottom);
+            this.barManager1.DockControls.Add(this.barDockControlLeft);
+            this.barManager1.DockControls.Add(this.barDockControlRight);
+            this.barManager1.Form = this;
+            this.barManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
+            this.barBtnImprimir,
+            this.barBtnVisualizar,
+            this.barBtnGerarRemessa,
+            this.barSubItem1,
+            this.barBtnEmail,
+            this.barBtnDesenharBoleto,
+            this.barBtnAtualizar,
+            this.barBtnSair});
+            this.barManager1.MaxItemId = 12;
+            // 
+            // barDockControlTop
+            // 
+            this.barDockControlTop.CausesValidation = false;
+            this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
+            this.barDockControlTop.Manager = this.barManager1;
+            this.barDockControlTop.Size = new System.Drawing.Size(835, 0);
+            // 
+            // barDockControlBottom
+            // 
+            this.barDockControlBottom.CausesValidation = false;
+            this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 584);
+            this.barDockControlBottom.Manager = this.barManager1;
+            this.barDockControlBottom.Size = new System.Drawing.Size(835, 0);
+            // 
+            // barDockControlLeft
+            // 
+            this.barDockControlLeft.CausesValidation = false;
+            this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 0);
+            this.barDockControlLeft.Manager = this.barManager1;
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 584);
+            // 
+            // barDockControlRight
+            // 
+            this.barDockControlRight.CausesValidation = false;
+            this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
+            this.barDockControlRight.Location = new System.Drawing.Point(835, 0);
+            this.barDockControlRight.Manager = this.barManager1;
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 584);
+            // 
+            // barBtnImprimir
+            // 
+            this.barBtnImprimir.Caption = "Imprimir Boleto (s)";
+            this.barBtnImprimir.Id = 0;
+            this.barBtnImprimir.Name = "barBtnImprimir";
+            // 
+            // barBtnVisualizar
+            // 
+            this.barBtnVisualizar.Caption = "Visualizar Boleto (s)";
+            this.barBtnVisualizar.Id = 1;
+            this.barBtnVisualizar.Name = "barBtnVisualizar";
+            // 
+            // barBtnGerarRemessa
+            // 
+            this.barBtnGerarRemessa.Caption = "Gerar Remessa";
+            this.barBtnGerarRemessa.Id = 2;
+            this.barBtnGerarRemessa.Name = "barBtnGerarRemessa";
+            // 
+            // barSubItem1
+            // 
+            this.barSubItem1.Caption = "barSubItem1";
+            this.barSubItem1.Id = 7;
+            this.barSubItem1.Name = "barSubItem1";
+            // 
+            // barBtnEmail
+            // 
+            this.barBtnEmail.Caption = "Enviar por Email";
+            this.barBtnEmail.Id = 8;
+            this.barBtnEmail.Name = "barBtnEmail";
+            // 
+            // barBtnDesenharBoleto
+            // 
+            this.barBtnDesenharBoleto.Caption = "Desenhar Boleto";
+            this.barBtnDesenharBoleto.Id = 9;
+            this.barBtnDesenharBoleto.Name = "barBtnDesenharBoleto";
+            // 
+            // barBtnAtualizar
+            // 
+            this.barBtnAtualizar.Caption = "Atualizar";
+            this.barBtnAtualizar.Id = 10;
+            this.barBtnAtualizar.Name = "barBtnAtualizar";
+            this.barBtnAtualizar.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barBtnAtualizar_ItemClick);
+            // 
+            // barBtnSair
+            // 
+            this.barBtnSair.Caption = "Sair";
+            this.barBtnSair.Id = 11;
+            this.barBtnSair.Name = "barBtnSair";
             // 
             // Principal
             // 
@@ -1468,11 +1599,17 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(835, 584);
             this.Controls.Add(this.xtraTabControl1);
+            this.Controls.Add(this.barDockControlLeft);
+            this.Controls.Add(this.barDockControlRight);
+            this.Controls.Add(this.barDockControlBottom);
+            this.Controls.Add(this.barDockControlTop);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.MaximizeBox = false;
             this.Name = "Principal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "VsBoleto";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Principal_FormClosed);
+            this.Resize += new System.EventHandler(this.Principal_Resize);
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).EndInit();
             this.xtraTabControl1.ResumeLayout(false);
             this.xtraTabMonitor.ResumeLayout(false);
@@ -1493,9 +1630,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl6)).EndInit();
             this.groupControl6.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl5)).EndInit();
-            this.groupControl5.ResumeLayout(false);
-            this.groupControl5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.groupPesquisa)).EndInit();
+            this.groupPesquisa.ResumeLayout(false);
+            this.groupPesquisa.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tbxPesquisaNN.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpAte.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpAte.Properties)).EndInit();
@@ -1503,8 +1640,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dtpDe.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl4)).EndInit();
-            this.groupControl4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.groupRemessa)).EndInit();
+            this.groupRemessa.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.chkExibirRemessa.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkSelecionarRemessa.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).EndInit();
@@ -1522,8 +1659,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupControl9)).EndInit();
             this.groupControl9.ResumeLayout(false);
             this.groupControl9.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).EndInit();
+            this.panelControl3.ResumeLayout(false);
+            this.panelControl3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chkDesconto.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtDescontoVencimento.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlEspecieTitulo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxMulta.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxInstrucao1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxJurosMes.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxInstrucao2.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxProtesto.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxPathLayoutBoleto.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxInstrucoes.Properties)).EndInit();
@@ -1540,9 +1685,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.tbxOutros1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxCodigo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxAgencia.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl7)).EndInit();
-            this.groupControl7.ResumeLayout(false);
-            this.groupControl7.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.groupBanco)).EndInit();
+            this.groupBanco.ResumeLayout(false);
+            this.groupBanco.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
             this.panelControl2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.chkUtilizaNumBanco.Properties)).EndInit();
@@ -1551,23 +1696,18 @@
             ((System.ComponentModel.ISupportInitialize)(this.ddlBanco.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lbxPosicoes)).EndInit();
             this.xTabRetorno.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.tbxInstrucao2.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbxInstrucao1.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtDescontoVencimento.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ddlEspecieTitulo.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkDesconto.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).EndInit();
-            this.panelControl3.ResumeLayout(false);
-            this.panelControl3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.controlRetorno)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridRetorno)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl11)).EndInit();
             this.groupControl11.ResumeLayout(false);
             this.groupControl11.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ddlPosicoes.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ddlLayoutRetorno.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxArquivoRetorno.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.controlRetorno)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridRetorno)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlLayoutRetorno.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlPosicoes.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.popupMenu1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -1586,7 +1726,7 @@
         private DevExpress.XtraEditors.CheckEdit chkExibirImpressos;
         private DevExpress.XtraEditors.CheckEdit chkPDF;
         private DevExpress.XtraEditors.CheckButton chkBtnImpressaoAutomatica;
-        private DevExpress.XtraEditors.GroupControl groupControl5;
+        private DevExpress.XtraEditors.GroupControl groupPesquisa;
         private DevExpress.XtraEditors.TextEdit tbxPesquisaNN;
         private DevExpress.XtraEditors.LabelControl labelControl3;
         private DevExpress.XtraEditors.DateEdit dtpAte;
@@ -1596,7 +1736,7 @@
         private DevExpress.XtraEditors.SimpleButton btnRefresh;
         private DevExpress.XtraEditors.GroupControl groupControl6;
         private DevExpress.XtraEditors.SimpleButton barBtnInfoBD;
-        private DevExpress.XtraEditors.GroupControl groupControl4;
+        private DevExpress.XtraEditors.GroupControl groupRemessa;
         private DevExpress.XtraEditors.SimpleButton btnAbrirPasta;
         private DevExpress.XtraEditors.SimpleButton btnGerarRemessas;
         private DevExpress.XtraEditors.CheckEdit chkExibirRemessa;
@@ -1624,11 +1764,11 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEdit4;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn18;
         private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEdit5;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn13;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn19;
         private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEdit6;
         private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEdit3;
         private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEdit2;
-        private DevExpress.XtraEditors.GroupControl groupControl7;
+        private DevExpress.XtraEditors.GroupControl groupBanco;
         private DevExpress.XtraEditors.LabelControl labelControl4;
         private DevExpress.XtraEditors.ComboBoxEdit ddlBanco;
         private DevExpress.XtraEditors.ListBoxControl lbxPosicoes;
@@ -1699,5 +1839,19 @@
         private DevExpress.XtraEditors.LabelControl labelControl23;
         private DevExpress.XtraGrid.GridControl controlRetorno;
         private DevExpress.XtraGrid.Views.Grid.GridView gridRetorno;
+        private DevExpress.XtraBars.PopupMenu popupMenu1;
+        private DevExpress.XtraBars.BarManager barManager1;
+        private DevExpress.XtraBars.BarDockControl barDockControlTop;
+        private DevExpress.XtraBars.BarDockControl barDockControlBottom;
+        private DevExpress.XtraBars.BarDockControl barDockControlLeft;
+        private DevExpress.XtraBars.BarDockControl barDockControlRight;
+        private DevExpress.XtraBars.BarButtonItem barBtnImprimir;
+        private DevExpress.XtraBars.BarButtonItem barBtnVisualizar;
+        private DevExpress.XtraBars.BarButtonItem barBtnGerarRemessa;
+        private DevExpress.XtraBars.BarButtonItem barBtnEmail;
+        private DevExpress.XtraBars.BarButtonItem barBtnDesenharBoleto;
+        private DevExpress.XtraBars.BarButtonItem barBtnAtualizar;
+        private DevExpress.XtraBars.BarButtonItem barBtnSair;
+        private DevExpress.XtraBars.BarSubItem barSubItem1;
     }
 }
