@@ -1187,7 +1187,7 @@ namespace VsBoleto.Sistema
                     timer2.Start();
                 }
             }
-        }
+        } 
 
         bool erroduranteimpressaoautomatica = false;
 
@@ -1221,7 +1221,7 @@ namespace VsBoleto.Sistema
             {
                 timer2.Start();
             }
-        }
+        }        
 
         private void checkButton1_CheckedChanged(object sender, EventArgs e)
         {
@@ -1245,11 +1245,234 @@ namespace VsBoleto.Sistema
 
             barBtnAtualizar_ItemClick(null, null);
 
+        }       
+
+        private void dtpAte_Leave(object sender, EventArgs e)
+        {
+            DateEdit dt = (DateEdit)sender;
+            if (dt.DateTime.IsMinDateTime())
+            {
+                dt.DateTime = DateTime.Now;
+            }
+
+            timer2.Enabled = int.Parse(Utilitarios.ArquivoINI.LeString(pathConfig, "CONFIG", "ROTINA")) == 0;
+        }
+        
+        private void dtpAte_Enter(object sender, EventArgs e)
+        {
+            timer2.Enabled = false;
+        }        
+
+        private void barBtnEmail_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            try
+            {
+                if (controlNotas.Focused)
+                {
+                    if (gridNotas.GetSelectedRows().Length > 0)
+                    {
+                        if (gridParcelas.DataRowCount > 0)
+                        {
+                            for (int i = 0; i < gridParcelas.DataRowCount; i++)
+                            {
+                                PrepararMeuBoleto(null, ((DataRowView)gridParcelas.GetRow(i)).Row, "email");
+                            }
+
+                            conta.EnviarBoletosPorEmail(Configuracoes.LayoutBoleto);
+                            MostrarMensagem("Email enviado.");
+                        }
+                    }
+                }
+                else if (controlParcelas.Focused)
+                {
+                    if (gridParcelas.GetSelectedRows().Length > 0)
+                    {
+                        PrepararMeuBoleto(null, gridParcelas.GetFocusedDataRow(), "email");
+                        conta.EnviarBoletosPorEmail(Configuracoes.LayoutBoleto);
+                        MostrarMensagem("Email enviado");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MostrarMensagem("Erro durante o envio de email.\n" + ex);
+            }
+            finally
+            {
+                conta = null;
+            }
+        }
+
+        private void barBtnInfoBD_Click(object sender, EventArgs e)
+        {
+            FormConfig frm = new FormConfig();
+            frm.ShowDialog(this);
+            chkBtnImpressaoAutomatica.Checked = int.Parse(Utilitarios.ArquivoINI.LeString(pathConfig, "CONFIG", "ROTINA", valorDefault: "1")) == 0;
+            timer2.Interval = int.Parse(Utilitarios.ArquivoINI.LeString(pathConfig, "CONFIG", "INTERVALO", valorDefault: "10")) * 1000;
+            timer2.Enabled = int.Parse(Utilitarios.ArquivoINI.LeString(pathConfig, "CONFIG", "ROTINA")) == 0;
+        }
+
+        private void barBtnSair_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (MessageBox.Show("Sair do programa?", "VsBoleto", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                Close();
+            }
         }
 
         private void barBtnAtualizar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            CarregarGrids();
+        }
 
+        private void barBtnGerarRemessa_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            try
+            {
+                string nomeArquivo = "remessa" + DateTime.Now.ToString("ddMMyyhhmmss") + ".txt";
+                string pathremessa = pathIni + "/Remessa/";
+                if (controlNotas.Focused)
+                {
+                    if (gridNotas.GetSelectedRows().Length > 0)
+                    {
+                        if (gridParcelas.DataRowCount > 0)
+                        {
+                            for (int i = 0; i < gridParcelas.DataRowCount; i++)
+                            {
+                                PrepararMeuBoleto(null, ((DataRowView)gridParcelas.GetRow(i)).Row, "remessa");
+                            }
+                        }
+
+                        string pathAuxiliar = pathIni + "/Posicao/Pos" + ((DataRowView)gridNotas.GetRow(gridNotas.GetSelectedRows()[0]))["POSICAO"].ToString() + ".ini";
+                        if (File.Exists(pathAuxiliar))
+                        {
+                            pathremessa = Utilitarios.ArquivoINI.LeString(pathAuxiliar, "REMESSA", "CAMINHO", valorDefault: "");
+                        }
+
+                        if (string.IsNullOrEmpty(pathremessa))
+                        {
+                            pathremessa = pathIni + "/Remessa/";
+                        }
+
+                        conta.GerarArquivoRemessa(Configuracoes.LayoutArquivoRemessa,
+                            pathremessa, ref nomeArquivo);
+                        MostrarMensagem("Arquivos de remessa gerado.", true);
+                    }
+                }
+                else if (controlParcelas.Focused)
+                {
+                    if (gridParcelas.GetSelectedRows().Length > 0)
+                    {
+                        PrepararMeuBoleto(null, gridParcelas.GetFocusedDataRow(), "remessa");
+
+                        string pathAuxiliar = pathIni + "/Posicao/Pos" + ((DataRowView)gridNotas.GetRow(gridNotas.GetSelectedRows()[0]))["POSICAO"].ToString() + ".ini";
+                        if (File.Exists(pathAuxiliar))
+                        {
+                            pathremessa = Utilitarios.ArquivoINI.LeString(pathAuxiliar, "REMESSA", "CAMINHO", valorDefault: "");
+                        }
+
+                        if (string.IsNullOrEmpty(pathremessa))
+                        {
+                            pathremessa = pathIni + "/Remessa/";
+                        }
+
+                        conta.GerarArquivoRemessa(Configuracoes.LayoutArquivoRemessa,
+                            pathremessa, ref nomeArquivo);
+                        MostrarMensagem("Arquivo de remessa gerado.", true);
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                GravarLog("Erro durante a geração da remessa de um item.");
+            }
+            finally
+            {
+                conta = null;
+            }
+        }
+
+        private void barBtnDesenharBoleto_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            try
+            {
+                FormSenha pw = new FormSenha();
+                pw.ShowDialog();
+                if (!pw.Permitido)
+                {
+                    return;
+                }
+
+                if (controlNotas.Focused)
+                {
+                    if (gridNotas.GetSelectedRows().Length > 0)
+                    {
+                        if (gridParcelas.DataRowCount > 0)
+                        {
+                            for (int i = 0; i < gridParcelas.DataRowCount; i++)
+                            {
+                                PrepararMeuBoleto(null, ((DataRowView)gridParcelas.GetRow(i)).Row, "");
+                            }
+                        }
+
+                        conta.DesenharRelatorio(Configuracoes.LayoutBoleto);
+                    }
+                }
+                else if (controlParcelas.Focused)
+                {
+                    if (gridParcelas.GetSelectedRows().Length > 0)
+                    {
+                        PrepararMeuBoleto(null, gridParcelas.GetFocusedDataRow(), "");
+                        conta.DesenharRelatorio(Configuracoes.LayoutBoleto);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                GravarLog("Erro no desenho do boleto.\n" + ex.ToString());
+            }
+            finally
+            {
+                conta = null;
+            }
+        }
+
+        private void barBtnVisualizar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            try
+            {
+                if (controlNotas.Focused)
+                {
+                    if (gridNotas.GetSelectedRows().Length > 0)
+                    {
+                        if (gridParcelas.DataRowCount > 0)
+                        {
+                            for (int i = 0; i < gridParcelas.DataRowCount; i++)
+                            {
+                                PrepararMeuBoleto(null, ((DataRowView)gridParcelas.GetRow(i)).Row, "visualizar");
+                            }
+                        }
+
+                        VisualizarBoletos();
+                    }
+                }
+                else if (controlParcelas.Focused)
+                {
+                    if (gridParcelas.GetSelectedRows().Length > 0)
+                    {
+                        PrepararMeuBoleto(null, gridParcelas.GetFocusedDataRow(), "visualizar");
+                        VisualizarBoletos();
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                GravarLog("Erro durante a visualização de um item.");
+            }
+            finally
+            {
+                conta = null;
+            }
         }
     }
 }

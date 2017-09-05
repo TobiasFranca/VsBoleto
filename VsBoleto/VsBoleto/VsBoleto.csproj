@@ -88,6 +88,12 @@
     <Compile Include="Sistema\FormConfig.Designer.cs">
       <DependentUpon>FormConfig.cs</DependentUpon>
     </Compile>
+    <Compile Include="Sistema\FormSenha.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sistema\FormSenha.Designer.cs">
+      <DependentUpon>FormSenha.cs</DependentUpon>
+    </Compile>
     <Compile Include="Sistema\Principal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -123,6 +129,9 @@
     </Compile>
     <EmbeddedResource Include="Sistema\FormConfig.resx">
       <DependentUpon>FormConfig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sistema\FormSenha.resx">
+      <DependentUpon>FormSenha.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sistema\Principal.resx">
       <DependentUpon>Principal.cs</DependentUpon>
