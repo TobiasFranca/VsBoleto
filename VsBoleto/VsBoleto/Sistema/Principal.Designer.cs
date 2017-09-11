@@ -185,6 +185,7 @@
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.barSubItem1 = new DevExpress.XtraBars.BarSubItem();
+            this.popupMenu2 = new DevExpress.XtraBars.PopupMenu(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
             this.xtraTabControl1.SuspendLayout();
             this.xtraTabMonitor.SuspendLayout();
@@ -274,6 +275,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.ddlPosicoes.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenu1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.popupMenu2)).BeginInit();
             this.SuspendLayout();
             // 
             // xtraTabControl1
@@ -486,6 +488,7 @@
             this.gridNotas.OptionsSelection.EnableAppearanceFocusedRow = false;
             this.gridNotas.OptionsView.ShowFilterPanelMode = DevExpress.XtraGrid.Views.Base.ShowFilterPanelMode.Never;
             this.gridNotas.OptionsView.ShowGroupPanel = false;
+            this.gridNotas.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.gridNotas_RowClick);
             // 
             // gridColumn1
             // 
@@ -1502,6 +1505,7 @@
             this.barBtnImprimir.Caption = "Imprimir Boleto (s)";
             this.barBtnImprimir.Id = 0;
             this.barBtnImprimir.Name = "barBtnImprimir";
+            this.barBtnImprimir.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barBtnImprimir_ItemClick);
             // 
             // barBtnVisualizar
             // 
@@ -1600,6 +1604,11 @@
             this.barSubItem1.Caption = "barSubItem1";
             this.barSubItem1.Id = 7;
             this.barSubItem1.Name = "barSubItem1";
+            // 
+            // popupMenu2
+            // 
+            this.popupMenu2.Manager = this.barManager1;
+            this.popupMenu2.Name = "popupMenu2";
             // 
             // Principal
             // 
@@ -1714,6 +1723,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.ddlPosicoes.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenu1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.popupMenu2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1861,5 +1871,6 @@
         private DevExpress.XtraBars.BarButtonItem barBtnAtualizar;
         private DevExpress.XtraBars.BarButtonItem barBtnSair;
         private DevExpress.XtraBars.BarSubItem barSubItem1;
+        private DevExpress.XtraBars.PopupMenu popupMenu2;
     }
 }

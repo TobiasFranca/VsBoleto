@@ -27,7 +27,7 @@ namespace VsBoleto.Sistema
         private string pathPosicao = "";
         private string pathConfig = Application.StartupPath + "\\Config.ini";
         private System.Timers.Timer timer2 = new System.Timers.Timer();
-        NotifyIcon NotifyIcon = new NotifyIcon();
+        NotifyIcon notifyIcon = new NotifyIcon();
 
         private Color corA = Color.LightSalmon;
         private Color corI = Color.LightSkyBlue;
@@ -111,6 +111,9 @@ namespace VsBoleto.Sistema
                     item.OptionsColumn.AllowEdit = false;
                 }
             }
+
+            notifyIcon.MouseDoubleClick += NotifyIcon_MouseDoubleClick;
+            notifyIcon.MouseClick += NotifyIcon_MouseClick;
         }        
 
         private bool LeConfigBase()
@@ -1230,11 +1233,11 @@ namespace VsBoleto.Sistema
             Utilitarios.ArquivoINI.EscreveString(pathConfig, "CONFIG", "ROTINA", chkBtnImpressaoAutomatica.Checked ? "0" : "1");
             
             timer2.Enabled = chkBtnImpressaoAutomatica.Checked;
-            NotifyIcon.Text = chkBtnImpressaoAutomatica.Checked ? "Impressão Automática On" : "Impressão Automática Off";
-            NotifyIcon.BalloonTipTitle = "VsBoletos";
-            NotifyIcon.BalloonTipText = chkBtnImpressaoAutomatica.Checked ? "Impressão Automática On" : "Impressão Automática Off";
-            NotifyIcon.BalloonTipIcon = ToolTipIcon.Info;
-            NotifyIcon.ShowBalloonTip(500);
+            notifyIcon.Text = chkBtnImpressaoAutomatica.Checked ? "Impressão Automática On" : "Impressão Automática Off";
+            notifyIcon.BalloonTipTitle = "VsBoletos";
+            notifyIcon.BalloonTipText = chkBtnImpressaoAutomatica.Checked ? "Impressão Automática On" : "Impressão Automática Off";
+            notifyIcon.BalloonTipIcon = ToolTipIcon.Info;
+            notifyIcon.ShowBalloonTip(500);
 
             xtraTabMonitor.Select();
 
@@ -1302,7 +1305,7 @@ namespace VsBoleto.Sistema
                 conta = null;
             }
         }
-
+        
         private void barBtnInfoBD_Click(object sender, EventArgs e)
         {
             FormConfig frm = new FormConfig();
@@ -1472,6 +1475,74 @@ namespace VsBoleto.Sistema
             finally
             {
                 conta = null;
+            }
+        }
+
+        private void barBtnImprimir_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            try
+            {
+                if (controlNotas.Focused)
+                {
+                    if (gridNotas.GetSelectedRows().Length > 0)
+                    {
+                        if (gridParcelas.DataRowCount > 0)
+                        {
+                            for (int i = 0; i < gridParcelas.DataRowCount; i++)
+                            {
+                                PrepararMeuBoleto(null, ((DataRowView)gridParcelas.GetRow(i)).Row, "imprimir");
+                            }
+                        }
+
+                        VisualizarBoletos(true);
+                    }
+                }
+                else if (controlParcelas.Focused)
+                {
+                    if (gridParcelas.GetSelectedRows().Length > 0)
+                    {
+                        PrepararMeuBoleto(null, gridParcelas.GetFocusedDataRow(), "imprimir");
+                        VisualizarBoletos(true);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                GravarLog("Erro durante a impressão de um item: " + ex.Message);
+            }
+            finally
+            {
+                conta = null;
+            }
+        }
+
+        private void NotifyIcon_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            Show();
+            WindowState = FormWindowState.Normal;
+            CarregarGrids();
+        }
+
+        private void NotifyIcon_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right && IsHandleCreated)
+            {
+                popupMenu2.ShowPopup(MousePosition);
+            }
+        }
+
+        private void gridNotas_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
+        {
+            try
+            {
+                if (gridNotas.GetSelectedRows().Length > 0)
+                {
+                    ExibirParcelas();
+                }
+            }
+            catch (Exception ex)
+            {
+                MostrarMensagem("Erro na exibição das parcelas: " + ex.Message, true);
             }
         }
     }
