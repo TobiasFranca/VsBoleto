@@ -30,21 +30,21 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Principal));
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions4 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject13 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject14 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject15 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject16 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions2 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject7 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject8 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions3 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject9 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject10 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject11 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject12 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions4 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject13 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject14 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject15 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject16 = new DevExpress.Utils.SerializableAppearanceObject();
             this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
             this.xtraTabMonitor = new DevExpress.XtraTab.XtraTabPage();
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
@@ -290,6 +290,7 @@
             this.xtraTabMonitor,
             this.xtraTabConfig,
             this.xTabRetorno});
+            this.xtraTabControl1.SelectedPageChanged += new DevExpress.XtraTab.TabPageChangedEventHandler(this.xtraTabControl1_SelectedPageChanged);
             // 
             // xtraTabMonitor
             // 
@@ -325,6 +326,7 @@
             this.controlParcelas.TabIndex = 7;
             this.controlParcelas.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridParcelas});
+            this.controlParcelas.MouseClick += new System.Windows.Forms.MouseEventHandler(this.controlParcelas_MouseClick);
             // 
             // gridParcelas
             // 
@@ -465,6 +467,7 @@
             this.controlNotas.TabIndex = 6;
             this.controlNotas.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridNotas});
+            this.controlNotas.MouseClick += new System.Windows.Forms.MouseEventHandler(this.controlNotas_MouseClick);
             // 
             // gridNotas
             // 
@@ -489,6 +492,8 @@
             this.gridNotas.OptionsView.ShowFilterPanelMode = DevExpress.XtraGrid.Views.Base.ShowFilterPanelMode.Never;
             this.gridNotas.OptionsView.ShowGroupPanel = false;
             this.gridNotas.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.gridNotas_RowClick);
+            this.gridNotas.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.gridNotas_RowCellClick);
+            this.gridNotas.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridNotas_KeyDown);
             // 
             // gridColumn1
             // 
@@ -626,6 +631,7 @@
             this.btnPesquisaNN.Size = new System.Drawing.Size(75, 23);
             this.btnPesquisaNN.TabIndex = 11;
             this.btnPesquisaNN.Text = "Pesquisar";
+            this.btnPesquisaNN.Click += new System.EventHandler(this.btnPesquisaNN_Click);
             // 
             // tbxPesquisaNN
             // 
@@ -633,6 +639,7 @@
             this.tbxPesquisaNN.Name = "tbxPesquisaNN";
             this.tbxPesquisaNN.Size = new System.Drawing.Size(73, 20);
             this.tbxPesquisaNN.TabIndex = 10;
+            this.tbxPesquisaNN.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tbxPesquisaNN_KeyUp);
             // 
             // labelControl3
             // 
@@ -692,6 +699,7 @@
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(30, 23);
             this.btnRefresh.TabIndex = 4;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // panelControl1
             // 
@@ -725,6 +733,7 @@
             this.btnAbrirPasta.Name = "btnAbrirPasta";
             this.btnAbrirPasta.Size = new System.Drawing.Size(30, 23);
             this.btnAbrirPasta.TabIndex = 4;
+            this.btnAbrirPasta.Click += new System.EventHandler(this.btnAbrirPasta_Click);
             // 
             // btnGerarRemessas
             // 
@@ -841,18 +850,19 @@
             // 
             this.tbxArquivoRemessa.Location = new System.Drawing.Point(152, 43);
             this.tbxArquivoRemessa.Name = "tbxArquivoRemessa";
-            serializableAppearanceObject13.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject13.Image")));
-            serializableAppearanceObject13.Options.UseImage = true;
-            serializableAppearanceObject14.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject14.Image")));
-            serializableAppearanceObject14.Options.UseImage = true;
-            serializableAppearanceObject15.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject15.Image")));
-            serializableAppearanceObject15.Options.UseImage = true;
-            serializableAppearanceObject16.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject16.Image")));
-            serializableAppearanceObject16.Options.UseImage = true;
+            serializableAppearanceObject5.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject5.Image")));
+            serializableAppearanceObject5.Options.UseImage = true;
+            serializableAppearanceObject6.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject6.Image")));
+            serializableAppearanceObject6.Options.UseImage = true;
+            serializableAppearanceObject7.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject7.Image")));
+            serializableAppearanceObject7.Options.UseImage = true;
+            serializableAppearanceObject8.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject8.Image")));
+            serializableAppearanceObject8.Options.UseImage = true;
             this.tbxArquivoRemessa.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, true, false, editorButtonImageOptions4, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject13, serializableAppearanceObject14, serializableAppearanceObject15, serializableAppearanceObject16, "", null, null)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, true, false, editorButtonImageOptions2, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, serializableAppearanceObject6, serializableAppearanceObject7, serializableAppearanceObject8, "", null, null)});
             this.tbxArquivoRemessa.Size = new System.Drawing.Size(417, 20);
             this.tbxArquivoRemessa.TabIndex = 6;
+            this.tbxArquivoRemessa.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.tbxArquivoRemessa_ButtonClick);
             // 
             // labelControl9
             // 
@@ -924,6 +934,7 @@
             this.chkDesconto.Properties.Caption = "Desconto Até o Vencimento";
             this.chkDesconto.Size = new System.Drawing.Size(154, 19);
             this.chkDesconto.TabIndex = 14;
+            this.chkDesconto.CheckedChanged += new System.EventHandler(this.chkDesconto_CheckedChanged);
             // 
             // txtDescontoVencimento
             // 
@@ -1036,18 +1047,19 @@
             // 
             this.tbxPathLayoutBoleto.Location = new System.Drawing.Point(11, 134);
             this.tbxPathLayoutBoleto.Name = "tbxPathLayoutBoleto";
-            serializableAppearanceObject1.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject1.Image")));
-            serializableAppearanceObject1.Options.UseImage = true;
-            serializableAppearanceObject2.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject2.Image")));
-            serializableAppearanceObject2.Options.UseImage = true;
-            serializableAppearanceObject3.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject3.Image")));
-            serializableAppearanceObject3.Options.UseImage = true;
-            serializableAppearanceObject4.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject4.Image")));
-            serializableAppearanceObject4.Options.UseImage = true;
+            serializableAppearanceObject9.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject9.Image")));
+            serializableAppearanceObject9.Options.UseImage = true;
+            serializableAppearanceObject10.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject10.Image")));
+            serializableAppearanceObject10.Options.UseImage = true;
+            serializableAppearanceObject11.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject11.Image")));
+            serializableAppearanceObject11.Options.UseImage = true;
+            serializableAppearanceObject12.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject12.Image")));
+            serializableAppearanceObject12.Options.UseImage = true;
             this.tbxPathLayoutBoleto.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, true, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, true, false, editorButtonImageOptions3, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject9, serializableAppearanceObject10, serializableAppearanceObject11, serializableAppearanceObject12, "", null, null)});
             this.tbxPathLayoutBoleto.Size = new System.Drawing.Size(461, 20);
             this.tbxPathLayoutBoleto.TabIndex = 7;
+            this.tbxPathLayoutBoleto.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.tbxPathLayoutBoleto_ButtonClick);
             // 
             // labelControl13
             // 
@@ -1120,18 +1132,19 @@
             // 
             this.tbxNNAtual.Location = new System.Drawing.Point(608, 43);
             this.tbxNNAtual.Name = "tbxNNAtual";
-            serializableAppearanceObject5.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject5.Image")));
-            serializableAppearanceObject5.Options.UseImage = true;
-            serializableAppearanceObject6.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject6.Image")));
-            serializableAppearanceObject6.Options.UseImage = true;
-            serializableAppearanceObject7.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject7.Image")));
-            serializableAppearanceObject7.Options.UseImage = true;
-            serializableAppearanceObject8.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject8.Image")));
-            serializableAppearanceObject8.Options.UseImage = true;
+            serializableAppearanceObject13.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject13.Image")));
+            serializableAppearanceObject13.Options.UseImage = true;
+            serializableAppearanceObject14.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject14.Image")));
+            serializableAppearanceObject14.Options.UseImage = true;
+            serializableAppearanceObject15.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject15.Image")));
+            serializableAppearanceObject15.Options.UseImage = true;
+            serializableAppearanceObject16.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject16.Image")));
+            serializableAppearanceObject16.Options.UseImage = true;
             this.tbxNNAtual.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, true, false, editorButtonImageOptions2, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, serializableAppearanceObject6, serializableAppearanceObject7, serializableAppearanceObject8, "", null, null)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, true, false, editorButtonImageOptions4, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject13, serializableAppearanceObject14, serializableAppearanceObject15, serializableAppearanceObject16, "", null, null)});
             this.tbxNNAtual.Size = new System.Drawing.Size(102, 20);
             this.tbxNNAtual.TabIndex = 4;
+            this.tbxNNAtual.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.tbxNNAtual_ButtonClick);
             // 
             // ddlNomeCedente
             // 
@@ -1299,6 +1312,7 @@
             this.btnLimpar.Size = new System.Drawing.Size(75, 23);
             this.btnLimpar.TabIndex = 0;
             this.btnLimpar.Text = "Limpar";
+            this.btnLimpar.Click += new System.EventHandler(this.btnLimpar_Click);
             // 
             // btnSalvar
             // 
@@ -1307,6 +1321,7 @@
             this.btnSalvar.Size = new System.Drawing.Size(75, 23);
             this.btnSalvar.TabIndex = 0;
             this.btnSalvar.Text = "Salvar";
+            this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
             // 
             // btnCriarEditar
             // 
@@ -1315,6 +1330,7 @@
             this.btnCriarEditar.Size = new System.Drawing.Size(75, 23);
             this.btnCriarEditar.TabIndex = 0;
             this.btnCriarEditar.Text = "Criar/Editar";
+            this.btnCriarEditar.Click += new System.EventHandler(this.btnCriarEditar_Click);
             // 
             // btnCancelar
             // 
@@ -1323,6 +1339,7 @@
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 0;
             this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // chkUtilizaNumBanco
             // 
@@ -1379,6 +1396,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.ddlBanco.Size = new System.Drawing.Size(274, 20);
             this.ddlBanco.TabIndex = 1;
+            this.ddlBanco.SelectedIndexChanged += new System.EventHandler(this.ddlBanco_SelectedIndexChanged);
             // 
             // lbxPosicoes
             // 
@@ -1387,6 +1405,10 @@
             this.lbxPosicoes.Name = "lbxPosicoes";
             this.lbxPosicoes.Size = new System.Drawing.Size(161, 95);
             this.lbxPosicoes.TabIndex = 0;
+            this.lbxPosicoes.SelectedIndexChanged += new System.EventHandler(this.lbxPosicoes_SelectedIndexChanged);
+            this.lbxPosicoes.Click += new System.EventHandler(this.lbxPosicoes_Click);
+            this.lbxPosicoes.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lbxPosicoes_KeyDown);
+            this.lbxPosicoes.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lbxPosicoes_MouseDoubleClick);
             // 
             // xTabRetorno
             // 
@@ -1435,6 +1457,7 @@
             this.btnCarregar.Size = new System.Drawing.Size(75, 23);
             this.btnCarregar.TabIndex = 3;
             this.btnCarregar.Text = "Carregar";
+            this.btnCarregar.Click += new System.EventHandler(this.btnCarregar_Click);
             // 
             // tbxArquivoRetorno
             // 
@@ -1444,6 +1467,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.tbxArquivoRetorno.Size = new System.Drawing.Size(327, 20);
             this.tbxArquivoRetorno.TabIndex = 2;
+            this.tbxArquivoRetorno.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.tbxArquivoRetorno_ButtonClick);
             // 
             // ddlLayoutRetorno
             // 
@@ -1478,6 +1502,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.ddlPosicoes.Size = new System.Drawing.Size(212, 20);
             this.ddlPosicoes.TabIndex = 1;
+            this.ddlPosicoes.SelectedIndexChanged += new System.EventHandler(this.ddlPosicoes_SelectedIndexChanged);
             // 
             // labelControl21
             // 

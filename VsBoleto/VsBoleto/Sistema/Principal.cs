@@ -13,6 +13,7 @@ using BoletoBancario.Utilitarios;
 using VsBoleto.Utilitarios;
 using System.IO;
 using System.Timers;
+using BoletoBancario.Bancos;
 
 namespace VsBoleto.Sistema
 {
@@ -63,7 +64,7 @@ namespace VsBoleto.Sistema
                 tbxArquivoRemessa.Enabled = ddlLayoutRemessa.Enabled = chkDesconto.Enabled = ddlEspecieTitulo.Enabled = tbxProtesto.Enabled = editando;
                 ddlBanco.Enabled = tbxCarteira.Enabled = chkUtilizaNumBanco.Enabled = editando;
             }
-        }       
+        }
 
         ContaCorrente conta = null;
 
@@ -114,10 +115,10 @@ namespace VsBoleto.Sistema
 
             notifyIcon.MouseDoubleClick += NotifyIcon_MouseDoubleClick;
             notifyIcon.MouseClick += NotifyIcon_MouseClick;
-        }        
+        }
 
         private bool LeConfigBase()
-        {           
+        {
 
             try
             {
@@ -154,12 +155,12 @@ namespace VsBoleto.Sistema
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erro ao abrir conexão com RET:\n" + pathRET + "\n\nO programa será fechado." + ex);                
+                MessageBox.Show("Erro ao abrir conexão com RET:\n" + pathRET + "\n\nO programa será fechado." + ex);
                 return false;
             }
 
             return true;
-        }    
+        }
 
         private void LoadPosicoesEFiliais()
         {
@@ -782,7 +783,7 @@ namespace VsBoleto.Sistema
             tbxInicioNossoN.Properties.Mask.EditMask = "";
             tbxOutros1.Properties.Mask.EditMask = "";
             tbxOutros2.Properties.Mask.EditMask = "";
-        }        
+        }
 
         private void MostrarMensagem(string msg, bool log = false)
         {
@@ -791,7 +792,7 @@ namespace VsBoleto.Sistema
             {
                 GravarLog(msg);
             }
-        } 
+        }
 
         private void GravarLog(string msg)
         {
@@ -799,8 +800,8 @@ namespace VsBoleto.Sistema
             {
                 Arquivo.EscreveConteudo(pathLog, DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss.fff") + "  " + msg, true);
             }
-        }        
-        
+        }
+
         private void Principal_FormClosed(object sender, FormClosedEventArgs e)
         {
             Utilitarios.ArquivoINI.EscreveString(pathConfig, "CONFIG", "ROTINA", "1");
@@ -1190,7 +1191,7 @@ namespace VsBoleto.Sistema
                     timer2.Start();
                 }
             }
-        } 
+        }
 
         bool erroduranteimpressaoautomatica = false;
 
@@ -1207,7 +1208,7 @@ namespace VsBoleto.Sistema
                     }
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -1224,14 +1225,14 @@ namespace VsBoleto.Sistema
             {
                 timer2.Start();
             }
-        }        
+        }
 
         private void checkButton1_CheckedChanged(object sender, EventArgs e)
         {
             bool aux = chkBtnImpressaoAutomatica.Checked;
 
             Utilitarios.ArquivoINI.EscreveString(pathConfig, "CONFIG", "ROTINA", chkBtnImpressaoAutomatica.Checked ? "0" : "1");
-            
+
             timer2.Enabled = chkBtnImpressaoAutomatica.Checked;
             notifyIcon.Text = chkBtnImpressaoAutomatica.Checked ? "Impressão Automática On" : "Impressão Automática Off";
             notifyIcon.BalloonTipTitle = "VsBoletos";
@@ -1241,14 +1242,14 @@ namespace VsBoleto.Sistema
 
             xtraTabMonitor.Select();
 
-            panelControl2.Enabled = groupRemessa.Enabled = controlNotas.Enabled = controlParcelas.Enabled = 
+            panelControl2.Enabled = groupRemessa.Enabled = controlNotas.Enabled = controlParcelas.Enabled =
                                     barBtnInfoBD.Enabled = xtraTabConfig.PageEnabled = groupPesquisa.Enabled =
-                                    xTabRetorno.PageEnabled = chkExibirImpressos.Enabled = barBtnAtualizar.Enabled = 
+                                    xTabRetorno.PageEnabled = chkExibirImpressos.Enabled = barBtnAtualizar.Enabled =
                                     chkPDF.Enabled = !aux;
 
             barBtnAtualizar_ItemClick(null, null);
 
-        }       
+        }
 
         private void dtpAte_Leave(object sender, EventArgs e)
         {
@@ -1260,11 +1261,11 @@ namespace VsBoleto.Sistema
 
             timer2.Enabled = int.Parse(Utilitarios.ArquivoINI.LeString(pathConfig, "CONFIG", "ROTINA")) == 0;
         }
-        
+
         private void dtpAte_Enter(object sender, EventArgs e)
         {
             timer2.Enabled = false;
-        }        
+        }
 
         private void barBtnEmail_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
@@ -1305,7 +1306,7 @@ namespace VsBoleto.Sistema
                 conta = null;
             }
         }
-        
+
         private void barBtnInfoBD_Click(object sender, EventArgs e)
         {
             FormConfig frm = new FormConfig();
@@ -1543,6 +1544,429 @@ namespace VsBoleto.Sistema
             catch (Exception ex)
             {
                 MostrarMensagem("Erro na exibição das parcelas: " + ex.Message, true);
+            }
+        }
+
+        private void gridNotas_RowCellClick(object sender, DevExpress.XtraGrid.Views.Grid.RowCellClickEventArgs e)
+        {
+            try
+            {
+                if (gridNotas.GetSelectedRows().Length > 0)
+                {
+                    ExibirParcelas();
+                }
+            }
+            catch (Exception ex)
+            {
+                MostrarMensagem("Erro na exibição das parcelas: " + ex.Message, true);
+            }
+        }
+
+        private void gridNotas_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Up || e.KeyCode == Keys.Down)
+                {
+                    if (gridNotas.GetSelectedRows().Length > 0)
+                    {
+                        ExibirParcelas();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MostrarMensagem("Erro na exibição das parcelas: " + ex.Message, true);
+            }
+        }
+
+        private void controlNotas_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                if (popupMenu1.CanShowPopup)
+                {
+                    popupMenu1.ShowPopup(controlNotas.PointToScreen(e.Location));
+                }
+            }
+
+            controlNotas.Focus();
+        }
+
+        private void controlParcelas_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                if (popupMenu1.CanShowPopup)
+                {
+                    popupMenu1.ShowPopup(controlParcelas.PointToScreen(e.Location));
+                }
+            }
+
+            controlParcelas.Focus();
+        }
+
+        private void lbxPosicoes_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (lbxPosicoes.SelectedItem != null)
+            {
+                CarregarConfiguracoes();
+            }
+        }
+
+        private void btnLimpar_Click(object sender, EventArgs e)
+        {
+            LimparCamposConfiguracoes();
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            LimparCamposConfiguracoes();
+            Editando = false;
+        }
+
+        private void btnCriarEditar_Click(object sender, EventArgs e)
+        {
+            Editando = true;
+            ddlBanco_SelectedIndexChanged(null, null);
+        }
+
+        private void btnSalvar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string pathPosicao = pathIni + "/Posicao/";
+                if (!Directory.Exists(pathPosicao))
+                {
+                    Directory.CreateDirectory(pathPosicao);
+                }
+
+                pathPosicao += "Pos" + ((ListItem)lbxPosicoes.SelectedItem).Value + ".ini";
+
+                Utilitarios.ArquivoINI.EscreveString(pathPosicao, "BANCO", "NOME", ddlBanco.SelectedItem.ToString());
+                Utilitarios.ArquivoINI.EscreveString(pathPosicao, "BANCO", "CARTEIRA", tbxCarteira.Text);
+                Utilitarios.ArquivoINI.EscreveString(pathPosicao, "CEDENTE", "FILIAL", ((ListItem)ddlNomeCedente.SelectedItem).Value);
+                Utilitarios.ArquivoINI.EscreveString(pathPosicao, "CEDENTE", "CODIGO", tbxCodigo.Text);
+                Utilitarios.ArquivoINI.EscreveString(pathPosicao, "CEDENTE", "AGENCIA", tbxAgencia.Text);
+                Utilitarios.ArquivoINI.EscreveString(pathPosicao, "CEDENTE", "CONTA", tbxConta.Text);
+                Utilitarios.ArquivoINI.EscreveString(pathPosicao, "CEDENTE", "NOSSONROI", tbxInicioNossoN.Text);
+                Utilitarios.ArquivoINI.EscreveString(pathPosicao, "CEDENTE", "NOSSONROF", tbxFimNossoN.Text);
+                Utilitarios.ArquivoINI.EscreveString(pathPosicao, "CEDENTE", "OUTRODADO1", tbxOutros1.Text);
+                Utilitarios.ArquivoINI.EscreveString(pathPosicao, "CEDENTE", "OUTRODADO2", tbxOutros2.Text);
+                Utilitarios.ArquivoINI.EscreveString(pathPosicao, "BOLETO", "DEMONSTRATIVO", tbxDemonstrativo.Text, multiplasLinhas: true);
+                Utilitarios.ArquivoINI.EscreveString(pathPosicao, "BOLETO", "INSTRUCOES", tbxInstrucoes.Text);
+                Utilitarios.ArquivoINI.EscreveString(pathPosicao, "BOLETO", "LAYOUT", tbxPathLayoutBoleto.Text);
+                Utilitarios.ArquivoINI.EscreveString(pathPosicao, "BOLETO", "JUROS", tbxJurosMes.Text);
+                Utilitarios.ArquivoINI.EscreveString(pathPosicao, "BOLETO", "MULTA", tbxMulta.Text);
+                Utilitarios.ArquivoINI.EscreveString(pathPosicao, "BOLETO", "INSTRUCAO1", tbxInstrucao1.Text);
+                Utilitarios.ArquivoINI.EscreveString(pathPosicao, "BOLETO", "INSTRUCAO2", tbxInstrucao2.Text);
+                Utilitarios.ArquivoINI.EscreveString(pathPosicao, "BOLETO", "DIASPROTESTO", tbxProtesto.Text);
+                Utilitarios.ArquivoINI.EscreveString(pathPosicao, "BOLETO", "ESPECIE", ddlEspecieTitulo.SelectedItem.ToString());
+                Utilitarios.ArquivoINI.EscreveString(pathPosicao, "BOLETO", "DESCVENCIMENTO", txtDescontoVencimento.Text);
+                Utilitarios.ArquivoINI.EscreveString(pathPosicao, "REMESSA", "CAMINHO", tbxArquivoRemessa.Text);
+                Utilitarios.ArquivoINI.EscreveString(pathPosicao, "REMESSA", "LAYOUT", ddlLayoutRemessa.SelectedItem.ToString());
+
+
+
+                string pathConfigBanco = AppDomain.CurrentDomain.BaseDirectory + "\\ConfigBoletosBancos.ini";
+                if (ddlBanco.SelectedItem.ToString().ToLower().Equals("bradesco"))
+                {
+                    Utilitarios.ArquivoINI.EscreveBool(pathConfigBanco, "BRADESCO", "UTILIZA_NUM_BANCO", chkUtilizaNumBanco.Checked);
+                }
+
+                GravarNossoNumeroDoBD(((ListItem)lbxPosicoes.SelectedItem).Value, "");
+
+                Editando = false;
+                txtDescontoVencimento.Enabled = false;
+            }
+            catch (Exception ex)
+            {
+                MostrarMensagem("Erro ao salvar as informações: " + ex.Message, true);
+            }
+        }
+
+        private void lbxPosicoes_Click(object sender, EventArgs e)
+        {
+            groupBanco.Text = "Banco";
+            Editando = false;
+            btnCriarEditar.Enabled = false;
+            LimparCamposConfiguracoes();
+        }
+
+        private void lbxPosicoes_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                CarregarConfiguracoes();
+            }
+        }
+
+        private void lbxPosicoes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            groupBanco.Text = "Banco";
+            Editando = false;
+            btnCriarEditar.Enabled = false;
+            LimparCamposConfiguracoes();
+        }
+
+        private void tbxArquivoRemessa_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+        {
+            FolderBrowserDialog folder = new FolderBrowserDialog();
+            if (folder.ShowDialog() == DialogResult.OK)
+            {
+                tbxArquivoRemessa.Text = folder.SelectedPath;
+            }
+        }
+
+        private void tbxArquivoRetorno_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+        {
+            OpenFileDialog file = new OpenFileDialog();
+            if (file.ShowDialog() == DialogResult.OK)
+            {
+                pathRetorno = file.FileName;
+                tbxArquivoRetorno.Text = file.SafeFileName;
+            }
+        }
+
+        private void btnCarregar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+            }
+            catch (Exception)
+            {
+                MostrarMensagem("Erro no arquivo retorno.", true);
+            }
+            finally
+            {
+                conta = null;
+            }
+        }
+
+        private void ddlPosicoes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+
+            }
+            catch (Exception)
+            {
+                MostrarMensagem("Erro ao carregar Layouts.", true);
+            }
+            finally
+            {
+                conta = null;
+            }
+        }
+
+        private void ddlBanco_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                chkUtilizaNumBanco.Visible = false;
+                switch (ddlBanco.SelectedItem.ToString().ToLower())
+                {
+                    case "sicoob": CarregarItensDoBanco(EnumHelper.GetBanco(EnumBanco.Sicoob)); break;
+                    case "itau": CarregarItensDoBanco(EnumHelper.GetBanco(EnumBanco.Itau)); break;
+                    case "bradesco":
+                        CarregarItensDoBanco(EnumHelper.GetBanco(EnumBanco.Bradesco));
+                        chkUtilizaNumBanco.Visible = true; break;
+                    case "caixasr": CarregarItensDoBanco(EnumHelper.GetBanco(EnumBanco.CaixaSR)); break;
+                    case "banestes": CarregarItensDoBanco(EnumHelper.GetBanco(EnumBanco.Banestes)); break;
+                    case "santander": CarregarItensDoBanco(EnumHelper.GetBanco(EnumBanco.Santander)); break;
+                    case "bancobrasil": CarregarItensDoBanco(EnumHelper.GetBanco(EnumBanco.BancoBrasil)); break;
+                    default: break;
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Erro ao carregar itens do banco selecionado.");
+            }
+        }
+
+        private void CarregarItensDoBanco(Banco banco)
+        {
+            if (banco == null)
+            {
+                btnCancelar_Click(null, null);
+                return;
+            }
+
+            ddlLayoutRemessa.Properties.Items.Clear();
+            ddlEspecieTitulo.Properties.Items.Clear();
+
+            for (int i = 0; i < banco.LayoutsArquivoRemessa.Count; i++)
+            {
+                ddlLayoutRemessa.Properties.Items.Add(banco.LayoutsArquivoRemessa[i]);
+            }
+
+            if (ddlLayoutRemessa.Properties.Items.Count > 0)
+            {
+                ddlLayoutRemessa.SelectedIndex = 0;
+            }
+
+            for (int i = 0; i < banco.EspecieTitulo.Count; i++)
+            {
+                ddlEspecieTitulo.Properties.Items.Add(banco.EspecieTitulo[i]);
+            }
+
+            if (ddlEspecieTitulo.Properties.Items.Count > 0)
+            {
+                ddlEspecieTitulo.SelectedIndex = 0;
+            }
+
+            tbxIdentificacao.Text = banco.Identificacao;
+            lblOD1.Text = banco.TituloOutros1;
+            lblOD2.Text = banco.TituloOutros2;
+
+            tbxOutros1.Enabled = editando ? banco.HabilitarOutros1 : tbxOutros1.Enabled;
+            tbxOutros2.Enabled = editando ? banco.HabilitarOutros2 : tbxOutros2.Enabled;
+
+            tbxAgencia.Properties.MaxLength = banco.MascaraAgencia.ToNoFormated().Length;
+            tbxCodigo.Properties.MaxLength = banco.MascaraCodigoCedente.ToNoFormated().Length;
+            tbxConta.Properties.MaxLength = banco.MascaraContaCorrente.ToNoFormated().Length;
+            tbxInicioNossoN.Properties.MaxLength = banco.MascaraNossoNumero.ToNoFormated().Length;
+            tbxFimNossoN.Properties.MaxLength = banco.MascaraNossoNumero.ToNoFormated().Length;
+            tbxNNAtual.Properties.MaxLength = banco.MascaraNossoNumero.ToNoFormated().Length;
+            tbxOutros1.Properties.MaxLength = banco.MascaraOutros1.ToNoFormated().Length;
+            tbxOutros2.Properties.MaxLength = banco.MascaraOutros2.ToNoFormated().Length;
+        }
+
+        private void btnAbrirPasta_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string windir = Environment.GetEnvironmentVariable("WINDIR");
+                System.Diagnostics.Process prc = new System.Diagnostics.Process();
+                prc.StartInfo.FileName = windir + @"\explorer.exe";
+                prc.StartInfo.Arguments = pathIni;
+                prc.Start();
+            }
+            catch (Exception ex)
+            {
+                MostrarMensagem("Erro ao abrir a pasta: " + ex.Message, true);
+            }
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            CarregarGrids();
+            tbxPesquisaNN.Text = "";
+        }
+
+        private void tbxPathLayoutBoleto_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+        {
+            OpenFileDialog o = new OpenFileDialog();
+            o.Filter = "FastReport | *.frx";
+            if (DialogResult.OK == o.ShowDialog())
+            {
+                if (o.CheckFileExists)
+                {
+                    tbxPathLayoutBoleto.Text = o.FileName;
+                }
+            }
+        }
+
+        private void chkDesconto_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkDesconto.Checked == true)
+            {
+                if (MessageBox.Show("Ao habilitar essa função será aplicado o percentual de desconto até o vencimento para todos os boletos emitidos para essa posição, deseja realmente habilitar essa função?", "Atenção", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
+                {
+                    txtDescontoVencimento.Enabled = true;
+                }
+                else
+                {
+                    chkDesconto.Checked = false;
+                    txtDescontoVencimento.Text = "0";
+                }
+            }
+            else
+            {
+                txtDescontoVencimento.Text = "0";
+                txtDescontoVencimento.Enabled = false;
+            }
+        }
+
+        private void xtraTabControl1_SelectedPageChanged(object sender, DevExpress.XtraTab.TabPageChangedEventArgs e)
+        {
+            if (e.Page == xtraTabConfig)
+            {
+                FormSenha pw = new FormSenha();
+                pw.ShowDialog();
+                if (!pw.Permitido)
+                {
+                    xtraTabControl1.SelectedTabPage = xtraTabMonitor;
+                }
+            }
+        }
+
+        private void tbxNNAtual_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+        {
+            try
+            {
+                string pathPosicao = pathIni + "/Posicao/";
+                pathPosicao += "Pos" + ((ListItem)lbxPosicoes.SelectedItem).Value + ".ini";
+                if (!File.Exists(pathPosicao))
+                {
+                    MostrarMensagem("Arquivo de configuração " + ((ListItem)lbxPosicoes.SelectedItem).Value + " inexistente. Crie um antes de editar este valor.", true);
+                    return;
+                }
+                GravarNossoNumeroDoBD(((ListItem)lbxPosicoes.SelectedItem).Value, tbxNNAtual.Text.Trim());
+                Utilitarios.ArquivoINI.EscreveString(pathPosicao, "CEDENTE", "NOSSONUMERO", tbxNNAtual.Text.Trim());
+                MostrarMensagem("Pos " + ((ListItem)lbxPosicoes.SelectedItem).Value + ": Nosso Número Atual foi modificado para: " + tbxNNAtual.Text.Trim(), true);
+            }
+            catch (Exception ex)
+            {
+                MostrarMensagem("Erro ao salvar nosso número no arquivo de configuração." + ex, true);
+            }
+
+        }
+
+        private void btnPesquisaNN_Click(object sender, EventArgs e)
+        {
+            controlParcelas.DataSource = controlNotas.DataSource = null;
+            try
+            {
+                string sql = SqlHelper.GetSelectNotasSaidaPorNN(tbxPesquisaNN.Text);
+                DataSet ds = new DataSet();
+                DataTable dt = ds.Tables.Add("Notas");
+                FbDataAdapter da = new FbDataAdapter(sql, cnRET);
+                da.Fill(dt);
+
+                dt.Columns.Add("check", typeof(bool));
+
+                if (dt.Rows.Count > 0)
+                {
+                    controlNotas.DataSource = dt;
+                }
+                else
+                {
+                    controlParcelas.DataSource = controlNotas.DataSource = null;
+                }
+
+                gridParcelas.BestFitColumns();
+                gridNotas.BestFitColumns();
+                chkSelecionarRemessa.Checked = true;
+                chkSelecionarRemessa_CheckedChanged(null, null);
+
+                if (gridNotas.DataRowCount > 0)
+                {
+                    ExibirParcelas();
+                }
+            }
+            catch (Exception)
+            {
+                MostrarMensagem("Erro ao carregar grids. Tente Novamente.", true);
+            }
+        }
+
+        private void tbxPesquisaNN_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnPesquisaNN_Click(null, null);
             }
         }
     }
