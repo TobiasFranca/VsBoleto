@@ -231,9 +231,8 @@ namespace VsBoleto.Sistema
             tbxFimNossoN.Text = Utilitarios.ArquivoINI.LeString(pathPosicao, "CEDENTE", "NOSSONROF", valorDefault: "");
             tbxOutros1.Text = Utilitarios.ArquivoINI.LeString(pathPosicao, "CEDENTE", "OUTRODADO1", valorDefault: "");
             tbxOutros2.Text = Utilitarios.ArquivoINI.LeString(pathPosicao, "CEDENTE", "OUTRODADO2", valorDefault: "");
-            string num = "";
 
-            if (CarregarNossoNumeroDoBD(((ListItem)lbxPosicoes.SelectedItem).Value.ToString(), out num))
+            if (CarregarNossoNumeroDoBD(((ListItem)lbxPosicoes.SelectedItem).Value.ToString(), out string num))
             {
                 tbxNNAtual.Text = num;
             }
@@ -348,7 +347,7 @@ namespace VsBoleto.Sistema
                 gridParcelas.BestFitColumns();
                 gridNotas.BestFitColumns();
                 chkSelecionarRemessa.Checked = true;
-                chkSelecionarRemessa_CheckedChanged(null, null);
+                ChkSelecionarRemessa_CheckedChanged(null, null);
             }
             catch (Exception)
             {
@@ -541,9 +540,8 @@ namespace VsBoleto.Sistema
             conta.InicioNossoNumero = Utilitarios.ArquivoINI.LeString(pathPosicao, "CEDENTE", "NOSSONROI", valorDefault: "").ToLong();
             conta.FimNossoNumero = Utilitarios.ArquivoINI.LeString(pathPosicao, "CEDENTE", "NOSSONROF", valorDefault: "").ToLong();
 
-            string num = "";
             long nn = 0;
-            if (CarregarNossoNumeroDoBD(posic, out num))
+            if (CarregarNossoNumeroDoBD(posic, out string num))
             {
                 nn = num.ToLong();
             }
@@ -876,7 +874,7 @@ namespace VsBoleto.Sistema
             }
         }
 
-        private void btnGerarRemessas_Click(object sender, EventArgs e)
+        private void BtnGerarRemessas_Click(object sender, EventArgs e)
         {
             string erros = "";
             bool gerou = false;
@@ -991,7 +989,7 @@ namespace VsBoleto.Sistema
             }
         }
 
-        private void bkW_DoWork(object sender, DoWorkEventArgs e) { }
+        private void BkW_DoWork(object sender, DoWorkEventArgs e) { }
 
         private void ImpressaoAuto2()
         {
@@ -1085,7 +1083,7 @@ namespace VsBoleto.Sistema
                 GravarLog("Erro durante a impressão automática" + ex);
                 erroduranteimpressaoautomatica = true;
                 chkBtnImpressaoAutomatica.Checked = false;
-                checkButton1_CheckedChanged(null, null);
+                CheckButton1_CheckedChanged(null, null);
                 return;
             }
             finally
@@ -1194,7 +1192,7 @@ namespace VsBoleto.Sistema
 
         bool erroduranteimpressaoautomatica = false;
 
-        private void chkSelecionarRemessa_CheckedChanged(object sender, EventArgs e)
+        private void ChkSelecionarRemessa_CheckedChanged(object sender, EventArgs e)
         {
             try
             {
@@ -1226,7 +1224,7 @@ namespace VsBoleto.Sistema
             }
         }
 
-        private void checkButton1_CheckedChanged(object sender, EventArgs e)
+        private void CheckButton1_CheckedChanged(object sender, EventArgs e)
         {
             bool aux = chkBtnImpressaoAutomatica.Checked;
 
@@ -1246,11 +1244,11 @@ namespace VsBoleto.Sistema
                                     xTabRetorno.PageEnabled = chkExibirImpressos.Enabled = barBtnAtualizar.Enabled =
                                     chkPDF.Enabled = !aux;
 
-            barBtnAtualizar_ItemClick(null, null);
+            BarBtnAtualizar_ItemClick(null, null);
 
         }
 
-        private void dtpAte_Leave(object sender, EventArgs e)
+        private void DtpAte_Leave(object sender, EventArgs e)
         {
             DateEdit dt = (DateEdit)sender;
             if (dt.DateTime.IsMinDateTime())
@@ -1261,12 +1259,12 @@ namespace VsBoleto.Sistema
             timer2.Enabled = int.Parse(Utilitarios.ArquivoINI.LeString(pathConfig, "CONFIG", "ROTINA")) == 0;
         }
 
-        private void dtpAte_Enter(object sender, EventArgs e)
+        private void DtpAte_Enter(object sender, EventArgs e)
         {
             timer2.Enabled = false;
         }
 
-        private void barBtnEmail_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void BarBtnEmail_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             try
             {
@@ -1306,7 +1304,7 @@ namespace VsBoleto.Sistema
             }
         }
 
-        private void barBtnInfoBD_Click(object sender, EventArgs e)
+        private void BarBtnInfoBD_Click(object sender, EventArgs e)
         {
             FormConfig frm = new FormConfig();
             frm.ShowDialog(this);
@@ -1315,7 +1313,7 @@ namespace VsBoleto.Sistema
             timer2.Enabled = int.Parse(Utilitarios.ArquivoINI.LeString(pathConfig, "CONFIG", "ROTINA")) == 0;
         }
 
-        private void barBtnSair_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void BarBtnSair_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             if (MessageBox.Show("Sair do programa?", "VsBoleto", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
@@ -1323,12 +1321,12 @@ namespace VsBoleto.Sistema
             }
         }
 
-        private void barBtnAtualizar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void BarBtnAtualizar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             CarregarGrids();
         }
 
-        private void barBtnGerarRemessa_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void BarBtnGerarRemessa_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             try
             {
@@ -1395,7 +1393,7 @@ namespace VsBoleto.Sistema
             }
         }
 
-        private void barBtnDesenharBoleto_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void BarBtnDesenharBoleto_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             try
             {
@@ -1440,7 +1438,7 @@ namespace VsBoleto.Sistema
             }
         }
 
-        private void barBtnVisualizar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void BarBtnVisualizar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             try
             {
@@ -1478,7 +1476,7 @@ namespace VsBoleto.Sistema
             }
         }
 
-        private void barBtnImprimir_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void BarBtnImprimir_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             try
             {
@@ -1531,7 +1529,7 @@ namespace VsBoleto.Sistema
             }
         }
 
-        private void gridNotas_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
+        private void GridNotas_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
         {
             try
             {
@@ -1546,7 +1544,7 @@ namespace VsBoleto.Sistema
             }
         }
 
-        private void gridNotas_RowCellClick(object sender, DevExpress.XtraGrid.Views.Grid.RowCellClickEventArgs e)
+        private void GridNotas_RowCellClick(object sender, DevExpress.XtraGrid.Views.Grid.RowCellClickEventArgs e)
         {
             try
             {
@@ -1561,7 +1559,7 @@ namespace VsBoleto.Sistema
             }
         }
 
-        private void gridNotas_KeyDown(object sender, KeyEventArgs e)
+        private void GridNotas_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -1579,7 +1577,7 @@ namespace VsBoleto.Sistema
             }
         }
 
-        private void controlNotas_MouseClick(object sender, MouseEventArgs e)
+        private void ControlNotas_MouseClick(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
             {
@@ -1592,7 +1590,7 @@ namespace VsBoleto.Sistema
             controlNotas.Focus();
         }
 
-        private void controlParcelas_MouseClick(object sender, MouseEventArgs e)
+        private void ControlParcelas_MouseClick(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
             {
@@ -1605,7 +1603,7 @@ namespace VsBoleto.Sistema
             controlParcelas.Focus();
         }
 
-        private void lbxPosicoes_MouseDoubleClick(object sender, MouseEventArgs e)
+        private void LbxPosicoes_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             if (lbxPosicoes.SelectedItem != null)
             {
@@ -1613,24 +1611,24 @@ namespace VsBoleto.Sistema
             }
         }
 
-        private void btnLimpar_Click(object sender, EventArgs e)
+        private void BtnLimpar_Click(object sender, EventArgs e)
         {
             LimparCamposConfiguracoes();
         }
 
-        private void btnCancelar_Click(object sender, EventArgs e)
+        private void BtnCancelar_Click(object sender, EventArgs e)
         {
             LimparCamposConfiguracoes();
             Editando = false;
         }
 
-        private void btnCriarEditar_Click(object sender, EventArgs e)
+        private void BtnCriarEditar_Click(object sender, EventArgs e)
         {
             Editando = true;
-            ddlBanco_SelectedIndexChanged(null, null);
+            DdlBanco_SelectedIndexChanged(null, null);
         }
 
-        private void btnSalvar_Click(object sender, EventArgs e)
+        private void BtnSalvar_Click(object sender, EventArgs e)
         {
             try
             {
@@ -1684,7 +1682,7 @@ namespace VsBoleto.Sistema
             }
         }
 
-        private void lbxPosicoes_Click(object sender, EventArgs e)
+        private void LbxPosicoes_Click(object sender, EventArgs e)
         {
             groupBanco.Text = "Banco";
             Editando = false;
@@ -1692,7 +1690,7 @@ namespace VsBoleto.Sistema
             LimparCamposConfiguracoes();
         }
 
-        private void lbxPosicoes_KeyDown(object sender, KeyEventArgs e)
+        private void LbxPosicoes_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
@@ -1700,7 +1698,7 @@ namespace VsBoleto.Sistema
             }
         }
 
-        private void lbxPosicoes_SelectedIndexChanged(object sender, EventArgs e)
+        private void LbxPosicoes_SelectedIndexChanged(object sender, EventArgs e)
         {
             groupBanco.Text = "Banco";
             Editando = false;
@@ -1708,7 +1706,7 @@ namespace VsBoleto.Sistema
             LimparCamposConfiguracoes();
         }
 
-        private void tbxArquivoRemessa_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+        private void TbxArquivoRemessa_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
             FolderBrowserDialog folder = new FolderBrowserDialog();
             if (folder.ShowDialog() == DialogResult.OK)
@@ -1717,7 +1715,7 @@ namespace VsBoleto.Sistema
             }
         }
 
-        private void tbxArquivoRetorno_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+        private void TbxArquivoRetorno_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
             OpenFileDialog file = new OpenFileDialog();
             if (file.ShowDialog() == DialogResult.OK)
@@ -1727,7 +1725,7 @@ namespace VsBoleto.Sistema
             }
         }
 
-        private void btnCarregar_Click(object sender, EventArgs e)
+        private void BtnCarregar_Click(object sender, EventArgs e)
         {
             try
             {
@@ -1743,7 +1741,7 @@ namespace VsBoleto.Sistema
             }
         }
 
-        private void ddlPosicoes_SelectedIndexChanged(object sender, EventArgs e)
+        private void DdlPosicoes_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
@@ -1759,7 +1757,7 @@ namespace VsBoleto.Sistema
             }
         }
 
-        private void ddlBanco_SelectedIndexChanged(object sender, EventArgs e)
+        private void DdlBanco_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
@@ -1788,7 +1786,7 @@ namespace VsBoleto.Sistema
         {
             if (banco == null)
             {
-                btnCancelar_Click(null, null);
+                BtnCancelar_Click(null, null);
                 return;
             }
 
@@ -1832,7 +1830,7 @@ namespace VsBoleto.Sistema
             tbxOutros2.Properties.MaxLength = banco.MascaraOutros2.ToNoFormated().Length;
         }
 
-        private void btnAbrirPasta_Click(object sender, EventArgs e)
+        private void BtnAbrirPasta_Click(object sender, EventArgs e)
         {
             try
             {
@@ -1848,16 +1846,39 @@ namespace VsBoleto.Sistema
             }
         }
 
-        private void btnRefresh_Click(object sender, EventArgs e)
+        private void BtnRefresh_Click(object sender, EventArgs e)
         {
             CarregarGrids();
             tbxPesquisaNN.Text = "";
         }
 
-        private void tbxPathLayoutBoleto_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+        private void ChkBtnImpressaoAutomatica_CheckedChanged(object sender, EventArgs e)
         {
-            OpenFileDialog o = new OpenFileDialog();
-            o.Filter = "FastReport | *.frx";
+            bool aux = chkBtnImpressaoAutomatica.Checked;
+
+            Utilitarios.ArquivoINI.EscreveString(pathConfig, "CONFIG", "ROTINA", chkBtnImpressaoAutomatica.Checked ? "0" : "1");            
+            timer2.Enabled = chkBtnImpressaoAutomatica.Checked;
+            notifyIcon.Text = chkBtnImpressaoAutomatica.Checked ? "Impressão Automática Ativada" : "Impressão Automática Desativada";
+            notifyIcon.BalloonTipTitle = "VsBoletos";
+            notifyIcon.BalloonTipText = chkBtnImpressaoAutomatica.Checked ? "Impressão Automática Ativada" : "Impressão Automática Desativada";
+            notifyIcon.BalloonTipIcon = ToolTipIcon.Info;
+            notifyIcon.ShowBalloonTip(500);
+
+            xtraTabMonitor.Select();
+
+            panelControl2.Enabled = groupRemessa.Enabled = controlNotas.Enabled =
+                controlParcelas.Enabled = barBtnInfoBD.Enabled = xtraTabConfig.PageEnabled = groupPesquisa.Enabled =
+                xTabRetorno.PageEnabled = chkExibirImpressos.Enabled = barBtnAtualizar.Enabled = chkPDF.Enabled = !aux;
+
+            BarBtnAtualizar_ItemClick(null, null);
+        }
+
+        private void TbxPathLayoutBoleto_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+        {
+            OpenFileDialog o = new OpenFileDialog
+            {
+                Filter = "FastReport | *.frx"
+            };
             if (DialogResult.OK == o.ShowDialog())
             {
                 if (o.CheckFileExists)
@@ -1867,7 +1888,7 @@ namespace VsBoleto.Sistema
             }
         }
 
-        private void chkDesconto_CheckedChanged(object sender, EventArgs e)
+        private void ChkDesconto_CheckedChanged(object sender, EventArgs e)
         {
             if (chkDesconto.Checked == true)
             {
@@ -1888,7 +1909,7 @@ namespace VsBoleto.Sistema
             }
         }
 
-        private void xtraTabControl1_SelectedPageChanged(object sender, DevExpress.XtraTab.TabPageChangedEventArgs e)
+        private void XtraTabControl1_SelectedPageChanged(object sender, DevExpress.XtraTab.TabPageChangedEventArgs e)
         {
             if (e.Page == xtraTabConfig)
             {
@@ -1901,7 +1922,7 @@ namespace VsBoleto.Sistema
             }
         }
 
-        private void tbxNNAtual_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+        private void TbxNNAtual_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
             try
             {
@@ -1923,7 +1944,7 @@ namespace VsBoleto.Sistema
 
         }
 
-        private void btnPesquisaNN_Click(object sender, EventArgs e)
+        private void BtnPesquisaNN_Click(object sender, EventArgs e)
         {
             controlParcelas.DataSource = controlNotas.DataSource = null;
             try
@@ -1948,7 +1969,7 @@ namespace VsBoleto.Sistema
                 gridParcelas.BestFitColumns();
                 gridNotas.BestFitColumns();
                 chkSelecionarRemessa.Checked = true;
-                chkSelecionarRemessa_CheckedChanged(null, null);
+                ChkSelecionarRemessa_CheckedChanged(null, null);
 
                 if (gridNotas.DataRowCount > 0)
                 {
@@ -1961,11 +1982,11 @@ namespace VsBoleto.Sistema
             }
         }
 
-        private void tbxPesquisaNN_KeyUp(object sender, KeyEventArgs e)
+        private void TbxPesquisaNN_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
-                btnPesquisaNN_Click(null, null);
+                BtnPesquisaNN_Click(null, null);
             }
         }
     }

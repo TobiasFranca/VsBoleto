@@ -290,7 +290,7 @@
             this.xtraTabMonitor,
             this.xtraTabConfig,
             this.xTabRetorno});
-            this.xtraTabControl1.SelectedPageChanged += new DevExpress.XtraTab.TabPageChangedEventHandler(this.xtraTabControl1_SelectedPageChanged);
+            this.xtraTabControl1.SelectedPageChanged += new DevExpress.XtraTab.TabPageChangedEventHandler(this.XtraTabControl1_SelectedPageChanged);
             // 
             // xtraTabMonitor
             // 
@@ -326,7 +326,7 @@
             this.controlParcelas.TabIndex = 7;
             this.controlParcelas.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridParcelas});
-            this.controlParcelas.MouseClick += new System.Windows.Forms.MouseEventHandler(this.controlParcelas_MouseClick);
+            this.controlParcelas.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ControlParcelas_MouseClick);
             // 
             // gridParcelas
             // 
@@ -467,7 +467,7 @@
             this.controlNotas.TabIndex = 6;
             this.controlNotas.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridNotas});
-            this.controlNotas.MouseClick += new System.Windows.Forms.MouseEventHandler(this.controlNotas_MouseClick);
+            this.controlNotas.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ControlNotas_MouseClick);
             // 
             // gridNotas
             // 
@@ -491,9 +491,9 @@
             this.gridNotas.OptionsSelection.EnableAppearanceFocusedRow = false;
             this.gridNotas.OptionsView.ShowFilterPanelMode = DevExpress.XtraGrid.Views.Base.ShowFilterPanelMode.Never;
             this.gridNotas.OptionsView.ShowGroupPanel = false;
-            this.gridNotas.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.gridNotas_RowClick);
-            this.gridNotas.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.gridNotas_RowCellClick);
-            this.gridNotas.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridNotas_KeyDown);
+            this.gridNotas.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.GridNotas_RowClick);
+            this.gridNotas.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.GridNotas_RowCellClick);
+            this.gridNotas.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GridNotas_KeyDown);
             // 
             // gridColumn1
             // 
@@ -606,7 +606,7 @@
             this.barBtnInfoBD.Name = "barBtnInfoBD";
             this.barBtnInfoBD.Size = new System.Drawing.Size(35, 38);
             this.barBtnInfoBD.TabIndex = 4;
-            this.barBtnInfoBD.Click += new System.EventHandler(this.barBtnInfoBD_Click);
+            this.barBtnInfoBD.Click += new System.EventHandler(this.BarBtnInfoBD_Click);
             // 
             // groupPesquisa
             // 
@@ -631,7 +631,7 @@
             this.btnPesquisaNN.Size = new System.Drawing.Size(75, 23);
             this.btnPesquisaNN.TabIndex = 11;
             this.btnPesquisaNN.Text = "Pesquisar";
-            this.btnPesquisaNN.Click += new System.EventHandler(this.btnPesquisaNN_Click);
+            this.btnPesquisaNN.Click += new System.EventHandler(this.BtnPesquisaNN_Click);
             // 
             // tbxPesquisaNN
             // 
@@ -639,7 +639,7 @@
             this.tbxPesquisaNN.Name = "tbxPesquisaNN";
             this.tbxPesquisaNN.Size = new System.Drawing.Size(73, 20);
             this.tbxPesquisaNN.TabIndex = 10;
-            this.tbxPesquisaNN.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tbxPesquisaNN_KeyUp);
+            this.tbxPesquisaNN.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TbxPesquisaNN_KeyUp);
             // 
             // labelControl3
             // 
@@ -661,8 +661,8 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dtpAte.Size = new System.Drawing.Size(100, 20);
             this.dtpAte.TabIndex = 1;
-            this.dtpAte.Enter += new System.EventHandler(this.dtpAte_Enter);
-            this.dtpAte.Leave += new System.EventHandler(this.dtpAte_Leave);
+            this.dtpAte.Enter += new System.EventHandler(this.DtpAte_Enter);
+            this.dtpAte.Leave += new System.EventHandler(this.DtpAte_Leave);
             // 
             // dtpDe
             // 
@@ -701,7 +701,7 @@
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(30, 23);
             this.btnRefresh.TabIndex = 2;
-            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            this.btnRefresh.Click += new System.EventHandler(this.BtnRefresh_Click);
             // 
             // panelControl1
             // 
@@ -735,7 +735,7 @@
             this.btnAbrirPasta.Name = "btnAbrirPasta";
             this.btnAbrirPasta.Size = new System.Drawing.Size(30, 23);
             this.btnAbrirPasta.TabIndex = 4;
-            this.btnAbrirPasta.Click += new System.EventHandler(this.btnAbrirPasta_Click);
+            this.btnAbrirPasta.Click += new System.EventHandler(this.BtnAbrirPasta_Click);
             // 
             // btnGerarRemessas
             // 
@@ -744,7 +744,7 @@
             this.btnGerarRemessas.Size = new System.Drawing.Size(100, 23);
             this.btnGerarRemessas.TabIndex = 3;
             this.btnGerarRemessas.Text = "Gerar Selecionadas";
-            this.btnGerarRemessas.Click += new System.EventHandler(this.btnGerarRemessas_Click);
+            this.btnGerarRemessas.Click += new System.EventHandler(this.BtnGerarRemessas_Click);
             // 
             // chkExibirRemessa
             // 
@@ -763,7 +763,7 @@
             this.chkSelecionarRemessa.Properties.Caption = "Selecionar Todas";
             this.chkSelecionarRemessa.Size = new System.Drawing.Size(124, 19);
             this.chkSelecionarRemessa.TabIndex = 1;
-            this.chkSelecionarRemessa.CheckedChanged += new System.EventHandler(this.chkSelecionarRemessa_CheckedChanged);
+            this.chkSelecionarRemessa.CheckedChanged += new System.EventHandler(this.ChkSelecionarRemessa_CheckedChanged);
             // 
             // groupControl3
             // 
@@ -800,6 +800,7 @@
             this.chkBtnImpressaoAutomatica.Size = new System.Drawing.Size(75, 23);
             this.chkBtnImpressaoAutomatica.TabIndex = 0;
             this.chkBtnImpressaoAutomatica.Text = "Automática";
+            this.chkBtnImpressaoAutomatica.CheckedChanged += new System.EventHandler(this.ChkBtnImpressaoAutomatica_CheckedChanged);
             // 
             // pictureEdit2
             // 
@@ -864,7 +865,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, true, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null)});
             this.tbxArquivoRemessa.Size = new System.Drawing.Size(417, 20);
             this.tbxArquivoRemessa.TabIndex = 6;
-            this.tbxArquivoRemessa.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.tbxArquivoRemessa_ButtonClick);
+            this.tbxArquivoRemessa.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.TbxArquivoRemessa_ButtonClick);
             // 
             // labelControl9
             // 
@@ -936,7 +937,7 @@
             this.chkDesconto.Properties.Caption = "Desconto Até o Vencimento";
             this.chkDesconto.Size = new System.Drawing.Size(154, 19);
             this.chkDesconto.TabIndex = 14;
-            this.chkDesconto.CheckedChanged += new System.EventHandler(this.chkDesconto_CheckedChanged);
+            this.chkDesconto.CheckedChanged += new System.EventHandler(this.ChkDesconto_CheckedChanged);
             // 
             // txtDescontoVencimento
             // 
@@ -1062,7 +1063,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, true, false, editorButtonImageOptions2, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, serializableAppearanceObject6, serializableAppearanceObject7, serializableAppearanceObject8, "", null, null)});
             this.tbxPathLayoutBoleto.Size = new System.Drawing.Size(461, 20);
             this.tbxPathLayoutBoleto.TabIndex = 7;
-            this.tbxPathLayoutBoleto.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.tbxPathLayoutBoleto_ButtonClick);
+            this.tbxPathLayoutBoleto.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.TbxPathLayoutBoleto_ButtonClick);
             // 
             // labelControl13
             // 
@@ -1151,7 +1152,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.OK, "", -1, true, true, false, editorButtonImageOptions3, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject9, serializableAppearanceObject10, serializableAppearanceObject11, serializableAppearanceObject12, "", null, null)});
             this.tbxNNAtual.Size = new System.Drawing.Size(102, 20);
             this.tbxNNAtual.TabIndex = 4;
-            this.tbxNNAtual.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.tbxNNAtual_ButtonClick);
+            this.tbxNNAtual.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.TbxNNAtual_ButtonClick);
             // 
             // ddlNomeCedente
             // 
@@ -1320,7 +1321,7 @@
             this.btnLimpar.Size = new System.Drawing.Size(75, 23);
             this.btnLimpar.TabIndex = 0;
             this.btnLimpar.Text = "Limpar";
-            this.btnLimpar.Click += new System.EventHandler(this.btnLimpar_Click);
+            this.btnLimpar.Click += new System.EventHandler(this.BtnLimpar_Click);
             // 
             // btnSalvar
             // 
@@ -1329,7 +1330,7 @@
             this.btnSalvar.Size = new System.Drawing.Size(75, 23);
             this.btnSalvar.TabIndex = 0;
             this.btnSalvar.Text = "Salvar";
-            this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
+            this.btnSalvar.Click += new System.EventHandler(this.BtnSalvar_Click);
             // 
             // btnCriarEditar
             // 
@@ -1338,7 +1339,7 @@
             this.btnCriarEditar.Size = new System.Drawing.Size(75, 23);
             this.btnCriarEditar.TabIndex = 0;
             this.btnCriarEditar.Text = "Criar/Editar";
-            this.btnCriarEditar.Click += new System.EventHandler(this.btnCriarEditar_Click);
+            this.btnCriarEditar.Click += new System.EventHandler(this.BtnCriarEditar_Click);
             // 
             // btnCancelar
             // 
@@ -1347,7 +1348,7 @@
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 0;
             this.btnCancelar.Text = "Cancelar";
-            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            this.btnCancelar.Click += new System.EventHandler(this.BtnCancelar_Click);
             // 
             // chkUtilizaNumBanco
             // 
@@ -1405,7 +1406,7 @@
             this.ddlBanco.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.ddlBanco.Size = new System.Drawing.Size(274, 20);
             this.ddlBanco.TabIndex = 1;
-            this.ddlBanco.SelectedIndexChanged += new System.EventHandler(this.ddlBanco_SelectedIndexChanged);
+            this.ddlBanco.SelectedIndexChanged += new System.EventHandler(this.DdlBanco_SelectedIndexChanged);
             // 
             // lbxPosicoes
             // 
@@ -1414,10 +1415,10 @@
             this.lbxPosicoes.Name = "lbxPosicoes";
             this.lbxPosicoes.Size = new System.Drawing.Size(161, 95);
             this.lbxPosicoes.TabIndex = 0;
-            this.lbxPosicoes.SelectedIndexChanged += new System.EventHandler(this.lbxPosicoes_SelectedIndexChanged);
-            this.lbxPosicoes.Click += new System.EventHandler(this.lbxPosicoes_Click);
-            this.lbxPosicoes.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lbxPosicoes_KeyDown);
-            this.lbxPosicoes.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lbxPosicoes_MouseDoubleClick);
+            this.lbxPosicoes.SelectedIndexChanged += new System.EventHandler(this.LbxPosicoes_SelectedIndexChanged);
+            this.lbxPosicoes.Click += new System.EventHandler(this.LbxPosicoes_Click);
+            this.lbxPosicoes.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LbxPosicoes_KeyDown);
+            this.lbxPosicoes.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.LbxPosicoes_MouseDoubleClick);
             // 
             // xTabRetorno
             // 
@@ -1466,7 +1467,7 @@
             this.btnCarregar.Size = new System.Drawing.Size(75, 23);
             this.btnCarregar.TabIndex = 3;
             this.btnCarregar.Text = "Carregar";
-            this.btnCarregar.Click += new System.EventHandler(this.btnCarregar_Click);
+            this.btnCarregar.Click += new System.EventHandler(this.BtnCarregar_Click);
             // 
             // tbxArquivoRetorno
             // 
@@ -1476,7 +1477,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.tbxArquivoRetorno.Size = new System.Drawing.Size(327, 20);
             this.tbxArquivoRetorno.TabIndex = 2;
-            this.tbxArquivoRetorno.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.tbxArquivoRetorno_ButtonClick);
+            this.tbxArquivoRetorno.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.TbxArquivoRetorno_ButtonClick);
             // 
             // ddlLayoutRetorno
             // 
@@ -1511,7 +1512,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.ddlPosicoes.Size = new System.Drawing.Size(212, 20);
             this.ddlPosicoes.TabIndex = 1;
-            this.ddlPosicoes.SelectedIndexChanged += new System.EventHandler(this.ddlPosicoes_SelectedIndexChanged);
+            this.ddlPosicoes.SelectedIndexChanged += new System.EventHandler(this.DdlPosicoes_SelectedIndexChanged);
             // 
             // labelControl21
             // 
@@ -1539,49 +1540,49 @@
             this.barBtnImprimir.Caption = "Imprimir Boleto (s)";
             this.barBtnImprimir.Id = 0;
             this.barBtnImprimir.Name = "barBtnImprimir";
-            this.barBtnImprimir.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barBtnImprimir_ItemClick);
+            this.barBtnImprimir.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.BarBtnImprimir_ItemClick);
             // 
             // barBtnVisualizar
             // 
             this.barBtnVisualizar.Caption = "Visualizar Boleto (s)";
             this.barBtnVisualizar.Id = 1;
             this.barBtnVisualizar.Name = "barBtnVisualizar";
-            this.barBtnVisualizar.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barBtnVisualizar_ItemClick);
+            this.barBtnVisualizar.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.BarBtnVisualizar_ItemClick);
             // 
             // barBtnGerarRemessa
             // 
             this.barBtnGerarRemessa.Caption = "Gerar Remessa";
             this.barBtnGerarRemessa.Id = 2;
             this.barBtnGerarRemessa.Name = "barBtnGerarRemessa";
-            this.barBtnGerarRemessa.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barBtnGerarRemessa_ItemClick);
+            this.barBtnGerarRemessa.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.BarBtnGerarRemessa_ItemClick);
             // 
             // barBtnEmail
             // 
             this.barBtnEmail.Caption = "Enviar por Email";
             this.barBtnEmail.Id = 8;
             this.barBtnEmail.Name = "barBtnEmail";
-            this.barBtnEmail.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barBtnEmail_ItemClick);
+            this.barBtnEmail.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.BarBtnEmail_ItemClick);
             // 
             // barBtnDesenharBoleto
             // 
             this.barBtnDesenharBoleto.Caption = "Desenhar Boleto";
             this.barBtnDesenharBoleto.Id = 9;
             this.barBtnDesenharBoleto.Name = "barBtnDesenharBoleto";
-            this.barBtnDesenharBoleto.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barBtnDesenharBoleto_ItemClick);
+            this.barBtnDesenharBoleto.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.BarBtnDesenharBoleto_ItemClick);
             // 
             // barBtnAtualizar
             // 
             this.barBtnAtualizar.Caption = "Atualizar";
             this.barBtnAtualizar.Id = 10;
             this.barBtnAtualizar.Name = "barBtnAtualizar";
-            this.barBtnAtualizar.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barBtnAtualizar_ItemClick);
+            this.barBtnAtualizar.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.BarBtnAtualizar_ItemClick);
             // 
             // barBtnSair
             // 
             this.barBtnSair.Caption = "Sair";
             this.barBtnSair.Id = 11;
             this.barBtnSair.Name = "barBtnSair";
-            this.barBtnSair.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barBtnSair_ItemClick);
+            this.barBtnSair.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.BarBtnSair_ItemClick);
             // 
             // barManager1
             // 
