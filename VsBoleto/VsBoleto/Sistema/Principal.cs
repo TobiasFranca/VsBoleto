@@ -300,8 +300,7 @@ namespace VsBoleto.Sistema
                     fc.ExecuteNonQuery();
                     return true;
                 }
-                else
-                    if (dt.Rows.Count <= 0 && !numero.IsNotNullOrEmpty())
+                else if (dt.Rows.Count <= 0 && !numero.IsNotNullOrEmpty())
                 {
                     string sqlI = "insert into gavar(variavel, str30) values ('Boleto.Pos" + pos + "','" + numero + "')";
                     FbCommand fc = new FbCommand(sqlI, cnRET);

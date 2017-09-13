@@ -37,6 +37,7 @@
             // 
             // tbxSenha
             // 
+            this.tbxSenha.EnterMoveNextControl = true;
             this.tbxSenha.Location = new System.Drawing.Point(12, 15);
             this.tbxSenha.Name = "tbxSenha";
             this.tbxSenha.Size = new System.Drawing.Size(200, 20);
@@ -48,7 +49,7 @@
             this.chkPw.Name = "chkPw";
             this.chkPw.Properties.Caption = "Mostrar Caracteres";
             this.chkPw.Size = new System.Drawing.Size(119, 19);
-            this.chkPw.TabIndex = 1;
+            this.chkPw.TabIndex = 2;
             this.chkPw.CheckedChanged += new System.EventHandler(this.chkPw_CheckedChanged);
             // 
             // btnConfirmar
@@ -56,7 +57,7 @@
             this.btnConfirmar.Location = new System.Drawing.Point(137, 41);
             this.btnConfirmar.Name = "btnConfirmar";
             this.btnConfirmar.Size = new System.Drawing.Size(75, 23);
-            this.btnConfirmar.TabIndex = 2;
+            this.btnConfirmar.TabIndex = 1;
             this.btnConfirmar.Text = "Confirmar";
             this.btnConfirmar.Click += new System.EventHandler(this.btnConfirmar_Click);
             // 
