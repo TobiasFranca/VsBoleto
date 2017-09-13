@@ -81,7 +81,7 @@ namespace VsBoleto.Sistema
             dtpDe.DateTime = DateTime.Now;
             dtpAte.DateTime = DateTime.Now;
             timer2.Elapsed += Timer2_Elapsed;
-            timer2.Interval = int.Parse(Utilitarios.ArquivoINI.LeString(pathConfig, "CONFIG", "INTERVALO", valorDefault: "10")) * 1000;
+            timer2.Interval = int.Parse(ArquivoINI.LeString(pathConfig, "CONFIG", "INTERVALO", valorDefault: "10")) * 1000;
             xTabRetorno.PageVisible = false;
             ExcluirImagensPng();
 
@@ -113,11 +113,11 @@ namespace VsBoleto.Sistema
 
             try
             {
-                pathRET = Utilitarios.ArquivoINI.LeString(pathConfig, "BANCO", "CAMINHO", valorDefault: "");
-                serverRet = Utilitarios.ArquivoINI.LeString(pathConfig, "BANCO", "SERVIDOR", valorDefault: "");
-                portaRet = Utilitarios.ArquivoINI.LeString(pathConfig, "BANCO", "PORTA", valorDefault: "");
-                usuarioRET = Utilitarios.ArquivoINI.LeString(pathConfig, "BANCO", "USUARIO", valorDefault: "");
-                senhaRET = Utilitarios.ArquivoINI.LeString(pathConfig, "BANCO", "SENHA", criptografado: true, valorDefault: "");
+                pathRET = ArquivoINI.LeString(pathConfig, "BANCO", "CAMINHO", valorDefault: "");
+                serverRet = ArquivoINI.LeString(pathConfig, "BANCO", "SERVIDOR", valorDefault: "");
+                portaRet = ArquivoINI.LeString(pathConfig, "BANCO", "PORTA", valorDefault: "");
+                usuarioRET = ArquivoINI.LeString(pathConfig, "BANCO", "USUARIO", valorDefault: "");
+                senhaRET = ArquivoINI.LeString(pathConfig, "BANCO", "SENHA", criptografado: true, valorDefault: "");
             }
             catch (Exception ex)
             {
@@ -209,19 +209,19 @@ namespace VsBoleto.Sistema
                 return;
             }
 
-            string item = Utilitarios.ArquivoINI.LeString(pathPosicao, "BANCO", "NOME", valorDefault: "");
+            string item = ArquivoINI.LeString(pathPosicao, "BANCO", "NOME", valorDefault: "");
             ddlBanco.SelectedItem = new ListItem(item, item);
-            tbxCarteira.Text = Utilitarios.ArquivoINI.LeString(pathPosicao, "BANCO", "CARTEIRA", valorDefault: "");
+            tbxCarteira.Text = ArquivoINI.LeString(pathPosicao, "BANCO", "CARTEIRA", valorDefault: "");
 
-            ddlNomeCedente.SelectedItem = Utilitarios.ArquivoINI.LeString(pathPosicao, "CEDENTE", "FILIAL", valorDefault: "");
+            ddlNomeCedente.SelectedItem = ArquivoINI.LeString(pathPosicao, "CEDENTE", "FILIAL", valorDefault: "");
 
-            tbxCodigo.Text = Utilitarios.ArquivoINI.LeString(pathPosicao, "CEDENTE", "CODIGO", valorDefault: "");
-            tbxAgencia.Text = Utilitarios.ArquivoINI.LeString(pathPosicao, "CEDENTE", "AGENCIA", valorDefault: "");
-            tbxConta.Text = Utilitarios.ArquivoINI.LeString(pathPosicao, "CEDENTE", "CONTA", valorDefault: "");
-            tbxInicioNossoN.Text = Utilitarios.ArquivoINI.LeString(pathPosicao, "CEDENTE", "NOSSONROI", valorDefault: "");
-            tbxFimNossoN.Text = Utilitarios.ArquivoINI.LeString(pathPosicao, "CEDENTE", "NOSSONROF", valorDefault: "");
-            tbxOutros1.Text = Utilitarios.ArquivoINI.LeString(pathPosicao, "CEDENTE", "OUTRODADO1", valorDefault: "");
-            tbxOutros2.Text = Utilitarios.ArquivoINI.LeString(pathPosicao, "CEDENTE", "OUTRODADO2", valorDefault: "");
+            tbxCodigo.Text = ArquivoINI.LeString(pathPosicao, "CEDENTE", "CODIGO", valorDefault: "");
+            tbxAgencia.Text = ArquivoINI.LeString(pathPosicao, "CEDENTE", "AGENCIA", valorDefault: "");
+            tbxConta.Text = ArquivoINI.LeString(pathPosicao, "CEDENTE", "CONTA", valorDefault: "");
+            tbxInicioNossoN.Text = ArquivoINI.LeString(pathPosicao, "CEDENTE", "NOSSONROI", valorDefault: "");
+            tbxFimNossoN.Text = ArquivoINI.LeString(pathPosicao, "CEDENTE", "NOSSONROF", valorDefault: "");
+            tbxOutros1.Text = ArquivoINI.LeString(pathPosicao, "CEDENTE", "OUTRODADO1", valorDefault: "");
+            tbxOutros2.Text = ArquivoINI.LeString(pathPosicao, "CEDENTE", "OUTRODADO2", valorDefault: "");
 
             if (CarregarNossoNumeroDoBD(((ListItem)lbxPosicoes.SelectedItem).Value.ToString(), out string num))
             {
@@ -232,18 +232,18 @@ namespace VsBoleto.Sistema
                 MessageBox.Show("Não foi possível carregar Nosso Número, tente novamente.\nCaso continue com erro, contate o suporte.");
             }
 
-            tbxDemonstrativo.Text = Utilitarios.ArquivoINI.LeString(pathPosicao, "BOLETO", "DEMONSTRATIVO", valorDefault: "", multiplasLinhas: true).Replace("\n", "\n\r");
-            tbxInstrucoes.Text = Utilitarios.ArquivoINI.LeString(pathPosicao, "BOLETO", "INSTRUCOES", valorDefault: "");
-            tbxJurosMes.Text = Utilitarios.ArquivoINI.LeString(pathPosicao, "BOLETO", "JUROS", valorDefault: "");
-            tbxMulta.Text = Utilitarios.ArquivoINI.LeString(pathPosicao, "BOLETO", "MULTA", valorDefault: "");
-            tbxPathLayoutBoleto.Text = Utilitarios.ArquivoINI.LeString(pathPosicao, "BOLETO", "LAYOUT", valorDefault: "");
-            tbxInstrucao1.Text = Utilitarios.ArquivoINI.LeString(pathPosicao, "BOLETO", "INSTRUCAO1", valorDefault: "00");
-            tbxInstrucao2.Text = Utilitarios.ArquivoINI.LeString(pathPosicao, "BOLETO", "INSTRUCAO2", valorDefault: "00");
-            tbxProtesto.Text = Utilitarios.ArquivoINI.LeString(pathPosicao, "BOLETO", "DIASPROTESTO", valorDefault: "00");
-            tbxArquivoRemessa.Text = Utilitarios.ArquivoINI.LeString(pathPosicao, "REMESSA", "CAMINHO", valorDefault: "");
-            ddlLayoutRemessa.SelectedItem = Utilitarios.ArquivoINI.LeString(pathPosicao, "REMESSA", "LAYOUT", valorDefault: "");
-            ddlEspecieTitulo.SelectedItem = Utilitarios.ArquivoINI.LeString(pathPosicao, "BOLETO", "ESPECIE", valorDefault: "");
-            txtDescontoVencimento.Text = Utilitarios.ArquivoINI.LeString(pathPosicao, "BOLETO", "DESCVENCIMENTO", valorDefault: "0");
+            tbxDemonstrativo.Text = ArquivoINI.LeString(pathPosicao, "BOLETO", "DEMONSTRATIVO", valorDefault: "", multiplasLinhas: true).Replace("\n", "\n\r");
+            tbxInstrucoes.Text = ArquivoINI.LeString(pathPosicao, "BOLETO", "INSTRUCOES", valorDefault: "");
+            tbxJurosMes.Text = ArquivoINI.LeString(pathPosicao, "BOLETO", "JUROS", valorDefault: "");
+            tbxMulta.Text = ArquivoINI.LeString(pathPosicao, "BOLETO", "MULTA", valorDefault: "");
+            tbxPathLayoutBoleto.Text = ArquivoINI.LeString(pathPosicao, "BOLETO", "LAYOUT", valorDefault: "");
+            tbxInstrucao1.Text = ArquivoINI.LeString(pathPosicao, "BOLETO", "INSTRUCAO1", valorDefault: "00");
+            tbxInstrucao2.Text = ArquivoINI.LeString(pathPosicao, "BOLETO", "INSTRUCAO2", valorDefault: "00");
+            tbxProtesto.Text = ArquivoINI.LeString(pathPosicao, "BOLETO", "DIASPROTESTO", valorDefault: "00");
+            tbxArquivoRemessa.Text = ArquivoINI.LeString(pathPosicao, "REMESSA", "CAMINHO", valorDefault: "");
+            ddlLayoutRemessa.SelectedItem = ArquivoINI.LeString(pathPosicao, "REMESSA", "LAYOUT", valorDefault: "");
+            ddlEspecieTitulo.SelectedItem = ArquivoINI.LeString(pathPosicao, "BOLETO", "ESPECIE", valorDefault: "");
+            txtDescontoVencimento.Text = ArquivoINI.LeString(pathPosicao, "BOLETO", "DESCVENCIMENTO", valorDefault: "0");
         }
 
         private bool CarregarNossoNumeroDoBD(string pos, out string numero)
@@ -426,25 +426,25 @@ namespace VsBoleto.Sistema
 
         private void PrepararConfiguracoes()
         {
-            if (!Utilitarios.ArquivoINI.LeString(pathConfig, "CONFIG", "IMPRESSORA", valorDefault: "").IsNotNullOrEmpty())
+            if (!ArquivoINI.LeString(pathConfig, "CONFIG", "IMPRESSORA", valorDefault: "").IsNotNullOrEmpty())
             {
                 throw new ArgumentException("Impressora padrão não selecionada.");
             }
 
-            Configuracoes.ImpressoraPadrao = Utilitarios.ArquivoINI.LeString(pathConfig, "CONFIG", "IMPRESSORA", valorDefault: "");
+            Configuracoes.ImpressoraPadrao = ArquivoINI.LeString(pathConfig, "CONFIG", "IMPRESSORA", valorDefault: "");
 
-            Configuracoes.LayoutArquivoRemessa = Utilitarios.ArquivoINI.LeString(pathPosicao, "REMESSA", "LAYOUT", valorDefault: "");
-            Configuracoes.LayoutBoleto = Utilitarios.ArquivoINI.LeString(pathPosicao, "BOLETO", "LAYOUT", valorDefault: "");
+            Configuracoes.LayoutArquivoRemessa = ArquivoINI.LeString(pathPosicao, "REMESSA", "LAYOUT", valorDefault: "");
+            Configuracoes.LayoutBoleto = ArquivoINI.LeString(pathPosicao, "BOLETO", "LAYOUT", valorDefault: "");
 
-            Configuracoes.Email_Porta = Utilitarios.ArquivoINI.LeString(pathConfig, "EMAIL", "PORTA", valorDefault: "");
-            Configuracoes.Email_Servidor = Utilitarios.ArquivoINI.LeString(pathConfig, "EMAIL", "SERVER", valorDefault: "");
-            Configuracoes.Email_Usuario = Utilitarios.ArquivoINI.LeString(pathConfig, "EMAIL", "USUARIO", valorDefault: "");
-            Configuracoes.Email_Senha = Utilitarios.ArquivoINI.LeString(pathConfig, "EMAIL", "SENHA", true, valorDefault: "");
-            Configuracoes.Email_Assunto_Padrao = Utilitarios.ArquivoINI.LeString(pathConfig, "EMAIL", "ASSUNTO", valorDefault: "");
-            Configuracoes.Email_Corpo_Padrao = Utilitarios.ArquivoINI.LeString(pathConfig, "EMAIL", "CORPO", valorDefault: "", multiplasLinhas: true);
-            Configuracoes.Email_De = Utilitarios.ArquivoINI.LeString(pathConfig, "EMAIL", "NOME", valorDefault: "");
-            Configuracoes.Email_Html = Utilitarios.ArquivoINI.LeBool(pathConfig, "EMAIL", "HTML", false);
-            Configuracoes.Email_Usar_SSL = Utilitarios.ArquivoINI.LeBool(pathConfig, "EMAIL", "SSL", false);
+            Configuracoes.Email_Porta = ArquivoINI.LeString(pathConfig, "EMAIL", "PORTA", valorDefault: "");
+            Configuracoes.Email_Servidor = ArquivoINI.LeString(pathConfig, "EMAIL", "SERVER", valorDefault: "");
+            Configuracoes.Email_Usuario = ArquivoINI.LeString(pathConfig, "EMAIL", "USUARIO", valorDefault: "");
+            Configuracoes.Email_Senha = ArquivoINI.LeString(pathConfig, "EMAIL", "SENHA", true, valorDefault: "");
+            Configuracoes.Email_Assunto_Padrao = ArquivoINI.LeString(pathConfig, "EMAIL", "ASSUNTO", valorDefault: "");
+            Configuracoes.Email_Corpo_Padrao = ArquivoINI.LeString(pathConfig, "EMAIL", "CORPO", valorDefault: "", multiplasLinhas: true);
+            Configuracoes.Email_De = ArquivoINI.LeString(pathConfig, "EMAIL", "NOME", valorDefault: "");
+            Configuracoes.Email_Html = ArquivoINI.LeBool(pathConfig, "EMAIL", "HTML", false);
+            Configuracoes.Email_Usar_SSL = ArquivoINI.LeBool(pathConfig, "EMAIL", "SSL", false);
         }
 
         private void PrepararMeuBoleto(DataRow detalhe, string tipo)
@@ -473,9 +473,9 @@ namespace VsBoleto.Sistema
             }
             pathPosicao = path;
 
-            string banco = Utilitarios.ArquivoINI.LeString(pathPosicao, "BANCO", "NOME", valorDefault: "");
-            string carteira = Utilitarios.ArquivoINI.LeString(pathPosicao, "BANCO", "CARTEIRA", valorDefault: "");
-            string filial = Utilitarios.ArquivoINI.LeString(pathPosicao, "CEDENTE", "FILIAL", valorDefault: "");
+            string banco = ArquivoINI.LeString(pathPosicao, "BANCO", "NOME", valorDefault: "");
+            string carteira = ArquivoINI.LeString(pathPosicao, "BANCO", "CARTEIRA", valorDefault: "");
+            string filial = ArquivoINI.LeString(pathPosicao, "CEDENTE", "FILIAL", valorDefault: "");
 
             if (!filial.IsNotNullOrEmpty() || !carteira.IsNotNullOrEmpty() || !banco.IsNotNullOrEmpty())
             {
@@ -522,14 +522,14 @@ namespace VsBoleto.Sistema
             conta.Cedente.Estado = ds.Tables[0].Rows[0]["ESTADO"].ToString();
             conta.Cedente.NumEndereco = ds.Tables[0].Rows[0]["NUMERO"].ToString();
 
-            conta.Agencia = Utilitarios.ArquivoINI.LeString(pathPosicao, "CEDENTE", "AGENCIA", valorDefault: "");
-            conta.NumeroConta = Utilitarios.ArquivoINI.LeString(pathPosicao, "CEDENTE", "CONTA", valorDefault: "");
-            conta.CodigoCedente = Utilitarios.ArquivoINI.LeString(pathPosicao, "CEDENTE", "CODIGO", valorDefault: "");
-            conta.Outros1 = Utilitarios.ArquivoINI.LeString(pathPosicao, "CEDENTE", "OUTRODADO1", valorDefault: "");
-            conta.Outros2 = Utilitarios.ArquivoINI.LeString(pathPosicao, "CEDENTE", "OUTRODADO2", valorDefault: "");
-            conta.EspecieTitulo = Utilitarios.ArquivoINI.LeString(pathPosicao, "BOLETO", "ESPECIE").Substring(0, 2);
-            conta.InicioNossoNumero = Utilitarios.ArquivoINI.LeString(pathPosicao, "CEDENTE", "NOSSONROI", valorDefault: "").ToLong();
-            conta.FimNossoNumero = Utilitarios.ArquivoINI.LeString(pathPosicao, "CEDENTE", "NOSSONROF", valorDefault: "").ToLong();
+            conta.Agencia = ArquivoINI.LeString(pathPosicao, "CEDENTE", "AGENCIA", valorDefault: "");
+            conta.NumeroConta = ArquivoINI.LeString(pathPosicao, "CEDENTE", "CONTA", valorDefault: "");
+            conta.CodigoCedente = ArquivoINI.LeString(pathPosicao, "CEDENTE", "CODIGO", valorDefault: "");
+            conta.Outros1 = ArquivoINI.LeString(pathPosicao, "CEDENTE", "OUTRODADO1", valorDefault: "");
+            conta.Outros2 = ArquivoINI.LeString(pathPosicao, "CEDENTE", "OUTRODADO2", valorDefault: "");
+            conta.EspecieTitulo = ArquivoINI.LeString(pathPosicao, "BOLETO", "ESPECIE").Substring(0, 2);
+            conta.InicioNossoNumero = ArquivoINI.LeString(pathPosicao, "CEDENTE", "NOSSONROI", valorDefault: "").ToLong();
+            conta.FimNossoNumero = ArquivoINI.LeString(pathPosicao, "CEDENTE", "NOSSONROF", valorDefault: "").ToLong();
 
             long nn = 0;
             if (CarregarNossoNumeroDoBD(posic, out string num))
@@ -554,14 +554,14 @@ namespace VsBoleto.Sistema
 
             conta.ProximoNossoNumero = nn;
 
-            conta.Demonstrativo = Utilitarios.ArquivoINI.LeString(pathPosicao, "BOLETO", "DEMONSTRATIVO", valorDefault: "", multiplasLinhas: true).Replace("\n", "\n\r");
-            conta.Instrucoes = Utilitarios.ArquivoINI.LeString(pathPosicao, "BOLETO", "INSTRUCOES", valorDefault: "");
-            jurosMes = Utilitarios.ArquivoINI.LeString(pathPosicao, "BOLETO", "JUROS", valorDefault: "").ToDecimal();
-            multa = Utilitarios.ArquivoINI.LeString(pathPosicao, "BOLETO", "MULTA", valorDefault: "").ToDecimal();
-            desconto = Utilitarios.ArquivoINI.LeString(pathPosicao, "BOLETO", "DESCVENCIMENTO", valorDefault: "").ToDecimal();
-            inst1 = Utilitarios.ArquivoINI.LeString(pathPosicao, "BOLETO", "INSTRUCAO1", valorDefault: "00");
-            inst2 = Utilitarios.ArquivoINI.LeString(pathPosicao, "BOLETO", "INSTRUCAO2", valorDefault: "00");
-            protesto = Utilitarios.ArquivoINI.LeString(pathPosicao, "BOLETO", "DIASPROTESTO", valorDefault: "00");
+            conta.Demonstrativo = ArquivoINI.LeString(pathPosicao, "BOLETO", "DEMONSTRATIVO", valorDefault: "", multiplasLinhas: true).Replace("\n", "\n\r");
+            conta.Instrucoes = ArquivoINI.LeString(pathPosicao, "BOLETO", "INSTRUCOES", valorDefault: "");
+            jurosMes = ArquivoINI.LeString(pathPosicao, "BOLETO", "JUROS", valorDefault: "").ToDecimal();
+            multa = ArquivoINI.LeString(pathPosicao, "BOLETO", "MULTA", valorDefault: "").ToDecimal();
+            desconto = ArquivoINI.LeString(pathPosicao, "BOLETO", "DESCVENCIMENTO", valorDefault: "").ToDecimal();
+            inst1 = ArquivoINI.LeString(pathPosicao, "BOLETO", "INSTRUCAO1", valorDefault: "00");
+            inst2 = ArquivoINI.LeString(pathPosicao, "BOLETO", "INSTRUCAO2", valorDefault: "00");
+            protesto = ArquivoINI.LeString(pathPosicao, "BOLETO", "DIASPROTESTO", valorDefault: "00");
             return true;
         }
 
@@ -642,7 +642,7 @@ namespace VsBoleto.Sistema
                     {
                         throw new ArgumentException("Falha ao gravar nosso número no banco de dados");
                     }
-                    Utilitarios.ArquivoINI.EscreveString(pathPosicao, "CEDENTE", "NOSSONUMERO", bol.NossoNumero);
+                    ArquivoINI.EscreveString(pathPosicao, "CEDENTE", "NOSSONUMERO", bol.NossoNumero);
                 }
                 else
                 {
@@ -792,7 +792,7 @@ namespace VsBoleto.Sistema
 
         private void Principal_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Utilitarios.ArquivoINI.EscreveString(pathConfig, "CONFIG", "ROTINA", "1");
+            ArquivoINI.EscreveString(pathConfig, "CONFIG", "ROTINA", "1");
             ExcluirImagensPng();
             GravarLog("Finalizando Programa.");
         }
@@ -912,7 +912,7 @@ namespace VsBoleto.Sistema
                             string pathAuxiliar = pathIni + "/Posicao/Pos" + dtrw.Row["POSICAO"].ToString() + ".ini";
                             if (File.Exists(pathAuxiliar))
                             {
-                                pathremessa = Utilitarios.ArquivoINI.LeString(pathAuxiliar, "REMESSA", "CAMINHO", valorDefault: "");
+                                pathremessa = ArquivoINI.LeString(pathAuxiliar, "REMESSA", "CAMINHO", valorDefault: "");
                             }
 
                             if (string.IsNullOrEmpty(pathremessa))
@@ -1219,7 +1219,7 @@ namespace VsBoleto.Sistema
         {
             bool aux = chkBtnImpressaoAutomatica.Checked;
 
-            Utilitarios.ArquivoINI.EscreveString(pathConfig, "CONFIG", "ROTINA", chkBtnImpressaoAutomatica.Checked ? "0" : "1");
+            ArquivoINI.EscreveString(pathConfig, "CONFIG", "ROTINA", chkBtnImpressaoAutomatica.Checked ? "0" : "1");
 
             timer2.Enabled = chkBtnImpressaoAutomatica.Checked;
             notifyIcon.Text = chkBtnImpressaoAutomatica.Checked ? "Impressão Automática On" : "Impressão Automática Off";
@@ -1247,7 +1247,7 @@ namespace VsBoleto.Sistema
                 dt.DateTime = DateTime.Now;
             }
 
-            timer2.Enabled = int.Parse(Utilitarios.ArquivoINI.LeString(pathConfig, "CONFIG", "ROTINA")) == 0;
+            timer2.Enabled = int.Parse(ArquivoINI.LeString(pathConfig, "CONFIG", "ROTINA")) == 0;
         }
 
         private void DtpAte_Enter(object sender, EventArgs e)
@@ -1299,9 +1299,9 @@ namespace VsBoleto.Sistema
         {
             FormConfig frm = new FormConfig();
             frm.ShowDialog(this);
-            chkBtnImpressaoAutomatica.Checked = int.Parse(Utilitarios.ArquivoINI.LeString(pathConfig, "CONFIG", "ROTINA", valorDefault: "1")) == 0;
-            timer2.Interval = int.Parse(Utilitarios.ArquivoINI.LeString(pathConfig, "CONFIG", "INTERVALO", valorDefault: "10")) * 1000;
-            timer2.Enabled = int.Parse(Utilitarios.ArquivoINI.LeString(pathConfig, "CONFIG", "ROTINA")) == 0;
+            chkBtnImpressaoAutomatica.Checked = int.Parse(ArquivoINI.LeString(pathConfig, "CONFIG", "ROTINA", valorDefault: "1")) == 0;
+            timer2.Interval = int.Parse(ArquivoINI.LeString(pathConfig, "CONFIG", "INTERVALO", valorDefault: "10")) * 1000;
+            timer2.Enabled = int.Parse(ArquivoINI.LeString(pathConfig, "CONFIG", "ROTINA")) == 0;
         }
 
         private void BarBtnSair_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -1338,7 +1338,7 @@ namespace VsBoleto.Sistema
                         string pathAuxiliar = pathIni + "/Posicao/Pos" + ((DataRowView)gridNotas.GetRow(gridNotas.GetSelectedRows()[0]))["POSICAO"].ToString() + ".ini";
                         if (File.Exists(pathAuxiliar))
                         {
-                            pathremessa = Utilitarios.ArquivoINI.LeString(pathAuxiliar, "REMESSA", "CAMINHO", valorDefault: "");
+                            pathremessa = ArquivoINI.LeString(pathAuxiliar, "REMESSA", "CAMINHO", valorDefault: "");
                         }
 
                         if (string.IsNullOrEmpty(pathremessa))
@@ -1360,7 +1360,7 @@ namespace VsBoleto.Sistema
                         string pathAuxiliar = pathIni + "/Posicao/Pos" + ((DataRowView)gridNotas.GetRow(gridNotas.GetSelectedRows()[0]))["POSICAO"].ToString() + ".ini";
                         if (File.Exists(pathAuxiliar))
                         {
-                            pathremessa = Utilitarios.ArquivoINI.LeString(pathAuxiliar, "REMESSA", "CAMINHO", valorDefault: "");
+                            pathremessa = ArquivoINI.LeString(pathAuxiliar, "REMESSA", "CAMINHO", valorDefault: "");
                         }
 
                         if (string.IsNullOrEmpty(pathremessa))
@@ -1631,35 +1631,35 @@ namespace VsBoleto.Sistema
 
                 pathPosicao += "Pos" + ((ListItem)lbxPosicoes.SelectedItem).Value + ".ini";
 
-                Utilitarios.ArquivoINI.EscreveString(pathPosicao, "BANCO", "NOME", ddlBanco.SelectedItem.ToString());
-                Utilitarios.ArquivoINI.EscreveString(pathPosicao, "BANCO", "CARTEIRA", tbxCarteira.Text);
-                Utilitarios.ArquivoINI.EscreveString(pathPosicao, "CEDENTE", "FILIAL", ((ListItem)ddlNomeCedente.SelectedItem).Value);
-                Utilitarios.ArquivoINI.EscreveString(pathPosicao, "CEDENTE", "CODIGO", tbxCodigo.Text);
-                Utilitarios.ArquivoINI.EscreveString(pathPosicao, "CEDENTE", "AGENCIA", tbxAgencia.Text);
-                Utilitarios.ArquivoINI.EscreveString(pathPosicao, "CEDENTE", "CONTA", tbxConta.Text);
-                Utilitarios.ArquivoINI.EscreveString(pathPosicao, "CEDENTE", "NOSSONROI", tbxInicioNossoN.Text);
-                Utilitarios.ArquivoINI.EscreveString(pathPosicao, "CEDENTE", "NOSSONROF", tbxFimNossoN.Text);
-                Utilitarios.ArquivoINI.EscreveString(pathPosicao, "CEDENTE", "OUTRODADO1", tbxOutros1.Text);
-                Utilitarios.ArquivoINI.EscreveString(pathPosicao, "CEDENTE", "OUTRODADO2", tbxOutros2.Text);
-                Utilitarios.ArquivoINI.EscreveString(pathPosicao, "BOLETO", "DEMONSTRATIVO", tbxDemonstrativo.Text, multiplasLinhas: true);
-                Utilitarios.ArquivoINI.EscreveString(pathPosicao, "BOLETO", "INSTRUCOES", tbxInstrucoes.Text);
-                Utilitarios.ArquivoINI.EscreveString(pathPosicao, "BOLETO", "LAYOUT", tbxPathLayoutBoleto.Text);
-                Utilitarios.ArquivoINI.EscreveString(pathPosicao, "BOLETO", "JUROS", tbxJurosMes.Text);
-                Utilitarios.ArquivoINI.EscreveString(pathPosicao, "BOLETO", "MULTA", tbxMulta.Text);
-                Utilitarios.ArquivoINI.EscreveString(pathPosicao, "BOLETO", "INSTRUCAO1", tbxInstrucao1.Text);
-                Utilitarios.ArquivoINI.EscreveString(pathPosicao, "BOLETO", "INSTRUCAO2", tbxInstrucao2.Text);
-                Utilitarios.ArquivoINI.EscreveString(pathPosicao, "BOLETO", "DIASPROTESTO", tbxProtesto.Text);
-                Utilitarios.ArquivoINI.EscreveString(pathPosicao, "BOLETO", "ESPECIE", ddlEspecieTitulo.SelectedItem.ToString());
-                Utilitarios.ArquivoINI.EscreveString(pathPosicao, "BOLETO", "DESCVENCIMENTO", txtDescontoVencimento.Text);
-                Utilitarios.ArquivoINI.EscreveString(pathPosicao, "REMESSA", "CAMINHO", tbxArquivoRemessa.Text);
-                Utilitarios.ArquivoINI.EscreveString(pathPosicao, "REMESSA", "LAYOUT", ddlLayoutRemessa.SelectedItem.ToString());
+                ArquivoINI.EscreveString(pathPosicao, "BANCO", "NOME", ddlBanco.SelectedItem.ToString());
+                ArquivoINI.EscreveString(pathPosicao, "BANCO", "CARTEIRA", tbxCarteira.Text);
+                ArquivoINI.EscreveString(pathPosicao, "CEDENTE", "FILIAL", ((ListItem)ddlNomeCedente.SelectedItem).Value);
+                ArquivoINI.EscreveString(pathPosicao, "CEDENTE", "CODIGO", tbxCodigo.Text);
+                ArquivoINI.EscreveString(pathPosicao, "CEDENTE", "AGENCIA", tbxAgencia.Text);
+                ArquivoINI.EscreveString(pathPosicao, "CEDENTE", "CONTA", tbxConta.Text);
+                ArquivoINI.EscreveString(pathPosicao, "CEDENTE", "NOSSONROI", tbxInicioNossoN.Text);
+                ArquivoINI.EscreveString(pathPosicao, "CEDENTE", "NOSSONROF", tbxFimNossoN.Text);
+                ArquivoINI.EscreveString(pathPosicao, "CEDENTE", "OUTRODADO1", tbxOutros1.Text);
+                ArquivoINI.EscreveString(pathPosicao, "CEDENTE", "OUTRODADO2", tbxOutros2.Text);
+                ArquivoINI.EscreveString(pathPosicao, "BOLETO", "DEMONSTRATIVO", tbxDemonstrativo.Text, multiplasLinhas: true);
+                ArquivoINI.EscreveString(pathPosicao, "BOLETO", "INSTRUCOES", tbxInstrucoes.Text);
+                ArquivoINI.EscreveString(pathPosicao, "BOLETO", "LAYOUT", tbxPathLayoutBoleto.Text);
+                ArquivoINI.EscreveString(pathPosicao, "BOLETO", "JUROS", tbxJurosMes.Text);
+                ArquivoINI.EscreveString(pathPosicao, "BOLETO", "MULTA", tbxMulta.Text);
+                ArquivoINI.EscreveString(pathPosicao, "BOLETO", "INSTRUCAO1", tbxInstrucao1.Text);
+                ArquivoINI.EscreveString(pathPosicao, "BOLETO", "INSTRUCAO2", tbxInstrucao2.Text);
+                ArquivoINI.EscreveString(pathPosicao, "BOLETO", "DIASPROTESTO", tbxProtesto.Text);
+                ArquivoINI.EscreveString(pathPosicao, "BOLETO", "ESPECIE", ddlEspecieTitulo.SelectedItem.ToString());
+                ArquivoINI.EscreveString(pathPosicao, "BOLETO", "DESCVENCIMENTO", txtDescontoVencimento.Text);
+                ArquivoINI.EscreveString(pathPosicao, "REMESSA", "CAMINHO", tbxArquivoRemessa.Text);
+                ArquivoINI.EscreveString(pathPosicao, "REMESSA", "LAYOUT", ddlLayoutRemessa.SelectedItem.ToString());
 
 
 
                 string pathConfigBanco = AppDomain.CurrentDomain.BaseDirectory + "\\ConfigBoletosBancos.ini";
                 if (ddlBanco.SelectedItem.ToString().ToLower().Equals("bradesco"))
                 {
-                    Utilitarios.ArquivoINI.EscreveBool(pathConfigBanco, "BRADESCO", "UTILIZA_NUM_BANCO", chkUtilizaNumBanco.Checked);
+                    ArquivoINI.EscreveBool(pathConfigBanco, "BRADESCO", "UTILIZA_NUM_BANCO", chkUtilizaNumBanco.Checked);
                 }
 
                 GravarNossoNumeroDoBD(((ListItem)lbxPosicoes.SelectedItem).Value, "");
@@ -1847,7 +1847,7 @@ namespace VsBoleto.Sistema
         {
             bool aux = chkBtnImpressaoAutomatica.Checked;
 
-            Utilitarios.ArquivoINI.EscreveString(pathConfig, "CONFIG", "ROTINA", chkBtnImpressaoAutomatica.Checked ? "0" : "1");            
+            ArquivoINI.EscreveString(pathConfig, "CONFIG", "ROTINA", chkBtnImpressaoAutomatica.Checked ? "0" : "1");            
             timer2.Enabled = chkBtnImpressaoAutomatica.Checked;
             notifyIcon.Text = chkBtnImpressaoAutomatica.Checked ? "Impressão Automática Ativada" : "Impressão Automática Desativada";
             notifyIcon.BalloonTipTitle = "VsBoleto";
@@ -1925,7 +1925,7 @@ namespace VsBoleto.Sistema
                     return;
                 }
                 GravarNossoNumeroDoBD(((ListItem)lbxPosicoes.SelectedItem).Value, tbxNNAtual.Text.Trim());
-                Utilitarios.ArquivoINI.EscreveString(pathPosicao, "CEDENTE", "NOSSONUMERO", tbxNNAtual.Text.Trim());
+                ArquivoINI.EscreveString(pathPosicao, "CEDENTE", "NOSSONUMERO", tbxNNAtual.Text.Trim());
                 MostrarMensagem("Pos " + ((ListItem)lbxPosicoes.SelectedItem).Value + ": Nosso Número Atual foi modificado para: " + tbxNNAtual.Text.Trim(), true);
             }
             catch (Exception ex)

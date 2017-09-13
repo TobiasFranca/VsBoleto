@@ -6,6 +6,7 @@ using VsBoleto.Utilitarios;
 using FirebirdSql.Data.FirebirdClient;
 using System.Net.Mail;
 using System.Net;
+using BoletoBancario.Utilitarios;
 
 namespace VsBoleto.Sistema
 {

@@ -142,83 +142,83 @@ namespace VsBoleto.Utilitarios
     }
 
 
-    public class ArquivoINI
-    {
-        [DllImport("kernel32")]
-        private static extern long WritePrivateProfileString(string section, string key, string val, string filePath);
-        [DllImport("kernel32")]
-        private static extern int GetPrivateProfileString(string section, string key, string def, StringBuilder retVal, int size, string filePath);
+    //public class ArquivoINI
+    //{
+    //    [DllImport("kernel32")]
+    //    private static extern long WritePrivateProfileString(string section, string key, string val, string filePath);
+    //    [DllImport("kernel32")]
+    //    private static extern int GetPrivateProfileString(string section, string key, string def, StringBuilder retVal, int size, string filePath);
 
-        /// <summary> Lê um dado do arquivo INI. </summary>
-        /// <param name="path">Path do arquivo INI.</param>
-        /// <param name="secao">Nome da seção.</param>
-        /// <param name="chave">Nome da chave.</param>
-        /// <param name="criptografado">Informa se o valor do campo está criptografado.</param>
-        /// <param name="multiplasLinhas">Informa se o valor do campo apresenta múltiplas linhas.</param>
-        /// <param name="valorDefault">Valor default para retorno em caso de inexistência da chave.</param>
-        public static string LeString(string path, string secao, string chave,
-                                      bool criptografado = false, bool multiplasLinhas = false, string valorDefault = "")
-        {
-            StringBuilder temp = new StringBuilder(255);
-            int i = GetPrivateProfileString(secao, chave, "", temp, 255, path);
+    //    /// <summary> Lê um dado do arquivo INI. </summary>
+    //    /// <param name="path">Path do arquivo INI.</param>
+    //    /// <param name="secao">Nome da seção.</param>
+    //    /// <param name="chave">Nome da chave.</param>
+    //    /// <param name="criptografado">Informa se o valor do campo está criptografado.</param>
+    //    /// <param name="multiplasLinhas">Informa se o valor do campo apresenta múltiplas linhas.</param>
+    //    /// <param name="valorDefault">Valor default para retorno em caso de inexistência da chave.</param>
+    //    public static string LeString(string path, string secao, string chave,
+    //                                  bool criptografado = false, bool multiplasLinhas = false, string valorDefault = "")
+    //    {
+    //        StringBuilder temp = new StringBuilder(255);
+    //        int i = GetPrivateProfileString(secao, chave, "", temp, 255, path);
 
-            string retorno = temp.ToString().Trim() == "" ? valorDefault : temp.ToString();
+    //        string retorno = temp.ToString().Trim() == "" ? valorDefault : temp.ToString();
 
-            if (multiplasLinhas) retorno = retorno.Replace("|", Environment.NewLine);
+    //        if (multiplasLinhas) retorno = retorno.Replace("|", Environment.NewLine);
 
-            return (criptografado ? retorno.Decripta() : retorno);
-        }
+    //        return (criptografado ? retorno.Decripta() : retorno);
+    //    }
 
-        /// <summary> Lê um dado do arquivo INI. </summary>
-        /// <param name="path">Path do arquivo INI.</param>
-        /// <param name="secao">Nome da seção.</param>
-        /// <param name="chave">Nome da chave.</param>
-        /// <param name="valorDefault">Valor default para retorno em caso de inexistência da chave.</param>
-        public static bool LeBool(string path, string secao, string chave, bool valorDefault = false)
-        {
-            StringBuilder temp = new StringBuilder(255);
-            int i = GetPrivateProfileString(secao, chave, "", temp, 255, path);
+    //    /// <summary> Lê um dado do arquivo INI. </summary>
+    //    /// <param name="path">Path do arquivo INI.</param>
+    //    /// <param name="secao">Nome da seção.</param>
+    //    /// <param name="chave">Nome da chave.</param>
+    //    /// <param name="valorDefault">Valor default para retorno em caso de inexistência da chave.</param>
+    //    public static bool LeBool(string path, string secao, string chave, bool valorDefault = false)
+    //    {
+    //        StringBuilder temp = new StringBuilder(255);
+    //        int i = GetPrivateProfileString(secao, chave, "", temp, 255, path);
 
-            string retorno = temp.ToString();
-            if (retorno.Trim() == "")
-                return valorDefault;
-            else
-                if (retorno == "0") return false;
-            else return true;
-        }
+    //        string retorno = temp.ToString();
+    //        if (retorno.Trim() == "")
+    //            return valorDefault;
+    //        else
+    //            if (retorno == "0") return false;
+    //        else return true;
+    //    }
 
-        /// <summary> Escreve um dado no arquivo INI. </summary>
-        /// <param name="path">Path do arquivo INI.</param>
-        /// <param name="secao">Nome da seção.</param>
-        /// <param name="chave">Nome da chave.</param>
-        /// <param name="valor">Valor do dado.</param>
-        /// <param name="criptografar">Informa se o valor do campo deve ser criptografado.</param>
-        /// <param name="multiplasLinhas">Informa se o valor do campo apresenta múltiplas linhas.</param>
-        public static void EscreveString(string path, string secao, string chave, string valor,
-                                         bool criptografar = false, bool multiplasLinhas = false)
-        {
-            if (criptografar) valor = valor.Encripta();
-            if (multiplasLinhas)
-            {
-                valor = valor.RemoveChar('\r').Replace("\n", Environment.NewLine);
-                valor = valor.Replace(Environment.NewLine, "|");
-            }
+    //    /// <summary> Escreve um dado no arquivo INI. </summary>
+    //    /// <param name="path">Path do arquivo INI.</param>
+    //    /// <param name="secao">Nome da seção.</param>
+    //    /// <param name="chave">Nome da chave.</param>
+    //    /// <param name="valor">Valor do dado.</param>
+    //    /// <param name="criptografar">Informa se o valor do campo deve ser criptografado.</param>
+    //    /// <param name="multiplasLinhas">Informa se o valor do campo apresenta múltiplas linhas.</param>
+    //    public static void EscreveString(string path, string secao, string chave, string valor,
+    //                                     bool criptografar = false, bool multiplasLinhas = false)
+    //    {
+    //        if (criptografar) valor = valor.Encripta();
+    //        if (multiplasLinhas)
+    //        {
+    //            valor = valor.RemoveChar('\r').Replace("\n", Environment.NewLine);
+    //            valor = valor.Replace(Environment.NewLine, "|");
+    //        }
 
-            WritePrivateProfileString(secao, chave, valor, path);
-        }
+    //        WritePrivateProfileString(secao, chave, valor, path);
+    //    }
 
-        /// <summary> Escreve um dado no arquivo INI. </summary>
-        /// <param name="path">Path do arquivo INI.</param>
-        /// <param name="secao">Nome da seção.</param>
-        /// <param name="chave">Nome da chave.</param>
-        /// <param name="valor">Valor do dado.</param>
-        public static void EscreveBool(string path, string secao, string chave, bool valor)
-        {
-            string strValor;
-            if (valor) strValor = "1";
-            else strValor = "0";
+    //    /// <summary> Escreve um dado no arquivo INI. </summary>
+    //    /// <param name="path">Path do arquivo INI.</param>
+    //    /// <param name="secao">Nome da seção.</param>
+    //    /// <param name="chave">Nome da chave.</param>
+    //    /// <param name="valor">Valor do dado.</param>
+    //    public static void EscreveBool(string path, string secao, string chave, bool valor)
+    //    {
+    //        string strValor;
+    //        if (valor) strValor = "1";
+    //        else strValor = "0";
 
-            WritePrivateProfileString(secao, chave, strValor, path);
-        }
-    }
+    //        WritePrivateProfileString(secao, chave, strValor, path);
+    //    }
+    //}
 }
