@@ -1850,7 +1850,7 @@ namespace VsBoleto.Sistema
             Utilitarios.ArquivoINI.EscreveString(pathConfig, "CONFIG", "ROTINA", chkBtnImpressaoAutomatica.Checked ? "0" : "1");            
             timer2.Enabled = chkBtnImpressaoAutomatica.Checked;
             notifyIcon.Text = chkBtnImpressaoAutomatica.Checked ? "Impressão Automática Ativada" : "Impressão Automática Desativada";
-            notifyIcon.BalloonTipTitle = "VsBoletos";
+            notifyIcon.BalloonTipTitle = "VsBoleto";
             notifyIcon.BalloonTipText = chkBtnImpressaoAutomatica.Checked ? "Impressão Automática Ativada" : "Impressão Automática Desativada";
             notifyIcon.BalloonTipIcon = ToolTipIcon.Info;
             notifyIcon.ShowBalloonTip(500);
