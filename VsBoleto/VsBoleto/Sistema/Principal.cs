@@ -2,9 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Linq;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using FirebirdSql.Data.FirebirdClient;
@@ -30,12 +27,6 @@ namespace VsBoleto.Sistema
         private System.Timers.Timer timer2 = new System.Timers.Timer();
         NotifyIcon notifyIcon = new NotifyIcon();
 
-        private Color corA = Color.LightSalmon;
-        private Color corI = Color.LightSkyBlue;
-        private Color corR = Color.LightSeaGreen;
-        private Color corE = Color.MediumPurple;
-        private Color corIE = Color.HotPink;
-        private Color corRE = Color.Orange;
         decimal jurosMes = 0;
         decimal multa = 0;
         decimal desconto = 0;
