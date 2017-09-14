@@ -538,7 +538,7 @@ namespace VsBoleto.Sistema
             }
             else
             {
-                MostrarMensagem("Erro ao carregar Nosso Número do banco de dados. Confira se há posição criada. Caso o erro persista, contate o adminitrador do sitema.");
+                MostrarMensagem("Erro ao carregar Nosso Número do banco de dados. Confira se há posição criada. Caso o erro persista, contate o adminitrador do sitema.", true);
                 return false;
             }
 
@@ -668,7 +668,7 @@ namespace VsBoleto.Sistema
                 }
                 catch (Exception ex)
                 {
-                    GravarLog(ex.Message);
+                    MostrarMensagem("Erro ao preparar o boleto: " + ex.Message, true);                    
                 }
 
                 string st3 = detalhe["ST3"].ToString();
