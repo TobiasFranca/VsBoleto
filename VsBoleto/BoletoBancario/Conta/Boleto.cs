@@ -348,10 +348,11 @@ namespace BoletoBancario.Conta
                 bc.Alignment = BarcodeLib.AlignmentPositions.CENTER;
                 bc.IncludeLabel = false;
 
-                bc.Encode(BarcodeLib.TYPE.Interleaved2of5, this.codigoBarras, 665, 80);
+                bc.Encode(BarcodeLib.TYPE.Interleaved2of5, codigoBarras, 665, 80);
 
                 string path = Configuracoes.CaminhoArquivosPadroes;
                 Configuracoes.VerificarECriarDiretorios(path);
+
                 if (!Directory.Exists(path))
                 {
                     throw new ArgumentException("Não foi possivel criar o diretório para salvar o código de barras.");
@@ -359,7 +360,7 @@ namespace BoletoBancario.Conta
 
                 string nome = path + "/barcode" + this.NossoNumeroComDV + ".gif";
 
-                this.pathImgCodBarras = nome;
+                pathImgCodBarras = nome;
                 bc.SaveImage(nome, BarcodeLib.SaveTypes.GIF);
             }
             catch (Exception ex)
@@ -394,15 +395,25 @@ namespace BoletoBancario.Conta
         {
             try
             {
-                if (this.contaCorrente == null) return false;
-                if (emailsDestinatarios.Count <= 0) return false;
+                if (contaCorrente == null)
+                {
+                    return false;
+                }
+
+                if (emailsDestinatarios.Count <= 0)
+                {
+                    return false;
+                }
 
                 string pathArquivo = Configuracoes.CaminhoArquivosGerados + "/" +
-                    this.numeroDocumento.ToNoFormated() + ".pdf";
+                    numeroDocumento.ToNoFormated() + ".pdf";
 
-                this.GerarPDF(pathArquivo, pathLayout);
+                GerarPDF(pathArquivo, pathLayout);
 
-                if (string.IsNullOrEmpty(Configuracoes.Email_Usuario)) return false;
+                if (string.IsNullOrEmpty(Configuracoes.Email_Usuario))
+                {
+                    return false;
+                }
 
                 MailAddress from = new MailAddress(Configuracoes.Email_Usuario);
 
@@ -420,14 +431,17 @@ namespace BoletoBancario.Conta
                 MailMessage message = new MailMessage();
 
                 foreach (string s in emailsDestinatarios)
+                {
                     if (s.Contains("@"))
                         message.To.Add(s);
+                }
+
                 if (message.To.Count <= 0) return false;
 
                 message.From = from;
                 message.IsBodyHtml = Configuracoes.Email_Html;
-                message.Subject = Configuracoes.Email_Assunto_Padrao;
-                message.Body = Configuracoes.Email_Corpo_Padrao;
+                message.Subject = Configuracoes.Email_Assunto_Padrao.Replace("[NF]", NumeroDocumento.ToString());
+                message.Body = Configuracoes.Email_Corpo_Padrao.Replace("[NF]", NumeroDocumento.ToString());
                 message.Attachments.Add(new Attachment(pathArquivo));
 
                 smtp.Send(message);
@@ -448,10 +462,14 @@ namespace BoletoBancario.Conta
         /// <returns>Se ocorreu erro ou não durante a impressão dos arquivos.</returns>
         public bool GerarPDF(string pathArquivo, string pathLayout, bool agruparBoletos = true)
         {
-            if (this.contaCorrente == null) return false;
+            if (contaCorrente == null)
+            {
+                return false;
+            }
+
             FastReport.Report r = Relatorios.PrepararRelatório(
                     pathLayout, agruparBoletos ?
-                    Relatorios.GetDataSetContaCorrente(this.contaCorrente) : Relatorios.GetDataSetBoleto(this));
+                    Relatorios.GetDataSetContaCorrente(contaCorrente) : Relatorios.GetDataSetBoleto(this));
 
             return Relatorios.ExportarRelatorioPDF(r, pathArquivo);
         }
@@ -463,10 +481,14 @@ namespace BoletoBancario.Conta
         /// <returns></returns>
         public bool ImprimirBoleto(string pathLayout, bool agruparBoletos = true)
         {
-            if (this.contaCorrente == null) return false;
+            if (contaCorrente == null)
+            {
+                return false;
+            }
+
             FastReport.Report r = Relatorios.PrepararRelatório(
                 pathLayout, agruparBoletos ?
-                    Relatorios.GetDataSetContaCorrente(this.contaCorrente) : Relatorios.GetDataSetBoleto(this));
+                    Relatorios.GetDataSetContaCorrente(contaCorrente) : Relatorios.GetDataSetBoleto(this));
 
             return Relatorios.ImprimirBoleto(r, Configuracoes.ImpressoraPadrao);
         }
