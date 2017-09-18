@@ -1297,11 +1297,17 @@ namespace VsBoleto.Sistema
 
         private void BarBtnInfoBD_Click(object sender, EventArgs e)
         {
-            FormConfig frm = new FormConfig();
-            frm.ShowDialog(this);
-            chkBtnImpressaoAutomatica.Checked = int.Parse(ArquivoINI.LeString(pathConfig, "CONFIG", "ROTINA", valorDefault: "1")) == 0;
-            timer2.Interval = int.Parse(ArquivoINI.LeString(pathConfig, "CONFIG", "INTERVALO", valorDefault: "10")) * 1000;
-            timer2.Enabled = int.Parse(ArquivoINI.LeString(pathConfig, "CONFIG", "ROTINA")) == 0;
+            FormSenha pw = new FormSenha();
+            pw.ShowDialog();
+            if (!pw.Permitido)
+            {
+                FormConfig frm = new FormConfig();
+                frm.ShowDialog(this);
+                chkBtnImpressaoAutomatica.Checked = int.Parse(ArquivoINI.LeString(pathConfig, "CONFIG", "ROTINA", valorDefault: "1")) == 0;
+                timer2.Interval = int.Parse(ArquivoINI.LeString(pathConfig, "CONFIG", "INTERVALO", valorDefault: "10")) * 1000;
+                timer2.Enabled = int.Parse(ArquivoINI.LeString(pathConfig, "CONFIG", "ROTINA")) == 0;
+            }
+            
         }
 
         private void BarBtnSair_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
