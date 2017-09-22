@@ -228,7 +228,7 @@ namespace BoletoBancario.Utilitarios
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw new Exception(ex.Message);
             }
             return r;
         }
