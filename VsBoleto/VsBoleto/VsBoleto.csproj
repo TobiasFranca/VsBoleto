@@ -175,9 +175,15 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Relatorios\Bradesco.frx" />
-    <None Include="Relatorios\Itau.frx" />
-    <None Include="Relatorios\Sicoob.frx" />
+    <None Include="Relatorios\Bradesco.frx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Relatorios\Itau.frx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Relatorios\Sicoob.frx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Resources\lmSIG_peq.png" />
   </ItemGroup>
   <ItemGroup>
