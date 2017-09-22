@@ -488,7 +488,6 @@ namespace BoletoBancario.Bancos
             aux += ret + Environment.NewLine;
             //Fim Header do Lote
 
-
             foreach (Boleto b in c.Boletos)
             {
                 int sequenciaRegistro = 2;
@@ -502,7 +501,7 @@ namespace BoletoBancario.Bancos
                 ret += "P"; // 14-14 Código do Seguimento
                 ret += " "; // 15-15 Uso do Febraban
                 ret += "01"; // 16-17 Código do Movimento da Remessa
-                ret += Utils.Insert(c.Agencia, 6, "0"); // 18-23 Agência
+                ret += Utils.Insert(c.Agencia, 6, "0", true); // 18-23 Agência
                 ret += Utils.Insert(c.NumeroConta, 13, "0", true); // 24-36 Conta
                 ret += " "; // 37-37 Não utilizado pelo Banco do Brasil
                 ret += Utils.Insert(Utils.FormataNossoNumeroCNAB240BB(b.NossoNumero, b.DigVerNossoNumero, c.CodigoCedente), 20, " "); // 38-57 Identificação do Título
@@ -655,7 +654,7 @@ namespace BoletoBancario.Bancos
             ret += "9"; // 08-08 Tipo de Registro
             ret += Utils.Insert(" ", 9); // 09-17 Uso Exclusivo do Febraban
             ret += "000001"; // 18-23 Quantidade de Lotes do Arquivo
-            ret += Utils.Insert((totalLote + 2).ToString(), 6, "0", true); // 24-29 Quantidade de Registros do Arquivo
+            ret += Utils.Insert((totalLote + 1).ToString(), 6, "0", true); // 24-29 Quantidade de Registros do Arquivo
             ret += Utils.Insert(" ", 6); // 30-35 Não Utilizado Pelo Banco
             ret += Utils.Insert(" ", 205); // 36-240 Uso Exclusivo do Febraban
 
