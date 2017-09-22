@@ -1,0 +1,386 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReportInfo.Author="VsBoletos" ReportInfo.Description="boleto bancário" ReportInfo.Created="04/01/2013 16:41:43" ReportInfo.Modified="08/29/2013 15:23:55" ReportInfo.CreatorVersion="1.8.30.0">
+  <ScriptText>using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Windows.Forms;
+using System.Drawing;
+using System.Data;
+using FastReport;
+using FastReport.Data;
+using FastReport.Dialog;
+using FastReport.Barcode;
+using FastReport.Table;
+using FastReport.Utils;
+
+namespace FastReport
+{
+  public class ReportScript
+  {           
+    string instrucoesBoleto = &quot;&quot;;
+    
+    private string FormatMask(string value, string mask)
+    {                                            
+      int tam = mask.Replace(&quot;-&quot;, &quot;&quot;).Replace(&quot;/&quot;, &quot;&quot;).Replace(&quot;\\&quot;, &quot;&quot;).Replace(&quot; &quot;, &quot;&quot;).Replace(&quot;.&quot;, &quot;&quot;).Length;
+      if(value.Length &lt; tam)
+        value = value.PadLeft(tam, '0');                 
+      MaskedTextProvider pro = new MaskedTextProvider(mask);
+      pro.Add(value);
+      return pro.ToString();
+    }
+    
+    private void Text1_AfterData(object sender, EventArgs e)
+    {                               
+      if(Text1.Text.Length != 47)
+        //        Text1.Text = Text1.Text.Length.ToString();
+        return;
+      
+      string text = Text1.Text.Substring(0,5)+&quot;.&quot;+
+        Text1.Text.Substring(5,5)+&quot;  &quot;+
+        Text1.Text.Substring(10,5)+&quot;.&quot;+
+        Text1.Text.Substring(15,6)+&quot;  &quot;+
+        Text1.Text.Substring(21,5)+&quot;.&quot;+
+        Text1.Text.Substring(26,6)+&quot;  &quot;+
+        Text1.Text.Substring(32,1)+&quot;  &quot;+
+        Text1.Text.Substring(33,14);
+      
+      Text1.Text = text;      
+    }     
+
+    private void Text141_AfterData(object sender, EventArgs e)
+    {
+      Text141.Text = DateTime.Now.ToString(&quot;dd/MM/yyyy&quot;);
+    }  
+
+    private void Text4_AfterData(object sender, EventArgs e)
+    {
+      Picture1.ImageLocation = Text4.Text;
+      
+      //      MessageBox.Show(Picture1.ImageLocation);
+    }
+  }
+}
+</ScriptText>
+  <Dictionary>
+    <TableDataSource Name="Boletos" ReferenceName="Data.Boletos" DataType="System.Int32" Enabled="true">
+      <Column Name="Cedente_CpfCnpj" DataType="System.String"/>
+      <Column Name="Cedente_Endereco" DataType="System.String"/>
+      <Column Name="Cedente_Bairro" DataType="System.String"/>
+      <Column Name="Cedente_Cidade" DataType="System.String"/>
+      <Column Name="Cedente_Cep" DataType="System.String"/>
+      <Column Name="Cedente_Estado" DataType="System.String"/>
+      <Column Name="CC_Agencia" DataType="System.String"/>
+      <Column Name="CC_CodCedente" DataType="System.String"/>
+      <Column Name="CC_NumeroBanco" DataType="System.String"/>
+      <Column Name="CC_Outros1" DataType="System.String"/>
+      <Column Name="CC_Outros2" DataType="System.String"/>
+      <Column Name="Boleto_CodigoBarras" DataType="System.String"/>
+      <Column Name="Boleto_LinhaDigitavel" DataType="System.String"/>
+      <Column Name="Boleto_DataDocumento" DataType="System.DateTime"/>
+      <Column Name="Boleto_DataVencimento" DataType="System.DateTime"/>
+      <Column Name="Boleto_NossoNumeroComDV" DataType="System.String"/>
+      <Column Name="Boleto_ParcelaAtual" DataType="System.String"/>
+      <Column Name="Boleto_PercDesconto" DataType="System.String"/>
+      <Column Name="Boleto_PercJurosDiaAtraso" DataType="System.String"/>
+      <Column Name="Boleto_PercMultaAtraso" DataType="System.Double"/>
+      <Column Name="Boleto_OutrosAcrecimos" DataType="System.Double"/>
+      <Column Name="Boleto_ValorDesconto" DataType="System.String"/>
+      <Column Name="Boleto_ValorJurosDiaAtraso" DataType="System.Double"/>
+      <Column Name="Boleto_ValorMultaAtraso" DataType="System.Double"/>
+      <Column Name="Boleto_ValorOutrosAcrecimos" DataType="System.String"/>
+      <Column Name="Boleto_ValorAbatimento" DataType="System.Double"/>
+      <Column Name="Boleto_ValorDocumento" DataType="System.Double"/>
+      <Column Name="Sacado_Nome" DataType="System.String"/>
+      <Column Name="Sacado_CpfCnpj" DataType="System.String"/>
+      <Column Name="Sacado_Endereco" DataType="System.String"/>
+      <Column Name="Sacado_Bairro" DataType="System.String"/>
+      <Column Name="Sacado_Cidade" DataType="System.String"/>
+      <Column Name="Sacado_Cep" DataType="System.String"/>
+      <Column Name="Sacado_Estado" DataType="System.String"/>
+      <Column Name="Cedente_Nome" DataType="System.String"/>
+      <Column Name="Boleto_NumeroDocumento" DataType="System.String"/>
+      <Column Name="Boleto_Aceite" DataType="System.String"/>
+      <Column Name="Boleto_Moeda" DataType="System.String"/>
+      <Column Name="Boleto_Especie" DataType="System.String"/>
+      <Column Name="CC_Instrucoes" DataType="System.String"/>
+      <Column Name="CC_Demonstrativo" DataType="System.String"/>
+      <Column Name="Boleto_PathImgCodBarras" DataType="System.String"/>
+      <Column Name="Sacado_Codigo" DataType="System.String"/>
+      <Column Name="Sacado_Numero_Endereco" DataType="System.String"/>
+      <Column Name="Cedente_Numero_Endereco" DataType="System.String"/>
+      <Column Name="Boleto_Numero_Parcelas" DataType="System.String"/>
+      <Column Name="Banco_Carteira" DataType="System.String"/>
+      <Column Name="CC_NumeroConta" DataType="System.String"/>
+      <Column Name="CC_DV_NumeroBanco" DataType="System.String"/>
+    </TableDataSource>
+  </Dictionary>
+  <ReportPage Name="Page1" RawPaperSize="9" FirstPageSource="15" OtherPagesSource="15" Guides="0">
+    <DataBand Name="Data1" Width="718.2" Height="1047.06" DataSource="Boletos">
+      <TableObject Name="Table2" Top="295.13" Width="718.21" Height="198.73" Border.Lines="All">
+        <TableColumn Name="Column6" Width="130"/>
+        <TableColumn Name="Column7" Width="130"/>
+        <TableColumn Name="Column8" Width="186.45"/>
+        <TableColumn Name="Column9" Width="133.42"/>
+        <TableColumn Name="Column10" Width="138.34"/>
+        <TableRow Name="Row7" Height="28.33">
+          <TableCell Name="Cell31" Border.Lines="All" Text="Nome" Font="Arial, 7pt" ColSpan="3"/>
+          <TableCell Name="Cell32" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell33" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell34" Border.Lines="All" Text="CNPJ" Font="Arial, 7pt">
+            <TextObject Name="Text77" Left="2.74" Top="14.58" Width="128.84" Height="10.45" Text="[Boletos.Sacado_CpfCnpj]" HorzAlign="Right" Font="Arial, 7pt"/>
+          </TableCell>
+          <TableCell Name="Cell35" Border.Lines="All" Text="Número do documento" Font="Arial, 7pt">
+            <TextObject Name="Text75" Left="2.28" Top="14.58" Width="113.4" Height="10.45" Text="[Boletos.Boleto_NumeroDocumento]" HorzAlign="Right" Font="Arial, 7pt"/>
+          </TableCell>
+        </TableRow>
+        <TableRow Name="Row8" Height="28.33">
+          <TableCell Name="Cell36" Border.Lines="All" Text="Endereço" Font="Arial, 7pt" ColSpan="5">
+            <TextObject Name="Text59" Top="14.37" Width="710.54" Height="10.45" Text="[Boletos.Sacado_Endereco]" Font="Arial, 7pt"/>
+          </TableCell>
+          <TableCell Name="Cell37" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell38" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell39" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell40" Border.Lines="All" Font="Arial, 7pt"/>
+        </TableRow>
+        <TableRow Name="Row9" Height="28.33">
+          <TableCell Name="Cell42" Border.Lines="All" Text="Bairro / Distrito" Font="Arial, 7pt" ColSpan="5">
+            <TextObject Name="Text61" Top="14.16" Width="710.54" Height="10.45" Text="[Boletos.Sacado_Bairro]" Font="Arial, 7pt"/>
+          </TableCell>
+          <TableCell Name="Cell43" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell44" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell45" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell41" Border.Lines="All" Font="Arial, 7pt"/>
+        </TableRow>
+        <TableRow Name="Row10" Height="28.33">
+          <TableCell Name="Cell46" Border.Lines="All" Text="Município" Font="Arial, 7pt" ColSpan="3">
+            <TextObject Name="Text62" Top="15.63" Width="446.12" Height="10.45" Text="[Boletos.Sacado_Cidade]" Font="Arial, 7pt"/>
+          </TableCell>
+          <TableCell Name="Cell47" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell48" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell49" Border.Lines="All" Text="UF" Font="Arial, 7pt">
+            <TextObject Name="Text74" Left="1.91" Top="14.86" Width="28.35" Height="10.45" Text="[Boletos.Sacado_Estado]" HorzAlign="Center" Font="Arial, 7pt"/>
+          </TableCell>
+          <TableCell Name="Cell50" Border.Lines="All" Text="CEP" Font="Arial, 7pt">
+            <TextObject Name="Text73" Left="2.26" Top="15.29" Width="114.96" Height="10.45" Text="[Boletos.Sacado_Cep]" HorzAlign="Right" Font="Arial, 7pt"/>
+          </TableCell>
+        </TableRow>
+        <TableRow Name="Row11" Height="28.33">
+          <TableCell Name="Cell51" Border.Lines="All" Text="Mensagem Sacado" Font="Arial, 7pt" ColSpan="5" RowSpan="3">
+            <TextObject Name="Text134" Top="12.42" Width="712.92" Height="71.67" Text="[Boletos.CC_Demonstrativo]" Font="Arial, 8pt"/>
+          </TableCell>
+          <TableCell Name="Cell52" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell53" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell54" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell55" Border.Lines="All" Font="Arial, 7pt"/>
+        </TableRow>
+        <TableRow Name="Row12" Height="28.33">
+          <TableCell Name="Cell56" Border.Lines="All"/>
+          <TableCell Name="Cell57" Border.Lines="All"/>
+          <TableCell Name="Cell58" Border.Lines="All"/>
+          <TableCell Name="Cell59" Border.Lines="All"/>
+          <TableCell Name="Cell60" Border.Lines="All"/>
+        </TableRow>
+        <TableRow Name="Row13" Height="28.75">
+          <TableCell Name="Cell61" Border.Lines="All"/>
+          <TableCell Name="Cell62" Border.Lines="All"/>
+          <TableCell Name="Cell63" Border.Lines="All"/>
+          <TableCell Name="Cell64" Border.Lines="All"/>
+          <TableCell Name="Cell65" Border.Lines="All"/>
+        </TableRow>
+      </TableObject>
+      <TextObject Name="Text70" Left="503.92" Top="507.61" Width="121.85" Height="12.9" Text="Autenticação mecânica " Font="Arial, 7pt"/>
+      <LineObject Name="Line1" Left="436.6" Top="510.16" Width="-37.8" Diagonal="true"/>
+      <LineObject Name="Line2" Left="717.87" Top="510.16" Width="-37.8" Diagonal="true"/>
+      <LineObject Name="Line3" Left="399.17" Top="510.06" Height="28.35" Diagonal="true"/>
+      <LineObject Name="Line4" Left="718.19" Top="510.04" Height="28.35" Diagonal="true"/>
+      <LineObject Name="Line5" Top="610.83" Width="718.2" Border.Style="DashDotDot" Border.Width="1.5" Diagonal="true"/>
+      <TextObject Name="Text1" Left="320.58" Top="670.46" Width="396.9" Height="18.9" AfterDataEvent="Text1_AfterData" Text="[Boletos.Boleto_LinhaDigitavel]" Format="Custom" Format.Format="00000.00000 00000.000000 000000.000000 0 00000000000000" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text2" Left="215.79" Top="664.09" Width="94.5" Height="28.35" Border.Lines="Left, Right" Text="[Boletos.CC_NumeroBanco] - [Boletos.CC_DV_NumeroBanco]" HorzAlign="Right" Font="Arial, 16pt"/>
+      <TableObject Name="Table1" Top="82.05" Width="718.18" Height="181.38">
+        <TableColumn Name="Column1" Width="141.52"/>
+        <TableColumn Name="Column2" Width="141.52"/>
+        <TableColumn Name="Column3" Width="166.45"/>
+        <TableColumn Name="Column4" Width="127.17"/>
+        <TableColumn Name="Column5" Width="141.52"/>
+        <TableRow Name="Row6" Height="30.23">
+          <TableCell Name="Cell26" Border.Lines="All" Text="Beneficiário" Font="Arial, 7pt" ColSpan="3" RowSpan="3">
+            <TextObject Name="Text46" Top="13.63" Width="302.4" Height="13.9" Text="Razão: [Boletos.Cedente_Nome]" Font="Arial, 8pt, style=Bold"/>
+            <TextObject Name="Text47" Left="303.51" Top="13.59" Width="151.77" Height="13.9" Text="[Boletos.Cedente_CpfCnpj]" Font="Arial, 8pt, style=Bold"/>
+            <TextObject Name="Text48" Top="38.01" Width="217.35" Height="10.58" Text="[Boletos.Cedente_Endereco]" Font="Arial, 8pt"/>
+            <TextObject Name="Text49" Top="51.25" Width="217.35" Height="10.45" Text="[Boletos.Cedente_Bairro]" Font="Arial, 8pt"/>
+            <TextObject Name="Text50" Top="63.71" Width="217.35" Height="11.34" Text="[Boletos.Cedente_Cidade]" Font="Arial, 8pt"/>
+            <TextObject Name="Text51" Left="219.88" Top="63.88" Width="28.35" Height="11.34" Text="[Boletos.Cedente_Estado]" Font="Arial, 8pt"/>
+            <TextObject Name="Text52" Left="323.87" Top="63.88" Width="129.01" Height="11.34" Text="[Boletos.Cedente_Cep]" Font="Arial, 8pt"/>
+          </TableCell>
+          <TableCell Name="Cell27" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell28" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell29" Border.Lines="All" Text="Vencimento" Font="Arial, 7pt">
+            <TextObject Name="Text42" Left="0.77" Top="15.56" Width="105.13" Height="13.9" Text="[Boletos.Boleto_DataVencimento]" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+          </TableCell>
+          <TableCell Name="Cell30" Border.Lines="All" Text="Valor do Documento" Font="Arial, 7pt">
+            <TextObject Name="Text43" Left="0.38" Top="15.86" Width="120.59" Height="13.9" Text="[Boletos.Boleto_ValorDocumento]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator="." Format.CurrencySymbol="R$" Format.PositivePattern="2" Format.NegativePattern="9" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+          </TableCell>
+        </TableRow>
+        <TableRow Name="Row1" Height="30.23">
+          <TableCell Name="Cell1" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell2" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell3" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell4" Border.Lines="All" Text="(+) Outros Acréscimos" Font="Arial, 7pt"/>
+          <TableCell Name="Cell5" Border.Lines="All" Text="(+) Mora / Multa" Font="Arial, 7pt"/>
+        </TableRow>
+        <TableRow Name="Row2" Height="30.23">
+          <TableCell Name="Cell6" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell7" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell8" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell9" Border.Lines="All" Text="( - ) Desconto / Abatimento" Font="Arial, 7pt"/>
+          <TableCell Name="Cell10" Border.Lines="All" Text="( - ) Outras Deduções" Font="Arial, 7pt"/>
+        </TableRow>
+        <TableRow Name="Row3" Height="30.23">
+          <TableCell Name="Cell11" Border.Lines="All" Text="Instruções (Texto de responsabilidade do beneficiário)" Font="Arial, 7pt" ColSpan="3" RowSpan="3">
+            <TextObject Name="Text133" Top="14.48" Width="454.03" Height="74.74" Text="[Boletos.CC_Instrucoes]" Font="Arial, 8pt"/>
+          </TableCell>
+          <TableCell Name="Cell12" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell13" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell14" Border.Lines="All" Text="Data de Emissão" Font="Arial, 7pt">
+            <TextObject Name="Text55" Top="15.51" Width="108.54" Height="13.52" Text="[Boletos.Boleto_DataDocumento]" Format="Date" Format.Format="d" HorzAlign="Right" Font="Arial, 7pt"/>
+          </TableCell>
+          <TableCell Name="Cell15" Border.Lines="All" Text="( = ) Valor Cobrado" Font="Arial, 7pt"/>
+        </TableRow>
+        <TableRow Name="Row4" Height="30.23">
+          <TableCell Name="Cell16" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell17" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell18" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell19" Border.Lines="All" Text="Agência / Cód Beneficiário" Font="Arial, 7pt" ColSpan="2">
+            <TextObject Name="lblAgBen" Top="15.83" Width="247.93" Height="13.9" Text="[FormatMask([Boletos.CC_Agencia], &quot;0000&quot;)]/[FormatMask([Boletos.CC_NumeroConta], &quot;00000-0&quot;)]" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+          </TableCell>
+          <TableCell Name="Cell20" Border.Lines="All" Font="Arial, 7pt"/>
+        </TableRow>
+        <TableRow Name="Row5" Height="30.23">
+          <TableCell Name="Cell21" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell22" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell23" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell24" Border.Lines="All" Text="Nosso Número" Font="Arial, 7pt" ColSpan="2">
+            <TextObject Name="Text143" Top="16.15" Width="247.97" Height="13.9" Text="[FormatMask([Boletos.Banco_Carteira], &quot;000&quot;)]/[PadLeft([Boletos.Boleto_NossoNumeroComDV], 9, '0')]" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+          </TableCell>
+          <TableCell Name="Cell25" Border.Lines="All" Font="Arial, 7pt"/>
+        </TableRow>
+      </TableObject>
+      <TextObject Name="Text72" Left="1.52" Top="277.55" Width="94.5" Height="12.9" Text="Dados do Pagador" Font="Arial, 7pt"/>
+      <TableObject Name="Table3" Top="694.94" Width="718.22" Height="272.16" Border.Lines="All">
+        <TableColumn Name="Column11" Width="131.4"/>
+        <TableColumn Name="Column12" Width="146.95"/>
+        <TableColumn Name="Column13" Width="136.7"/>
+        <TableColumn Name="Column14" Width="120.48"/>
+        <TableColumn Name="Column15" Width="182.69"/>
+        <TableRow Name="Row22" Height="30.24">
+          <TableCell Name="Cell106" Border.Lines="All" Text="Local de pagamento" Font="Arial, 7pt" ColSpan="4">
+            <TextObject Name="Text136" Top="16.09" Width="529.2" Height="12.9" Text="Antes do vencimento, preferencialmente no Itaú. Após vencimento, somente no Itaú." Font="Arial, 8pt"/>
+          </TableCell>
+          <TableCell Name="Cell107" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell108" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell109" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell110" Border.Lines="All" Text="Vencimento" Font="Arial, 7pt">
+            <TextObject Name="Text80" Top="13.83" Width="162.54" Height="13.9" Text="[Boletos.Boleto_DataVencimento]" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+          </TableCell>
+        </TableRow>
+        <TableRow Name="Row21" Height="30.24">
+          <TableCell Name="Cell101" Border.Lines="All" Text="Beneficiário" Font="Arial, 7pt" ColSpan="4">
+            <TextObject Name="Text84" Top="14.55" Width="381.44" Height="13.9" Text="[Boletos.Cedente_Nome]" Font="Arial, 8pt, style=Bold"/>
+            <TextObject Name="Text85" Left="383.54" Top="14.55" Width="151.03" Height="13.9" Text="[Boletos.Cedente_CpfCnpj]" Font="Arial, 8pt, style=Bold"/>
+            <TextObject Name="Text3" Left="345.84" Top="30.13" Width="68.42" Height="30.24" Border.Lines="Left" Text="Aceite" Font="Arial, 7pt"/>
+          </TableCell>
+          <TableCell Name="Cell102" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell103" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell104" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell105" Border.Lines="All" Text="Agência / Cód Beneficiário" Font="Arial, 7pt">
+            <TextObject Name="lblAgBen1" Top="13.8" Width="162.54" Height="13.9" Text="[FormatMask([Boletos.CC_Agencia], &quot;0000&quot;)]/[FormatMask([Boletos.CC_NumeroConta], &quot;00000-0&quot;)]" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+          </TableCell>
+        </TableRow>
+        <TableRow Name="Row20" Height="30.24">
+          <TableCell Name="Cell96" Border.Lines="All" Text="Data de Emissão" Font="Arial, 7pt">
+            <TextObject Name="Text88" Left="1.11" Top="15.15" Width="127.85" Height="13.9" Text="[Boletos.Boleto_DataDocumento]" Format="Date" Format.Format="d" HorzAlign="Right" Font="Arial, 7pt"/>
+          </TableCell>
+          <TableCell Name="Cell97" Border.Lines="All" Text="Número do documento" Font="Arial, 7pt">
+            <TextObject Name="Text90" Left="2.27" Top="15.18" Width="141.05" Height="13.9" Text="[Boletos.Boleto_NumeroDocumento]" HorzAlign="Right" Font="Arial, 7pt"/>
+          </TableCell>
+          <TableCell Name="Cell98" Border.Lines="All" Text="Espécie" Font="Arial, 7pt">
+            <TextObject Name="Text137" Left="0.41" Top="14.95" Width="65.41" Height="13.9" Text="[Boletos.Boleto_Especie]" HorzAlign="Center" Font="Arial, 7pt"/>
+            <TextObject Name="Text138" Left="68.48" Top="16.48" Width="67.73" Height="13.9" Text="[Boletos.Boleto_Aceite]" HorzAlign="Center" Font="Arial, 7pt"/>
+          </TableCell>
+          <TableCell Name="Cell99" Border.Lines="All" Text="Data Processamento" Font="Arial, 7pt">
+            <TextObject Name="Text141" Left="0.65" Top="15.12" Width="118.75" Height="13.9" AfterDataEvent="Text141_AfterData" Text="[Boletos.Boleto_DataDocumento]" Format="Date" Format.Format="d" HorzAlign="Right" Font="Arial, 7pt"/>
+          </TableCell>
+          <TableCell Name="Cell100" Border.Lines="All" Text="Nosso Número" Font="Arial, 7pt">
+            <TextObject Name="lblCarNN1" Top="14.54" Width="162.54" Height="13.9" Text="[FormatMask([Boletos.Banco_Carteira], &quot;000&quot;)]/[PadLeft([Boletos.Boleto_NossoNumeroComDV], 9, '0')]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="1" Format.DecimalSeparator="-" Format.GroupSeparator="" Format.NegativePattern="1" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+          </TableCell>
+        </TableRow>
+        <TableRow Name="Row19" Height="30.24">
+          <TableCell Name="Cell91" Border.Lines="All" Text="Uso do Banco" Font="Arial, 7pt"/>
+          <TableCell Name="Cell92" Border.Lines="All" Text="Carteira" Font="Arial, 7pt">
+            <TextObject Name="Text142" Left="75.19" Top="0.36" Width="68.42" Height="30.24" Border.Lines="Left" Text="Espécie" Font="Arial, 7pt"/>
+            <TextObject Name="Text140" Left="1.53" Top="14.87" Width="71.15" Height="13.9" Text="[Boletos.Banco_Carteira]" HorzAlign="Center" Font="Arial, 7pt"/>
+            <TextObject Name="Text139" Left="76.53" Top="14.88" Width="68.49" Height="13.9" Text="[Boletos.Boleto_Moeda]" HorzAlign="Center" Font="Arial, 7pt"/>
+          </TableCell>
+          <TableCell Name="Cell93" Border.Lines="All" Text="Quantidade" Font="Arial, 7pt"/>
+          <TableCell Name="Cell94" Border.Lines="All" Text="Valor" Font="Arial, 7pt"/>
+          <TableCell Name="Cell95" Border.Lines="All" Text="Valor do Documento" Font="Arial, 7pt">
+            <TextObject Name="Text112" Top="14.17" Width="162.54" Height="13.9" Text="[Boletos.Boleto_ValorDocumento]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator="." Format.CurrencySymbol="R$" Format.PositivePattern="2" Format.NegativePattern="9" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+          </TableCell>
+        </TableRow>
+        <TableRow Name="Row14" Height="30.24">
+          <TableCell Name="Cell66" Border.Lines="All" Text="Instruções (Texto de responsabilidade do beneficiário. Qualquer dúvida sobre este boleto contate o beneficiário)" Font="Arial, 7pt" ColSpan="4" RowSpan="3">
+            <TextObject Name="Text135" Top="14.34" Width="532.2" Height="73.98" Text="[Boletos.CC_Instrucoes]" Font="Arial, 8pt"/>
+          </TableCell>
+          <TableCell Name="Cell67" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell68" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell69" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell70" Border.Lines="All" Text="( - ) Desconto / Abatimento" Font="Arial, 7pt"/>
+        </TableRow>
+        <TableRow Name="Row15" Height="30.24">
+          <TableCell Name="Cell71" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell72" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell73" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell74" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell75" Border.Lines="All" Text="( - ) Outras Deduções" Font="Arial, 7pt"/>
+        </TableRow>
+        <TableRow Name="Row16" Height="30.24">
+          <TableCell Name="Cell76" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell77" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell78" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell79" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell80" Border.Lines="All" Text="( + ) Mora / Multa" Font="Arial, 7pt"/>
+        </TableRow>
+        <TableRow Name="Row17" Height="30.24">
+          <TableCell Name="Cell81" Border.Lines="All" Text="Pagador" Font="Arial, 7pt" ColSpan="4" RowSpan="2">
+            <TextObject Name="Text124" Top="13.67" Width="302.4" Height="10.45" Text="[Boletos.Sacado_Nome]" Font="Arial, 7pt"/>
+            <TextObject Name="Text125" Top="30.02" Width="207.9" Height="10.45" Text="[Boletos.Sacado_Endereco]" Font="Arial, 7pt"/>
+            <TextObject Name="Text126" Left="236.25" Top="30.02" Width="207.9" Height="10.45" Text="[Boletos.Sacado_Bairro]" Font="Arial, 7pt"/>
+            <TextObject Name="Text127" Top="46.92" Width="207.9" Height="10.45" Text="[Boletos.Sacado_Cidade]" Font="Arial, 7pt"/>
+            <TextObject Name="Text128" Left="387.45" Top="46.92" Width="66.15" Height="10.45" Text="[Boletos.Sacado_Cep]" HorzAlign="Center" Font="Arial, 7pt"/>
+            <TextObject Name="Text129" Left="236.25" Top="46.92" Width="94.5" Height="10.45" Text="[Boletos.Sacado_Estado]" HorzAlign="Center" Font="Arial, 7pt"/>
+            <TextObject Name="Text130" Left="365.65" Top="13.67" Width="160.65" Height="10.45" Text="[Boletos.Sacado_CpfCnpj]" Font="Arial, 7pt"/>
+          </TableCell>
+          <TableCell Name="Cell82" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell83" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell84" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell85" Border.Lines="All" Text="( + ) Outros Acréscimos" Font="Arial, 7pt"/>
+        </TableRow>
+        <TableRow Name="Row18" Height="30.24">
+          <TableCell Name="Cell86" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell87" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell88" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell89" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell90" Border.Lines="All" Text="( = ) Valor Cobrado" Font="Arial, 7pt"/>
+        </TableRow>
+      </TableObject>
+      <PictureObject Name="Picture5" Top="617.06" Width="198.45" Height="75.6" Image="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"/>
+      <PictureObject Name="Picture4" Width="198.45" Height="75.6" Image="iVBORw0KGgoAAAANSUhEUgAAAJYAAAAoCAMAAAArH/PVAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAMAUExURf///wAxmv+OAP9xAP+CAP+GAP+KAP99AP9tAP91AP95AP/KugAtnv/n4///AP+mhihBhi1Bghw9ijFBgvv3AP+qhv/7+//bzv+6ogAoogA1lv/z8/+ulv/3AAA1mv/f1/+edQAongAtovPvAP/Sxqq2MQAxnkFlcQAkov/CrsbKIO/rAP/v6/+GRRRBjgA5kv/XzgAcphxFhihVfb7GJJaqPf+SYcrSHP+adf+CRYqeRf+KRTlddX2WSaayMf+OYVV1ZYpdTaa2MZZhRWmGWcrOHNfbFJKiQT1FdTFZeefnAE1pbXGGVdLXHNt1ILK+LUVJdf/j16plPePjFCBNhhQ1mkFdeXlZVaKuOf+2os5xJHWOUWWCWVltbd95IBxFjhxBkp6qPa6+Mfv7AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPhxgwAAAAJcEhZcwAADrwAAA68AZW8ckkAAARSSURBVFhH7ZhrTxs5FIatZXchGY9HwBDlpgly0lxLEu4QAhQIUFhCEaQt0NI25P//h77H9uTOJfth1A88EhPPmXPsR8fOIGB//ZH0tH4cXc3OP8Hs1cGlSQuGrta1J7Pek2Sld2QSA4H9q7l+Tkohj0xqEBitH95LVujYvc4NAqN1JM3azyC/6twgMFpXLzfL8+Z1bhAYrVmz8rPM6dwgYP8oXqelc4PgTWsS3rQmgf2teJ2Wzg2CN61JeNOaBDatIC3O/csIOjpHmRsLmg1V9z9YXFgwo2GSlrVohj2tSrkc97xyuaJEBtFRpWUxQ8KfYkJsRmvuVEfkdiKsaoZdLZ69dc9zsZUb95M26UPuuidn6NegFovsqNJJUVrJCBvRivaselr8Ubi5fCst1jy1Y7y7nfyDKOViGPhaNOFOirEC3U+M0jKzDLDYF+lpvYNWrFUSa9hKLivlnxUlhrvGel3iY0BreoExiz6qtl1NUiBqWdPRlF3QPSykbH+bKMVECdKK4lK1NoaqkWohSLCwQmvVc03XLTUvYqvrJ+n0zW2L893NYj2Wb61ttuPeHGVCy6HPDGOL4XBU76eFAK1EYxvjpffdcFgFWQTJGuTRD3AGq3H1Jw8PaJ19F67rivXlD8I9P++IZhlR8Z/kZ67YjHNf671t2wnGMlgep5QmT+ABJk4koxHGNpSK5UANQ+SnHIQTS1St88K6W1uD1biO16qvfEt3Thp1vnLR4t5pR1zkD4VLWmlR7GlpIkloJS2spqfEFRE0ERNDPRx27AyGEMJDLF6gaqCy1fpD1biO18rlf+FsSelJnts9/eSKW7k3RqtqWVYG7YIFFrcw49DEjtk/sKW6Gl5Cz3SgTwuMqyboBvQfeZz41WJHYD/FIR+npSq3VRvusGkEAuO1/KE+c0Sf1vhqgm7AgBavHItS7eEiLfZI6yHGV0e11EToRaKwpacc1XJwtEy3tsd164lqgoUUvtZKSTS9fN0V7c+fH9Ct2LoQteXl7x2lRZlUSZ84rwlzg7ONACbuPsbZQga2OxRC2nYodMfYHVUBlafShqqRhquaPDSkVbnpuO9yq65Y+/IFG3mYbwi3VKuV3E6fFn0TMQGzQgXsjUNvADzo1/K/iRgikHKwWySn8LUsB2/kbjW+KikH0RGtRyFykp8KIdoSY1ecu+KRlzcREMdN9YKgTCrVoBU4YADTJwe1tvV7CxlKESS2aEyoPHQSu9tXrQIRjAe18C7fa69yXtktNhuyXCtuts9O9xoeb7WPi7WfF4ff8JanTAdfQ6Kg1tnP2CnshoWJ7yxLP96nB3d4y+sVQg695f1e+XnJFAr7qkNbVTuz71f7WvhjX/8S5JJ+3XAZj+OeIpzH41IP53VuELApxcGr/jWic4PAaF2apZ8je69zg8BoTV2/2C55YFKDwNeaOvKeE8vKbJBWU2zG5/Lg4+yTfPx6b9KCoaf1BzEz8xvPQjec1jgVDgAAAABJRU5ErkJggg=="/>
+      <TextObject Name="Text57" Left="-1.89" Top="309.83" Width="321.3" Height="10.45" Text="[Boletos.Sacado_Nome]" Font="Arial, 7pt"/>
+      <TextObject Name="Text131" Left="451.38" Top="983.3" Width="112.4" Height="12.9" Text="Autenticação mecânica -" Font="Arial, 7pt"/>
+      <TextObject Name="Text132" Left="565.33" Top="983.3" Width="118.4" Height="12.9" Text="Ficha de Compensação" Font="Arial, 7pt, style=Bold"/>
+      <TextObject Name="Text4" Left="444.15" Top="1001.7" Width="94.5" Height="18.9" Visible="false" AfterDataEvent="Text4_AfterData" Text="[Boletos.Boleto_PathImgCodBarras]"/>
+      <PictureObject Name="Picture1" Top="968.55" Width="419.1" Height="77" ImageLocation="C:\VSigNETProj\VSigEXE\Bin/ArquivoSistema/barcode50248.gif"/>
+    </DataBand>
+  </ReportPage>
+</Report>
