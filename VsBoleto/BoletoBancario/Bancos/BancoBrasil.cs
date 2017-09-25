@@ -416,7 +416,7 @@ namespace BoletoBancario.Bancos
         private static string MontarCnab240(ContaCorrente c)
         {
             int sequencial1 = 2;
-            int totalLote = 0;
+            //int totalLote = 0;
 
             string aux = "";
             string ret = "";
@@ -483,14 +483,15 @@ namespace BoletoBancario.Bancos
             ret += Utils.Insert(" ", 8); // 200-207 Não utilizado pelo banco do Brasil
             ret += Utils.Insert(" ", 33); // 208-240 Uso exclusivo do Febraban
 
-            totalLote++;
+            //totalLote++;
 
             aux += ret + Environment.NewLine;
             //Fim Header do Lote
 
+            int sequenciaRegistro = 1;
+
             foreach (Boleto b in c.Boletos)
-            {
-                int sequenciaRegistro = 2;
+            {                
                 string sequenciaRegistro1 = Utils.Insert(sequencial1++.ToString("00000"), 5);
 
                 //Segmento P - Tobias
@@ -544,7 +545,8 @@ namespace BoletoBancario.Bancos
                 ret += "0000000000"; // 230-239 Numero do Contrato
                 ret += " "; // 240-240 Uso Exclusivo do Febraban
 
-                totalLote++;
+                //totalLote++;
+                sequenciaRegistro++;
 
                 aux += ret + Environment.NewLine;
                 //Fim Segmento P
@@ -553,7 +555,7 @@ namespace BoletoBancario.Bancos
                 ret = "001"; // 01-03 Código do Banco
                 ret += "0001"; // 04-07 Lote do Serviço
                 ret += "3"; // 08-08 Tipo de Registro
-                ret += sequenciaRegistro1; // 09-13 Sequencial Registro no Lote
+                ret += Utils.Insert(sequenciaRegistro.ToString(), 5, "0", true); // 09-13 Sequencial Registro no Lote
                 ret += "Q"; // 14-14 Código Segmento o Registro Detalhe
                 ret += " "; // 15-15 Uso Exclusivo do Febraban
                 ret += "01"; // 16-17 Código de Movimento Remessa
@@ -572,7 +574,8 @@ namespace BoletoBancario.Bancos
                 ret += Utils.Insert(" ", 20); // 213-232 Campo não tratado
                 ret += Utils.Insert(" ", 8); // 233-240 Uso Exclusivo do Febraban
 
-                totalLote++;
+                //totalLote++;
+                sequenciaRegistro++;
 
 
                 aux += ret + Environment.NewLine;
@@ -609,43 +612,28 @@ namespace BoletoBancario.Bancos
                 ret += "0"; // 231-231 Campo Não Tratado
                 ret += Utils.Insert(" ", 9); // Campo Não Tratado
 
-                totalLote++;
+                //totalLote++;
+                sequenciaRegistro++;
 
                 aux += ret + Environment.NewLine;
-                //Fim Segmento R
-
-                ////Segmento S - Tobias
-                //ret = "001"; // 01-03 Código do Banco
-                //ret += "0001"; // 04-07 Lote do Serviço
-                //ret += "3"; // 08-08 Tipo de registro
-                //ret += Utils.Insert(sequenciaRegistro.ToString(), 5, "0", true); // 09-13 Numero Sequencial do Registro no Lote
-                //ret += "S"; // 14-14 Código do Segmento do registro detalhe
-                //ret += " "; // 15-15 Uso Exclusivo do Febraban
-                //ret += "01"; // 16-17 Código de Movimento da Remessa
-                //ret += "0"; // 18-18 Campo Não Tratado
-                //ret += Utils.Insert(" ", 40); // 19-58 Campo Não Tratado
-                //ret += Utils.Insert(" ", 40); // 59-98 Campo Não Tratado
-                //ret += Utils.Insert(" ", 40); // 99-138 Campo Não Tratado
-                //ret += Utils.Insert(" ", 40); // 139-178 Campo Não Tratado
-                //ret += Utils.Insert(" ", 40); // 179-218 Campo Não Tratado
-                //ret += Utils.Insert(" ", 22); // 219-240 Uso Exclusivo do Febraban
-
-                //totalLote++;
-
-                //aux += ret + Environment.NewLine;
-                ////Fim Segmento S
+                //Fim Segmento R                
             };
+
+            //totalLote++;
+            sequenciaRegistro++;
 
             //Trailer do Lote - Tobias
             ret = "001"; // 01-03 Código do Banco
             ret += "0001"; // 04-07 Lote do Serviço
             ret += "5"; // 08-08 Tipo de Registro
             ret += Utils.Insert(" ", 9); // 09-17 Uso Exclusivo do Febraban
-            ret += Utils.Insert(totalLote++.ToString(), 6, "0", true); // 18-23 Quantidade registros do Lote
+            ret += Utils.Insert(sequenciaRegistro.ToString(), 6, "0", true); // 18-23 Quantidade registros do Lote
             ret += Utils.Insert(" ", 217); // 24-240 Uso Exclusivo do Febraban
 
             int p = ret.Length;
             aux += ret + Environment.NewLine;
+
+            sequenciaRegistro = sequenciaRegistro +2;
             //Fim Trailer do Lote
 
             //Trailer do Arquivo - Tobias
@@ -654,7 +642,7 @@ namespace BoletoBancario.Bancos
             ret += "9"; // 08-08 Tipo de Registro
             ret += Utils.Insert(" ", 9); // 09-17 Uso Exclusivo do Febraban
             ret += "000001"; // 18-23 Quantidade de Lotes do Arquivo
-            ret += Utils.Insert((totalLote + 1).ToString(), 6, "0", true); // 24-29 Quantidade de Registros do Arquivo
+            ret += Utils.Insert(sequenciaRegistro.ToString(), 6, "0", true); // 24-29 Quantidade de Registros do Arquivo
             ret += Utils.Insert(" ", 6); // 30-35 Não Utilizado Pelo Banco
             ret += Utils.Insert(" ", 205); // 36-240 Uso Exclusivo do Febraban
 
