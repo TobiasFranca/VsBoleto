@@ -249,17 +249,19 @@ namespace BoletoBancario.Bancos
 
         private static string MontarLinhaDigitavel(Boleto b)
         {
+
             string linha = "";
 
             //Campo 1
-            linha += "001";
-            linha += "9";
-            linha += "00000"; //Posições 20 a 24 do código de barras
+            linha += "001"; // 0-3 Código da IF(banco)
+            linha += "9"; // 4-4 Código da moeda
+            linha += "00000"; // 5-9 Posições 20 a 24 do código de barras
 
+            // 10-10 Digito verificador campo 1
 
             //Campo 2
             linha += "0"; //Posições 20 a 24 do código de barras
-            linha += Utils.Insert(b.ContaCorrente.Outros2, 9, "0", false);//Posições 25 a 34 do código de barras
+            linha += Utils.Insert(b.ContaCorrente.CodigoCedente, 9, "0", false);//Posições 25 a 34 do código de barras
 
             //Campo 3
             int auxCarteira = b.ContaCorrente.Banco.Carteira.ToNoFormated().ToInt(); ;
@@ -283,9 +285,13 @@ namespace BoletoBancario.Bancos
             {
                 int mult = linha[cont].ToString().ToInt() * indiceLinhaDigitavel[cont].ToString().ToInt();
                 if (mult >= 10)
+                {
                     soma += mult.ToString()[0].ToString().ToInt() + mult.ToString()[1].ToString().ToInt();
+                }
                 else
+                {
                     soma += mult;
+                }
             }
             int digito = Utils.ProximoMultiplo10(soma) - soma;
             linha = linha.Insert(9, digito.ToString()[0].ToString());
@@ -296,9 +302,13 @@ namespace BoletoBancario.Bancos
             {
                 int mult = linha[cont].ToString().ToInt() * indiceLinhaDigitavel[cont].ToString().ToInt();
                 if (mult >= 10)
+                {
                     soma += mult.ToString()[0].ToString().ToInt() + mult.ToString()[1].ToString().ToInt();
+                }
                 else
+                {
                     soma += mult;
+                }
             }
             digito = Utils.ProximoMultiplo10(soma) - soma;
             linha = linha.Insert(20, digito.ToString()[0].ToString());
@@ -309,9 +319,13 @@ namespace BoletoBancario.Bancos
             {
                 int mult = linha[cont].ToString().ToInt() * indiceLinhaDigitavel[cont].ToString().ToInt();
                 if (mult >= 10)
+                {
                     soma += mult.ToString()[0].ToString().ToInt() + mult.ToString()[1].ToString().ToInt();
+                }
                 else
+                {
                     soma += mult;
+                }
             }
             digito = Utils.ProximoMultiplo10(soma) - soma;
             linha = linha.Insert(31, digito.ToString()[0].ToString());
