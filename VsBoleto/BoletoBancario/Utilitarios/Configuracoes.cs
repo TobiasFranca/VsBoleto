@@ -41,7 +41,7 @@ namespace BoletoBancario.Utilitarios
         /// <summary>
         /// Caminho para arquivos que serão gerados pela dll
         /// </summary>
-        public static string CaminhoArquivosGerados = pathAssembly + "/ArquivoSistema";
+        public static string CaminhoArquivosGerados = pathAssembly + "/PDF";
         /// <summary>
         /// Porta do servidor de emails
         /// </summary>

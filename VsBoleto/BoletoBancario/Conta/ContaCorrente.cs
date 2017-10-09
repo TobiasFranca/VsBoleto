@@ -264,6 +264,7 @@ namespace BoletoBancario.Conta
             {
                 foreach (Boleto b in boletos)
                 {
+                    GerarPDFs("", pathLayout);
                     b.ImprimirBoleto(pathLayout, false);
                 }
             }
@@ -308,6 +309,7 @@ namespace BoletoBancario.Conta
             try
             {
                 FastReport.Report r = Relatorios.PrepararRelatório(pathLayout, Relatorios.GetDataSetContaCorrente(this));
+                GerarPDFs("", pathLayout);
                 r.Show();
             }
             catch (Exception ex)
