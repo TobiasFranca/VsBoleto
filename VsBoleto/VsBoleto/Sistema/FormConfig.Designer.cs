@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormConfig));
             this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
             this.xtraTabPage1 = new DevExpress.XtraTab.XtraTabPage();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
@@ -43,37 +44,37 @@
             this.tbxArquivo = new DevExpress.XtraEditors.ButtonEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.xtraTabPage2 = new DevExpress.XtraTab.XtraTabPage();
-            this.xtraTabPage3 = new DevExpress.XtraTab.XtraTabPage();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
+            this.tbxAtualizar = new DevExpress.XtraEditors.SpinEdit();
+            this.SliderIntervalo = new DevExpress.XtraEditors.TrackBarControl();
+            this.ddlImpressora = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.radioGroup1 = new DevExpress.XtraEditors.RadioGroup();
             this.btnSalvarConfigImpressao = new DevExpress.XtraEditors.SimpleButton();
             this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl10 = new DevExpress.XtraEditors.LabelControl();
+            this.xtraTabPage3 = new DevExpress.XtraTab.XtraTabPage();
             this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
+            this.labelControl16 = new DevExpress.XtraEditors.LabelControl();
+            this.tbxCorpo = new DevExpress.XtraEditors.MemoExEdit();
+            this.labelControl15 = new DevExpress.XtraEditors.LabelControl();
+            this.chkSSL = new DevExpress.XtraEditors.CheckEdit();
+            this.chkCorpoHtml = new DevExpress.XtraEditors.CheckEdit();
+            this.chkMostrarSenha = new DevExpress.XtraEditors.CheckEdit();
+            this.btnTestarEnvioEmail = new DevExpress.XtraEditors.SimpleButton();
             this.btnSalvarConfigEmail = new DevExpress.XtraEditors.SimpleButton();
             this.tbxSenhaEmail = new DevExpress.XtraEditors.TextEdit();
             this.tbxPortEmail = new DevExpress.XtraEditors.TextEdit();
+            this.tbxAssuntoEmail = new DevExpress.XtraEditors.TextEdit();
+            this.tbxNomeEmail = new DevExpress.XtraEditors.TextEdit();
             this.tbxUserEmail = new DevExpress.XtraEditors.TextEdit();
             this.tbxServerEmail = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl11 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl12 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl13 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl14 = new DevExpress.XtraEditors.LabelControl();
-            this.radioGroup1 = new DevExpress.XtraEditors.RadioGroup();
-            this.ddlImpressora = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.SliderIntervalo = new DevExpress.XtraEditors.TrackBarControl();
-            this.tbxAtualizar = new DevExpress.XtraEditors.SpinEdit();
-            this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
-            this.tbxNomeEmail = new DevExpress.XtraEditors.TextEdit();
-            this.chkMostrarSenha = new DevExpress.XtraEditors.CheckEdit();
-            this.chkCorpoHtml = new DevExpress.XtraEditors.CheckEdit();
-            this.chkSSL = new DevExpress.XtraEditors.CheckEdit();
-            this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
-            this.tbxAssuntoEmail = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl15 = new DevExpress.XtraEditors.LabelControl();
-            this.tbxCorpo = new DevExpress.XtraEditors.MemoExEdit();
-            this.labelControl16 = new DevExpress.XtraEditors.LabelControl();
-            this.btnTestarEnvioEmail = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
             this.xtraTabControl1.SuspendLayout();
             this.xtraTabPage1.SuspendLayout();
@@ -85,26 +86,26 @@
             ((System.ComponentModel.ISupportInitialize)(this.tbxSource.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxArquivo.Properties)).BeginInit();
             this.xtraTabPage2.SuspendLayout();
-            this.xtraTabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).BeginInit();
-            this.panelControl3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tbxSenhaEmail.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbxPortEmail.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbxUserEmail.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbxServerEmail.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radioGroup1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ddlImpressora.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxAtualizar.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SliderIntervalo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SliderIntervalo.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbxAtualizar.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbxNomeEmail.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkMostrarSenha.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkCorpoHtml.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkSSL.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbxAssuntoEmail.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlImpressora.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radioGroup1.Properties)).BeginInit();
+            this.xtraTabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).BeginInit();
+            this.panelControl3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tbxCorpo.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkSSL.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkCorpoHtml.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkMostrarSenha.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxSenhaEmail.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxPortEmail.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxAssuntoEmail.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxNomeEmail.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxUserEmail.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxServerEmail.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // xtraTabControl1
@@ -245,13 +246,6 @@
             this.xtraTabPage2.Size = new System.Drawing.Size(436, 214);
             this.xtraTabPage2.Text = "Impressão";
             // 
-            // xtraTabPage3
-            // 
-            this.xtraTabPage3.Controls.Add(this.panelControl3);
-            this.xtraTabPage3.Name = "xtraTabPage3";
-            this.xtraTabPage3.Size = new System.Drawing.Size(436, 214);
-            this.xtraTabPage3.Text = "Email";
-            // 
             // panelControl2
             // 
             this.panelControl2.Controls.Add(this.tbxAtualizar);
@@ -267,6 +261,66 @@
             this.panelControl2.Name = "panelControl2";
             this.panelControl2.Size = new System.Drawing.Size(436, 214);
             this.panelControl2.TabIndex = 5;
+            // 
+            // tbxAtualizar
+            // 
+            this.tbxAtualizar.EditValue = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.tbxAtualizar.Location = new System.Drawing.Point(344, 66);
+            this.tbxAtualizar.Name = "tbxAtualizar";
+            this.tbxAtualizar.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.tbxAtualizar.Properties.Mask.EditMask = "N00";
+            this.tbxAtualizar.Properties.MaxValue = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
+            this.tbxAtualizar.Properties.MinValue = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.tbxAtualizar.Size = new System.Drawing.Size(51, 20);
+            this.tbxAtualizar.TabIndex = 18;
+            this.tbxAtualizar.EditValueChanged += new System.EventHandler(this.TbxAtualizar_EditValueChanged);
+            // 
+            // SliderIntervalo
+            // 
+            this.SliderIntervalo.EditValue = 10;
+            this.SliderIntervalo.Location = new System.Drawing.Point(128, 56);
+            this.SliderIntervalo.Name = "SliderIntervalo";
+            this.SliderIntervalo.Properties.LabelAppearance.Options.UseTextOptions = true;
+            this.SliderIntervalo.Properties.LabelAppearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.SliderIntervalo.Properties.LargeChange = 1;
+            this.SliderIntervalo.Properties.Maximum = 20;
+            this.SliderIntervalo.Properties.Minimum = 1;
+            this.SliderIntervalo.Size = new System.Drawing.Size(216, 45);
+            this.SliderIntervalo.TabIndex = 17;
+            this.SliderIntervalo.Value = 10;
+            this.SliderIntervalo.EditValueChanged += new System.EventHandler(this.SliderIntervalo_EditValueChanged);
+            // 
+            // ddlImpressora
+            // 
+            this.ddlImpressora.Location = new System.Drawing.Point(128, 105);
+            this.ddlImpressora.Name = "ddlImpressora";
+            this.ddlImpressora.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.ddlImpressora.Size = new System.Drawing.Size(267, 20);
+            this.ddlImpressora.TabIndex = 16;
+            // 
+            // radioGroup1
+            // 
+            this.radioGroup1.Location = new System.Drawing.Point(128, 24);
+            this.radioGroup1.Name = "radioGroup1";
+            this.radioGroup1.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] {
+            new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "Automática"),
+            new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "Manual")});
+            this.radioGroup1.Size = new System.Drawing.Size(187, 26);
+            this.radioGroup1.TabIndex = 15;
             // 
             // btnSalvarConfigImpressao
             // 
@@ -301,6 +355,13 @@
             this.labelControl10.TabIndex = 8;
             this.labelControl10.Text = "Rotina de Impressão:";
             // 
+            // xtraTabPage3
+            // 
+            this.xtraTabPage3.Controls.Add(this.panelControl3);
+            this.xtraTabPage3.Name = "xtraTabPage3";
+            this.xtraTabPage3.Size = new System.Drawing.Size(436, 214);
+            this.xtraTabPage3.Text = "Email";
+            // 
             // panelControl3
             // 
             this.panelControl3.Controls.Add(this.labelControl16);
@@ -329,6 +390,69 @@
             this.panelControl3.Size = new System.Drawing.Size(436, 214);
             this.panelControl3.TabIndex = 5;
             // 
+            // labelControl16
+            // 
+            this.labelControl16.Appearance.BackColor = System.Drawing.SystemColors.Control;
+            this.labelControl16.Appearance.ForeColor = System.Drawing.Color.Red;
+            this.labelControl16.Appearance.Options.UseBackColor = true;
+            this.labelControl16.Appearance.Options.UseForeColor = true;
+            this.labelControl16.Location = new System.Drawing.Point(64, 142);
+            this.labelControl16.Name = "labelControl16";
+            this.labelControl16.Size = new System.Drawing.Size(336, 13);
+            this.labelControl16.TabIndex = 20;
+            this.labelControl16.Text = "Utilize a tag [NF] para informar o número do documento na mensagem";
+            // 
+            // tbxCorpo
+            // 
+            this.tbxCorpo.Location = new System.Drawing.Point(61, 158);
+            this.tbxCorpo.Name = "tbxCorpo";
+            this.tbxCorpo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.tbxCorpo.Size = new System.Drawing.Size(350, 20);
+            this.tbxCorpo.TabIndex = 19;
+            // 
+            // labelControl15
+            // 
+            this.labelControl15.Location = new System.Drawing.Point(15, 163);
+            this.labelControl15.Name = "labelControl15";
+            this.labelControl15.Size = new System.Drawing.Size(33, 13);
+            this.labelControl15.TabIndex = 18;
+            this.labelControl15.Text = "Corpo:";
+            // 
+            // chkSSL
+            // 
+            this.chkSSL.Location = new System.Drawing.Point(343, 66);
+            this.chkSSL.Name = "chkSSL";
+            this.chkSSL.Properties.Caption = "Usar SSL";
+            this.chkSSL.Size = new System.Drawing.Size(65, 19);
+            this.chkSSL.TabIndex = 17;
+            // 
+            // chkCorpoHtml
+            // 
+            this.chkCorpoHtml.Location = new System.Drawing.Point(61, 92);
+            this.chkCorpoHtml.Name = "chkCorpoHtml";
+            this.chkCorpoHtml.Properties.Caption = "Usar HTML no corpo do Email";
+            this.chkCorpoHtml.Size = new System.Drawing.Size(166, 19);
+            this.chkCorpoHtml.TabIndex = 16;
+            // 
+            // chkMostrarSenha
+            // 
+            this.chkMostrarSenha.Location = new System.Drawing.Point(241, 67);
+            this.chkMostrarSenha.Name = "chkMostrarSenha";
+            this.chkMostrarSenha.Properties.Caption = "Mostrar Senha";
+            this.chkMostrarSenha.Size = new System.Drawing.Size(96, 19);
+            this.chkMostrarSenha.TabIndex = 15;
+            this.chkMostrarSenha.CheckedChanged += new System.EventHandler(this.ChkMostrarSenha_CheckedChanged);
+            // 
+            // btnTestarEnvioEmail
+            // 
+            this.btnTestarEnvioEmail.Location = new System.Drawing.Point(137, 184);
+            this.btnTestarEnvioEmail.Name = "btnTestarEnvioEmail";
+            this.btnTestarEnvioEmail.Size = new System.Drawing.Size(90, 23);
+            this.btnTestarEnvioEmail.TabIndex = 14;
+            this.btnTestarEnvioEmail.Text = "Testar Envio";
+            this.btnTestarEnvioEmail.Click += new System.EventHandler(this.BtnTestarEnvioEmail_Click);
+            // 
             // btnSalvarConfigEmail
             // 
             this.btnSalvarConfigEmail.Location = new System.Drawing.Point(251, 184);
@@ -352,6 +476,20 @@
             this.tbxPortEmail.Size = new System.Drawing.Size(134, 20);
             this.tbxPortEmail.TabIndex = 11;
             // 
+            // tbxAssuntoEmail
+            // 
+            this.tbxAssuntoEmail.Location = new System.Drawing.Point(61, 117);
+            this.tbxAssuntoEmail.Name = "tbxAssuntoEmail";
+            this.tbxAssuntoEmail.Size = new System.Drawing.Size(350, 20);
+            this.tbxAssuntoEmail.TabIndex = 12;
+            // 
+            // tbxNomeEmail
+            // 
+            this.tbxNomeEmail.Location = new System.Drawing.Point(61, 66);
+            this.tbxNomeEmail.Name = "tbxNomeEmail";
+            this.tbxNomeEmail.Size = new System.Drawing.Size(170, 20);
+            this.tbxNomeEmail.TabIndex = 12;
+            // 
             // tbxUserEmail
             // 
             this.tbxUserEmail.Location = new System.Drawing.Point(61, 40);
@@ -366,6 +504,14 @@
             this.tbxServerEmail.Size = new System.Drawing.Size(170, 20);
             this.tbxServerEmail.TabIndex = 13;
             // 
+            // labelControl7
+            // 
+            this.labelControl7.Location = new System.Drawing.Point(15, 120);
+            this.labelControl7.Name = "labelControl7";
+            this.labelControl7.Size = new System.Drawing.Size(43, 13);
+            this.labelControl7.TabIndex = 6;
+            this.labelControl7.Text = "Assunto:";
+            // 
             // labelControl11
             // 
             this.labelControl11.Location = new System.Drawing.Point(237, 43);
@@ -373,6 +519,14 @@
             this.labelControl11.Size = new System.Drawing.Size(34, 13);
             this.labelControl11.TabIndex = 4;
             this.labelControl11.Text = "Senha:";
+            // 
+            // labelControl2
+            // 
+            this.labelControl2.Location = new System.Drawing.Point(24, 69);
+            this.labelControl2.Name = "labelControl2";
+            this.labelControl2.Size = new System.Drawing.Size(31, 13);
+            this.labelControl2.TabIndex = 6;
+            this.labelControl2.Text = "Nome:";
             // 
             // labelControl12
             // 
@@ -398,159 +552,6 @@
             this.labelControl14.TabIndex = 7;
             this.labelControl14.Text = "Servidor:";
             // 
-            // radioGroup1
-            // 
-            this.radioGroup1.Location = new System.Drawing.Point(128, 24);
-            this.radioGroup1.Name = "radioGroup1";
-            this.radioGroup1.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] {
-            new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "Automática"),
-            new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "Manual")});
-            this.radioGroup1.Size = new System.Drawing.Size(187, 26);
-            this.radioGroup1.TabIndex = 15;
-            // 
-            // ddlImpressora
-            // 
-            this.ddlImpressora.Location = new System.Drawing.Point(128, 105);
-            this.ddlImpressora.Name = "ddlImpressora";
-            this.ddlImpressora.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.ddlImpressora.Size = new System.Drawing.Size(267, 20);
-            this.ddlImpressora.TabIndex = 16;
-            // 
-            // SliderIntervalo
-            // 
-            this.SliderIntervalo.EditValue = 10;
-            this.SliderIntervalo.Location = new System.Drawing.Point(128, 56);
-            this.SliderIntervalo.Name = "SliderIntervalo";
-            this.SliderIntervalo.Properties.LabelAppearance.Options.UseTextOptions = true;
-            this.SliderIntervalo.Properties.LabelAppearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.SliderIntervalo.Properties.LargeChange = 1;
-            this.SliderIntervalo.Properties.Maximum = 20;
-            this.SliderIntervalo.Properties.Minimum = 1;
-            this.SliderIntervalo.Size = new System.Drawing.Size(216, 45);
-            this.SliderIntervalo.TabIndex = 17;
-            this.SliderIntervalo.Value = 10;
-            this.SliderIntervalo.EditValueChanged += new System.EventHandler(this.SliderIntervalo_EditValueChanged);
-            // 
-            // tbxAtualizar
-            // 
-            this.tbxAtualizar.EditValue = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.tbxAtualizar.Location = new System.Drawing.Point(344, 66);
-            this.tbxAtualizar.Name = "tbxAtualizar";
-            this.tbxAtualizar.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.tbxAtualizar.Properties.Mask.EditMask = "N00";
-            this.tbxAtualizar.Properties.MaxValue = new decimal(new int[] {
-            20,
-            0,
-            0,
-            0});
-            this.tbxAtualizar.Properties.MinValue = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.tbxAtualizar.Size = new System.Drawing.Size(51, 20);
-            this.tbxAtualizar.TabIndex = 18;
-            this.tbxAtualizar.EditValueChanged += new System.EventHandler(this.TbxAtualizar_EditValueChanged);
-            // 
-            // labelControl2
-            // 
-            this.labelControl2.Location = new System.Drawing.Point(24, 69);
-            this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(31, 13);
-            this.labelControl2.TabIndex = 6;
-            this.labelControl2.Text = "Nome:";
-            // 
-            // tbxNomeEmail
-            // 
-            this.tbxNomeEmail.Location = new System.Drawing.Point(61, 66);
-            this.tbxNomeEmail.Name = "tbxNomeEmail";
-            this.tbxNomeEmail.Size = new System.Drawing.Size(170, 20);
-            this.tbxNomeEmail.TabIndex = 12;
-            // 
-            // chkMostrarSenha
-            // 
-            this.chkMostrarSenha.Location = new System.Drawing.Point(241, 67);
-            this.chkMostrarSenha.Name = "chkMostrarSenha";
-            this.chkMostrarSenha.Properties.Caption = "Mostrar Senha";
-            this.chkMostrarSenha.Size = new System.Drawing.Size(96, 19);
-            this.chkMostrarSenha.TabIndex = 15;
-            this.chkMostrarSenha.CheckedChanged += new System.EventHandler(this.ChkMostrarSenha_CheckedChanged);
-            // 
-            // chkCorpoHtml
-            // 
-            this.chkCorpoHtml.Location = new System.Drawing.Point(61, 92);
-            this.chkCorpoHtml.Name = "chkCorpoHtml";
-            this.chkCorpoHtml.Properties.Caption = "Usar HTML no corpo do Email";
-            this.chkCorpoHtml.Size = new System.Drawing.Size(166, 19);
-            this.chkCorpoHtml.TabIndex = 16;
-            // 
-            // chkSSL
-            // 
-            this.chkSSL.Location = new System.Drawing.Point(343, 66);
-            this.chkSSL.Name = "chkSSL";
-            this.chkSSL.Properties.Caption = "Usar SSL";
-            this.chkSSL.Size = new System.Drawing.Size(65, 19);
-            this.chkSSL.TabIndex = 17;
-            // 
-            // labelControl7
-            // 
-            this.labelControl7.Location = new System.Drawing.Point(15, 120);
-            this.labelControl7.Name = "labelControl7";
-            this.labelControl7.Size = new System.Drawing.Size(43, 13);
-            this.labelControl7.TabIndex = 6;
-            this.labelControl7.Text = "Assunto:";
-            // 
-            // tbxAssuntoEmail
-            // 
-            this.tbxAssuntoEmail.Location = new System.Drawing.Point(61, 117);
-            this.tbxAssuntoEmail.Name = "tbxAssuntoEmail";
-            this.tbxAssuntoEmail.Size = new System.Drawing.Size(350, 20);
-            this.tbxAssuntoEmail.TabIndex = 12;
-            // 
-            // labelControl15
-            // 
-            this.labelControl15.Location = new System.Drawing.Point(15, 163);
-            this.labelControl15.Name = "labelControl15";
-            this.labelControl15.Size = new System.Drawing.Size(33, 13);
-            this.labelControl15.TabIndex = 18;
-            this.labelControl15.Text = "Corpo:";
-            // 
-            // tbxCorpo
-            // 
-            this.tbxCorpo.Location = new System.Drawing.Point(61, 158);
-            this.tbxCorpo.Name = "tbxCorpo";
-            this.tbxCorpo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.tbxCorpo.Size = new System.Drawing.Size(350, 20);
-            this.tbxCorpo.TabIndex = 19;
-            // 
-            // labelControl16
-            // 
-            this.labelControl16.Appearance.BackColor = System.Drawing.SystemColors.Control;
-            this.labelControl16.Appearance.ForeColor = System.Drawing.Color.Red;
-            this.labelControl16.Appearance.Options.UseBackColor = true;
-            this.labelControl16.Appearance.Options.UseForeColor = true;
-            this.labelControl16.Location = new System.Drawing.Point(64, 142);
-            this.labelControl16.Name = "labelControl16";
-            this.labelControl16.Size = new System.Drawing.Size(336, 13);
-            this.labelControl16.TabIndex = 20;
-            this.labelControl16.Text = "Utilize a tag [NF] para informar o número do documento na mensagem";
-            // 
-            // btnTestarEnvioEmail
-            // 
-            this.btnTestarEnvioEmail.Location = new System.Drawing.Point(137, 184);
-            this.btnTestarEnvioEmail.Name = "btnTestarEnvioEmail";
-            this.btnTestarEnvioEmail.Size = new System.Drawing.Size(90, 23);
-            this.btnTestarEnvioEmail.TabIndex = 14;
-            this.btnTestarEnvioEmail.Text = "Testar Envio";
-            this.btnTestarEnvioEmail.Click += new System.EventHandler(this.BtnTestarEnvioEmail_Click);
-            // 
             // FormConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -558,6 +559,7 @@
             this.ClientSize = new System.Drawing.Size(442, 242);
             this.Controls.Add(this.xtraTabControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FormConfig";
@@ -575,28 +577,28 @@
             ((System.ComponentModel.ISupportInitialize)(this.tbxSource.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxArquivo.Properties)).EndInit();
             this.xtraTabPage2.ResumeLayout(false);
-            this.xtraTabPage3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
             this.panelControl2.ResumeLayout(false);
             this.panelControl2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxAtualizar.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SliderIntervalo.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SliderIntervalo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlImpressora.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radioGroup1.Properties)).EndInit();
+            this.xtraTabPage3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).EndInit();
             this.panelControl3.ResumeLayout(false);
             this.panelControl3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxCorpo.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkSSL.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkCorpoHtml.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkMostrarSenha.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxSenhaEmail.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxPortEmail.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxAssuntoEmail.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxNomeEmail.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxUserEmail.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbxServerEmail.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radioGroup1.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ddlImpressora.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.SliderIntervalo.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.SliderIntervalo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbxAtualizar.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbxNomeEmail.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkMostrarSenha.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkCorpoHtml.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkSSL.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbxAssuntoEmail.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbxCorpo.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }

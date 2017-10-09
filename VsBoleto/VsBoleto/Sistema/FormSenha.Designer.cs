@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormSenha));
             this.tbxSenha = new DevExpress.XtraEditors.TextEdit();
             this.chkPw = new DevExpress.XtraEditors.CheckEdit();
             this.btnConfirmar = new DevExpress.XtraEditors.SimpleButton();
@@ -70,6 +71,7 @@
             this.Controls.Add(this.chkPw);
             this.Controls.Add(this.tbxSenha);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FormSenha";

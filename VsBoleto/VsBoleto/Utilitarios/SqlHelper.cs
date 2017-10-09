@@ -40,8 +40,9 @@ namespace VsBoleto.Utilitarios
                                             AND OP.CLIENTE = 'S'
                                             AND (SUBSTRING(E0.OBSLF FROM 1 FOR 4) <> 'CANC'                                            
                                             OR E0.OBSLF IS NULL)
-                                            ORDER BY E0.ORDEM
-                                            ";
+                                            ORDER BY E0.ORDEM";
+
+
             return s;
         }
 
