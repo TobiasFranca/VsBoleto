@@ -24,8 +24,7 @@ namespace VsBoleto.Sistema
         private string pathRetorno;
         private string pathPosicao = "";
         private string pathConfig = Application.StartupPath + "\\Config.ini";
-        private System.Timers.Timer timer2 = new System.Timers.Timer();
-        NotifyIcon notifyIcon = new NotifyIcon();
+        private System.Timers.Timer timer2 = new System.Timers.Timer();        
 
         decimal jurosMes = 0;
         decimal multa = 0;
@@ -102,10 +101,8 @@ namespace VsBoleto.Sistema
                 {
                     item.OptionsColumn.AllowEdit = false;
                 }
-            }
+            }                        
 
-            notifyIcon.MouseDoubleClick += NotifyIcon_MouseDoubleClick;
-            notifyIcon.MouseClick += NotifyIcon_MouseClick;
         }
 
         private bool LeConfigBase()
@@ -860,7 +857,7 @@ namespace VsBoleto.Sistema
         private void Principal_Resize(object sender, EventArgs e)
         {
             if (WindowState == FormWindowState.Minimized)
-            {
+            {                
                 Hide();
             }
         }
@@ -1222,11 +1219,11 @@ namespace VsBoleto.Sistema
             ArquivoINI.EscreveString(pathConfig, "CONFIG", "ROTINA", chkBtnImpressaoAutomatica.Checked ? "0" : "1");
 
             timer2.Enabled = chkBtnImpressaoAutomatica.Checked;
-            notifyIcon.Text = chkBtnImpressaoAutomatica.Checked ? "Impressão Automática On" : "Impressão Automática Off";
-            notifyIcon.BalloonTipTitle = "VsBoletos";
-            notifyIcon.BalloonTipText = chkBtnImpressaoAutomatica.Checked ? "Impressão Automática On" : "Impressão Automática Off";
-            notifyIcon.BalloonTipIcon = ToolTipIcon.Info;
-            notifyIcon.ShowBalloonTip(500);
+            notifyIcon1.Text = chkBtnImpressaoAutomatica.Checked ? "Impressão Automática On" : "Impressão Automática Off";
+            notifyIcon1.BalloonTipTitle = "VsBoletos";
+            notifyIcon1.BalloonTipText = chkBtnImpressaoAutomatica.Checked ? "Impressão Automática On" : "Impressão Automática Off";
+            notifyIcon1.BalloonTipIcon = ToolTipIcon.Info;
+            notifyIcon1.ShowBalloonTip(500);
 
             xtraTabMonitor.Select();
 
@@ -1508,21 +1505,6 @@ namespace VsBoleto.Sistema
             finally
             {
                 conta = null;
-            }
-        }
-
-        private void NotifyIcon_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            Show();
-            WindowState = FormWindowState.Normal;
-            CarregarGrids();
-        }
-
-        private void NotifyIcon_MouseClick(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Right && IsHandleCreated)
-            {
-                popupMenu2.ShowPopup(MousePosition);
             }
         }
 
@@ -1855,11 +1837,11 @@ namespace VsBoleto.Sistema
 
             ArquivoINI.EscreveString(pathConfig, "CONFIG", "ROTINA", chkBtnImpressaoAutomatica.Checked ? "0" : "1");            
             timer2.Enabled = chkBtnImpressaoAutomatica.Checked;
-            notifyIcon.Text = chkBtnImpressaoAutomatica.Checked ? "Impressão Automática Ativada" : "Impressão Automática Desativada";
-            notifyIcon.BalloonTipTitle = "VsBoleto";
-            notifyIcon.BalloonTipText = chkBtnImpressaoAutomatica.Checked ? "Impressão Automática Ativada" : "Impressão Automática Desativada";
-            notifyIcon.BalloonTipIcon = ToolTipIcon.Info;
-            notifyIcon.ShowBalloonTip(500);
+            notifyIcon1.Text = chkBtnImpressaoAutomatica.Checked ? "Impressão Automática Ativada" : "Impressão Automática Desativada";
+            notifyIcon1.BalloonTipTitle = "VsBoleto";
+            notifyIcon1.BalloonTipText = chkBtnImpressaoAutomatica.Checked ? "Impressão Automática Ativada" : "Impressão Automática Desativada";
+            notifyIcon1.BalloonTipIcon = ToolTipIcon.Info;
+            notifyIcon1.ShowBalloonTip(500);
 
             xtraTabMonitor.Select();
 
@@ -1868,6 +1850,21 @@ namespace VsBoleto.Sistema
                 xTabRetorno.PageEnabled = chkExibirImpressos.Enabled = barBtnAtualizar.Enabled = chkPDF.Enabled = !aux;
 
             BarBtnAtualizar_ItemClick(null, null);
+        }
+
+        private void NotifyIcon1_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right && IsHandleCreated)
+            {
+                popupMenu2.ShowPopup(MousePosition);
+            }
+        }
+
+        private void NotifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            Show();
+            WindowState = FormWindowState.Normal;
+            CarregarGrids();
         }
 
         private void TbxPathLayoutBoleto_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
