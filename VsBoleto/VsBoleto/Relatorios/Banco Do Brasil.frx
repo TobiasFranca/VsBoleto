@@ -1,0 +1,426 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReportInfo.Author="VsBoletos" ReportInfo.Description="boleto bancário" ReportInfo.Created="04/01/2013 16:41:43" ReportInfo.Modified="10/09/2017 10:49:03" ReportInfo.CreatorVersion="1.8.30.0">
+  <ScriptText>using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Windows.Forms;
+using System.Drawing;
+using System.Data;
+using FastReport;
+using FastReport.Data;
+using FastReport.Dialog;
+using FastReport.Barcode;
+using FastReport.Table;
+using FastReport.Utils;
+
+namespace FastReport
+{
+  public class ReportScript
+  {     
+    
+    string instrucoesBoleto = &quot;&quot;;
+    
+    private void Text1_AfterData(object sender, EventArgs e)
+    {                               
+      if(Text1.Text.Length != 47) 
+      {
+         Text1.Text = Text1.Text.Length.ToString();
+        return;
+      }               
+        
+      
+      string text = Text1.Text.Substring(0,5)+&quot;.&quot;+
+        Text1.Text.Substring(5,5)+&quot;  &quot;+
+        Text1.Text.Substring(10,5)+&quot;.&quot;+
+        Text1.Text.Substring(15,6)+&quot;  &quot;+
+        Text1.Text.Substring(21,5)+&quot;.&quot;+
+        Text1.Text.Substring(26,6)+&quot;  &quot;+
+        Text1.Text.Substring(32,1)+&quot;  &quot;+
+       Text1.Text.Substring(33,14);
+      
+      Text1.Text = text;      
+    }     
+
+    private void Text141_AfterData(object sender, EventArgs e)
+    {
+      Text141.Text = DateTime.Now.ToString(&quot;dd/MM/yyyy&quot;);
+    }  
+
+    private void Text4_AfterData(object sender, EventArgs e)
+    {
+      Picture1.ImageLocation = Text4.Text;
+      
+//      MessageBox.Show(Picture1.ImageLocation);
+    }       
+    
+
+
+    private void Text110_AfterData(object sender, EventArgs e)
+    {
+      int lenAg = ((String)Report.GetColumnValue(&quot;Boletos.CC_Agencia&quot;)).Length;
+      int lenCc = ((String)Report.GetColumnValue(&quot;Boletos.CC_NumeroConta&quot;)).Length;
+      
+      String Agencia =  ((String)Report.GetColumnValue(&quot;Boletos.CC_Agencia&quot;)).Substring(0, lenAg - 1) + &quot;-&quot; + ((String)Report.GetColumnValue(&quot;Boletos.CC_Agencia&quot;)).Substring(lenAg - 1);
+      String Conta =  ((String)Report.GetColumnValue(&quot;Boletos.CC_NumeroConta&quot;)).Substring(0, lenCc - 1) + &quot;-&quot; + ((String)Report.GetColumnValue(&quot;Boletos.CC_NumeroConta&quot;)).Substring(lenCc - 1);
+      
+      Text110.Text = Agencia + &quot; / &quot; + Conta;
+    }
+
+    private void Text44_AfterData(object sender, EventArgs e)
+    {        
+      string convenio = ((String)Report.GetColumnValue(&quot;Boletos.CC_CodCedente&quot;));
+      string NossoNumero = ((String)Report.GetColumnValue(&quot;Boletos.Boleto_NossoNumeroComDV&quot;));
+      string aux;
+      
+      while (NossoNumero.Length &lt; 11)   
+      { 
+        NossoNumero = &quot;0&quot; + NossoNumero;
+      } 
+      aux = convenio + NossoNumero;
+      
+      Text44.Text = aux.Replace(&quot;-&quot;,&quot;&quot;);
+    }
+
+    private void Text111_AfterData(object sender, EventArgs e)
+    {
+      string convenio = ((String)Report.GetColumnValue(&quot;Boletos.CC_CodCedente&quot;));
+      string NossoNumero = ((String)Report.GetColumnValue(&quot;Boletos.Boleto_NossoNumeroComDV&quot;));
+      string aux;
+      
+      while (NossoNumero.Length &lt; 11)   
+      { 
+        NossoNumero = &quot;0&quot; + NossoNumero;
+      } 
+      aux = convenio + NossoNumero;
+            
+      Text111.Text = aux.Replace(&quot;-&quot;,&quot;&quot;);
+    }
+  }
+}
+</ScriptText>
+  <Dictionary>
+    <TableDataSource Name="Boletos" ReferenceName="Data.Boletos" DataType="System.Int32" Enabled="true">
+      <Column Name="Cedente_CpfCnpj" DataType="System.String"/>
+      <Column Name="Cedente_Endereco" DataType="System.String"/>
+      <Column Name="Cedente_Bairro" DataType="System.String"/>
+      <Column Name="Cedente_Cidade" DataType="System.String"/>
+      <Column Name="Cedente_Cep" DataType="System.String"/>
+      <Column Name="Cedente_Estado" DataType="System.String"/>
+      <Column Name="CC_Agencia" DataType="System.String"/>
+      <Column Name="CC_CodCedente" DataType="System.String"/>
+      <Column Name="CC_NumeroBanco" DataType="System.String"/>
+      <Column Name="CC_Outros1" DataType="System.String"/>
+      <Column Name="CC_Outros2" DataType="System.String"/>
+      <Column Name="Boleto_CodigoBarras" DataType="System.String"/>
+      <Column Name="Boleto_LinhaDigitavel" DataType="System.String"/>
+      <Column Name="Boleto_DataDocumento" DataType="System.DateTime"/>
+      <Column Name="Boleto_DataVencimento" DataType="System.DateTime"/>
+      <Column Name="Boleto_NossoNumeroComDV" DataType="System.String"/>
+      <Column Name="Boleto_ParcelaAtual" DataType="System.String"/>
+      <Column Name="Boleto_PercDesconto" DataType="System.String"/>
+      <Column Name="Boleto_PercJurosDiaAtraso" DataType="System.String"/>
+      <Column Name="Boleto_PercMultaAtraso" DataType="System.Double"/>
+      <Column Name="Boleto_OutrosAcrecimos" DataType="System.Double"/>
+      <Column Name="Boleto_ValorDesconto" DataType="System.String"/>
+      <Column Name="Boleto_ValorJurosDiaAtraso" DataType="System.Double"/>
+      <Column Name="Boleto_ValorMultaAtraso" DataType="System.Double"/>
+      <Column Name="Boleto_ValorOutrosAcrecimos" DataType="System.String"/>
+      <Column Name="Boleto_ValorAbatimento" DataType="System.Double"/>
+      <Column Name="Boleto_ValorDocumento" DataType="System.Double"/>
+      <Column Name="Sacado_Nome" DataType="System.String"/>
+      <Column Name="Sacado_CpfCnpj" DataType="System.String"/>
+      <Column Name="Sacado_Endereco" DataType="System.String"/>
+      <Column Name="Sacado_Bairro" DataType="System.String"/>
+      <Column Name="Sacado_Cidade" DataType="System.String"/>
+      <Column Name="Sacado_Cep" DataType="System.String"/>
+      <Column Name="Sacado_Estado" DataType="System.String"/>
+      <Column Name="Cedente_Nome" DataType="System.String"/>
+      <Column Name="Boleto_NumeroDocumento" DataType="System.String"/>
+      <Column Name="Boleto_Aceite" DataType="System.String"/>
+      <Column Name="Boleto_Moeda" DataType="System.String"/>
+      <Column Name="Boleto_Especie" DataType="System.String"/>
+      <Column Name="CC_Instrucoes" DataType="System.String"/>
+      <Column Name="CC_Demonstrativo" DataType="System.String"/>
+      <Column Name="Boleto_PathImgCodBarras" DataType="System.String"/>
+      <Column Name="Sacado_Codigo" DataType="System.String"/>
+      <Column Name="Sacado_Numero_Endereco" DataType="System.String"/>
+      <Column Name="Cedente_Numero_Endereco" DataType="System.String"/>
+      <Column Name="Boleto_Numero_Parcelas" DataType="System.String"/>
+      <Column Name="Banco_Carteira" DataType="System.String"/>
+      <Column Name="CC_NumeroConta" DataType="System.String"/>
+      <Column Name="CC_DV_NumeroBanco" DataType="System.String"/>
+    </TableDataSource>
+  </Dictionary>
+  <ReportPage Name="Page1" RawPaperSize="9" FirstPageSource="15" OtherPagesSource="15" Guides="0">
+    <DataBand Name="Data1" Width="718.2" Height="1047.06" DataSource="Boletos">
+      <TableObject Name="Table2" Top="295.13" Width="718.21" Height="198.73" Border.Lines="All">
+        <TableColumn Name="Column6" Width="130"/>
+        <TableColumn Name="Column7" Width="130"/>
+        <TableColumn Name="Column8" Width="186.45"/>
+        <TableColumn Name="Column9" Width="133.42"/>
+        <TableColumn Name="Column10" Width="138.34"/>
+        <TableRow Name="Row7" Height="28.33">
+          <TableCell Name="Cell31" Border.Lines="All" Text="Nome do Pagador" Font="Arial, 7pt" ColSpan="3"/>
+          <TableCell Name="Cell32" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell33" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell34" Border.Lines="All" Text="CNPJ" Font="Arial, 7pt">
+            <TextObject Name="Text77" Left="2.74" Top="14.58" Width="128.84" Height="10.45" Text="[Boletos.Sacado_CpfCnpj]" Font="Arial, 7pt"/>
+          </TableCell>
+          <TableCell Name="Cell35" Border.Lines="All" Text="Número do documento" Font="Arial, 7pt">
+            <TextObject Name="Text75" Left="2.28" Top="14.58" Width="113.4" Height="10.45" Text="[Boletos.Boleto_NumeroDocumento]" HorzAlign="Center" Font="Arial, 7pt"/>
+          </TableCell>
+        </TableRow>
+        <TableRow Name="Row8" Height="28.33">
+          <TableCell Name="Cell36" Border.Lines="All" Text="Endereço" Font="Arial, 7pt" ColSpan="5">
+            <TextObject Name="Text59" Top="14.37" Width="710.54" Height="10.45" Text="[Boletos.Sacado_Endereco]" Font="Arial, 7pt"/>
+          </TableCell>
+          <TableCell Name="Cell37" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell38" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell39" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell40" Border.Lines="All" Font="Arial, 7pt"/>
+        </TableRow>
+        <TableRow Name="Row9" Height="28.33">
+          <TableCell Name="Cell42" Border.Lines="All" Text="Bairro / Distrito" Font="Arial, 7pt" ColSpan="5">
+            <TextObject Name="Text61" Top="14.16" Width="710.54" Height="10.45" Text="[Boletos.Sacado_Bairro]" Font="Arial, 7pt"/>
+          </TableCell>
+          <TableCell Name="Cell43" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell44" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell45" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell41" Border.Lines="All" Font="Arial, 7pt"/>
+        </TableRow>
+        <TableRow Name="Row10" Height="28.33">
+          <TableCell Name="Cell46" Border.Lines="All" Text="Município" Font="Arial, 7pt" ColSpan="3">
+            <TextObject Name="Text62" Top="15.63" Width="446.12" Height="10.45" Text="[Boletos.Sacado_Cidade]" Font="Arial, 7pt"/>
+          </TableCell>
+          <TableCell Name="Cell47" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell48" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell49" Border.Lines="All" Text="UF" Font="Arial, 7pt">
+            <TextObject Name="Text74" Left="1.91" Top="14.86" Width="28.35" Height="10.45" Text="[Boletos.Sacado_Estado]" HorzAlign="Center" Font="Arial, 7pt"/>
+          </TableCell>
+          <TableCell Name="Cell50" Border.Lines="All" Text="CEP" Font="Arial, 7pt">
+            <TextObject Name="Text73" Left="2.26" Top="15.29" Width="114.96" Height="10.45" Text="[Boletos.Sacado_Cep]" HorzAlign="Center" Font="Arial, 7pt"/>
+          </TableCell>
+        </TableRow>
+        <TableRow Name="Row11" Height="28.33">
+          <TableCell Name="Cell51" Border.Lines="All" Text="Mensagem Pagador" Font="Arial, 7pt" ColSpan="5" RowSpan="3">
+            <TextObject Name="Text134" Top="12.42" Width="712.92" Height="71.67" Text="[Boletos.CC_Demonstrativo]" Font="Arial, 8pt"/>
+          </TableCell>
+          <TableCell Name="Cell52" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell53" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell54" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell55" Border.Lines="All" Font="Arial, 7pt"/>
+        </TableRow>
+        <TableRow Name="Row12" Height="28.33">
+          <TableCell Name="Cell56" Border.Lines="All"/>
+          <TableCell Name="Cell57" Border.Lines="All"/>
+          <TableCell Name="Cell58" Border.Lines="All"/>
+          <TableCell Name="Cell59" Border.Lines="All"/>
+          <TableCell Name="Cell60" Border.Lines="All"/>
+        </TableRow>
+        <TableRow Name="Row13" Height="28.75">
+          <TableCell Name="Cell61" Border.Lines="All"/>
+          <TableCell Name="Cell62" Border.Lines="All"/>
+          <TableCell Name="Cell63" Border.Lines="All"/>
+          <TableCell Name="Cell64" Border.Lines="All"/>
+          <TableCell Name="Cell65" Border.Lines="All"/>
+        </TableRow>
+      </TableObject>
+      <ShapeObject Name="Shape26" Top="510.53" Width="391.35" Height="76.91" Fill.Color="Gainsboro"/>
+      <TextObject Name="Text69" Top="513.74" Width="387.45" Height="69.6" Text="Este recibo somente terá validade com a autenticação mecânica ou acompanhado do recibo de pagamento emitido pelo banco." Font="Arial, 8pt"/>
+      <TextObject Name="Text70" Left="447.22" Top="507.61" Width="121.85" Height="12.9" Text="Autenticação mecânica   - " Font="Arial, 7pt"/>
+      <TextObject Name="Text71" Left="580.09" Top="506.85" Width="99.5" Height="12.9" Text="Recibo do pagador" Font="Arial, 7pt, style=Bold"/>
+      <LineObject Name="Line1" Left="436.6" Top="510.16" Width="-37.8" Diagonal="true"/>
+      <LineObject Name="Line2" Left="717.87" Top="510.16" Width="-37.8" Diagonal="true"/>
+      <LineObject Name="Line3" Left="399.17" Top="510.06" Height="28.35" Diagonal="true"/>
+      <LineObject Name="Line4" Left="718.19" Top="510.04" Height="28.35" Diagonal="true"/>
+      <LineObject Name="Line5" Top="610.83" Width="718.2" Border.Style="DashDotDot" Border.Width="1.5" Diagonal="true"/>
+      <TextObject Name="Text1" Left="320.58" Top="670.46" Width="396.9" Height="18.9" AfterDataEvent="Text1_AfterData" Text="[Boletos.Boleto_LinhaDigitavel]" Format="Custom" Format.Format="00000.00000 00000.000000 000000.000000 0 00000000000000" HorzAlign="Right" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text2" Left="215.79" Top="664.09" Width="94.5" Height="28.35" Border.Lines="Left, Right" AfterDataEvent="Text2_AfterData" Text="001" HorzAlign="Right" Font="Arial, 16pt"/>
+      <TableObject Name="Table1" Top="82.05" Width="718.18" Height="181.38">
+        <TableColumn Name="Column1" Width="141.52"/>
+        <TableColumn Name="Column2" Width="141.52"/>
+        <TableColumn Name="Column3" Width="166.45"/>
+        <TableColumn Name="Column4" Width="127.17"/>
+        <TableColumn Name="Column5" Width="141.52"/>
+        <TableRow Name="Row6" Height="30.23">
+          <TableCell Name="Cell26" Border.Lines="All" Text="Beneficiário" Font="Arial, 7pt" ColSpan="3" RowSpan="3">
+            <TextObject Name="Text46" Top="13.63" Width="302.4" Height="13.9" Text="Razão: [Boletos.Cedente_Nome]" Font="Arial, 8pt, style=Bold"/>
+            <TextObject Name="Text47" Left="303.51" Top="13.59" Width="151.77" Height="13.9" Text="[Boletos.Cedente_CpfCnpj]" Font="Arial, 8pt, style=Bold"/>
+            <TextObject Name="Text48" Top="38.01" Width="217.35" Height="10.58" Text="[Boletos.Cedente_Endereco]" Font="Arial, 8pt"/>
+            <TextObject Name="Text49" Top="51.25" Width="217.35" Height="10.45" Text="[Boletos.Cedente_Bairro]" Font="Arial, 8pt"/>
+            <TextObject Name="Text50" Top="63.71" Width="217.35" Height="11.34" Text="[Boletos.Cedente_Cidade]" Font="Arial, 8pt"/>
+            <TextObject Name="Text51" Left="219.88" Top="63.88" Width="28.35" Height="11.34" Text="[Boletos.Cedente_Estado]" Font="Arial, 8pt"/>
+            <TextObject Name="Text52" Left="323.87" Top="63.88" Width="129.01" Height="11.34" Text="[Boletos.Cedente_Cep]" Font="Arial, 8pt"/>
+          </TableCell>
+          <TableCell Name="Cell27" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell28" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell29" Border.Lines="All" Fill.Color="LightGray" Text="Vencimento" Font="Arial, 7pt">
+            <TextObject Name="Text42" Left="0.77" Top="15.56" Width="126.69" Height="13.9" Text="[Boletos.Boleto_DataVencimento]" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+          </TableCell>
+          <TableCell Name="Cell30" Border.Lines="All" Fill.Color="LightGray" Text="Valor do Documento" Font="Arial, 7pt">
+            <TextObject Name="Text43" Left="0.38" Top="15.86" Width="130.13" Height="13.9" Text="[Boletos.Boleto_ValorDocumento]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator="." Format.CurrencySymbol="R$" Format.PositivePattern="2" Format.NegativePattern="9" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+          </TableCell>
+        </TableRow>
+        <TableRow Name="Row1" Height="30.23">
+          <TableCell Name="Cell1" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell2" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell3" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell4" Border.Lines="All" Text="(+) Outros Acréscimos" Font="Arial, 7pt"/>
+          <TableCell Name="Cell5" Border.Lines="All" Text="(+) Mora / Multa" Font="Arial, 7pt"/>
+        </TableRow>
+        <TableRow Name="Row2" Height="30.23">
+          <TableCell Name="Cell6" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell7" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell8" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell9" Border.Lines="All" Text="( - ) Desconto / Abatimento" Font="Arial, 7pt"/>
+          <TableCell Name="Cell10" Border.Lines="All" Text="( - ) Outras Deduções" Font="Arial, 7pt"/>
+        </TableRow>
+        <TableRow Name="Row3" Height="30.23">
+          <TableCell Name="Cell11" Border.Lines="All" Text="Instruções (Texto de responsabilidade do beneficiário)" Font="Arial, 7pt" ColSpan="3" RowSpan="3">
+            <TextObject Name="Text133" Top="14.48" Width="454.03" Height="74.74" Text="[Boletos.CC_Instrucoes]" Font="Arial, 8pt"/>
+          </TableCell>
+          <TableCell Name="Cell12" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell13" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell14" Border.Lines="All" Text="Data de Emissão" Font="Arial, 7pt">
+            <TextObject Name="Text55" Left="0.76" Top="15.51" Width="127.44" Height="13.52" Text="[Boletos.Boleto_DataDocumento]" Format="Date" Format.Format="d" HorzAlign="Center" Font="Arial, 7pt"/>
+          </TableCell>
+          <TableCell Name="Cell15" Border.Lines="All" Text="( = ) Valor Cobrado" Font="Arial, 7pt"/>
+        </TableRow>
+        <TableRow Name="Row4" Height="30.23">
+          <TableCell Name="Cell16" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell17" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell18" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell19" Border.Lines="All" Text="Coop Contrib / Cód Beneficiário" Font="Arial, 7pt" ColSpan="2">
+            <TextObject Name="Text45" Left="0.76" Top="15.83" Width="260.95" Height="13.9" Text="[Boletos.CC_Agencia]/[Boletos.CC_CodCedente]" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+          </TableCell>
+          <TableCell Name="Cell20" Border.Lines="All" Font="Arial, 7pt"/>
+        </TableRow>
+        <TableRow Name="Row5" Height="30.23">
+          <TableCell Name="Cell21" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell22" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell23" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell24" Border.Lines="All" Text="Nosso Número" Font="Arial, 7pt" ColSpan="2">
+            <TextObject Name="Text44" Left="1.09" Top="15.76" Width="260.95" Height="13.9" AfterDataEvent="Text44_AfterData" Text="[Boletos.CC_CodCedente][Boletos.Boleto_NossoNumeroComDV]" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+          </TableCell>
+          <TableCell Name="Cell25" Border.Lines="All" Font="Arial, 7pt"/>
+        </TableRow>
+      </TableObject>
+      <TextObject Name="Text72" Left="1.52" Top="277.55" Width="94.5" Height="12.9" Text="Dados do Pagador" Font="Arial, 7pt"/>
+      <TableObject Name="Table3" Top="694.94" Width="718.22" Height="272.16" Border.Lines="All">
+        <TableColumn Name="Column11" Width="131.4"/>
+        <TableColumn Name="Column12" Width="146.95"/>
+        <TableColumn Name="Column13" Width="136.7"/>
+        <TableColumn Name="Column14" Width="120.48"/>
+        <TableColumn Name="Column15" Width="182.69"/>
+        <TableRow Name="Row22" Height="30.24">
+          <TableCell Name="Cell106" Border.Lines="All" Text="Local de pagamento" Font="Arial, 7pt" ColSpan="4">
+            <TextObject Name="Text136" Top="16.09" Width="463.05" Height="12.9" Text="''Pagável em qualquer banco até o vencimento. Após, atualize o boleto no site bb.com.br." Font="Arial, 8pt"/>
+          </TableCell>
+          <TableCell Name="Cell107" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell108" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell109" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell110" Border.Lines="All" Fill.Color="LightGray" Text="Vencimento" Font="Arial, 7pt">
+            <TextObject Name="Text80" Left="2.92" Top="13.83" Width="177" Height="13.9" Text="[Boletos.Boleto_DataVencimento]" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+          </TableCell>
+        </TableRow>
+        <TableRow Name="Row21" Height="30.24">
+          <TableCell Name="Cell101" Border.Lines="All" Text="Beneficiário" Font="Arial, 7pt" ColSpan="4">
+            <TextObject Name="Text84" Top="14.55" Width="381.44" Height="13.9" Text="[Boletos.Cedente_Nome]" Font="Arial, 8pt, style=Bold"/>
+            <TextObject Name="Text85" Left="383.54" Top="14.55" Width="151.03" Height="13.9" Text="[Boletos.Cedente_CpfCnpj]" Font="Arial, 8pt, style=Bold"/>
+            <TextObject Name="Text3" Left="345.84" Top="30.13" Width="68.42" Height="30.24" Border.Lines="Left" Text="Aceite" Font="Arial, 7pt"/>
+          </TableCell>
+          <TableCell Name="Cell102" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell103" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell104" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell105" Border.Lines="All" Text="Coop Contrib / Cód. Beneficiário" Font="Arial, 7pt">
+            <TextObject Name="Text110" Left="2.15" Top="13.8" Width="178.89" Height="13.9" AfterDataEvent="Text110_AfterData" Text="[Boletos.CC_Agencia]/[Boletos.CC_NumeroConta]" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+          </TableCell>
+        </TableRow>
+        <TableRow Name="Row20" Height="30.24">
+          <TableCell Name="Cell96" Border.Lines="All" Text="Data de Emissão" Font="Arial, 7pt">
+            <TextObject Name="Text88" Left="1.11" Top="15.15" Width="127.85" Height="13.9" Text="[Boletos.Boleto_DataDocumento]" Format="Date" Format.Format="d" HorzAlign="Center" Font="Arial, 7pt"/>
+          </TableCell>
+          <TableCell Name="Cell97" Border.Lines="All" Text="Número do documento" Font="Arial, 7pt">
+            <TextObject Name="Text90" Left="2.27" Top="15.18" Width="127.85" Height="13.9" Text="[Boletos.Boleto_NumeroDocumento]" HorzAlign="Center" Font="Arial, 7pt"/>
+          </TableCell>
+          <TableCell Name="Cell98" Border.Lines="All" Text="Espécie" Font="Arial, 7pt">
+            <TextObject Name="Text137" Left="0.41" Top="14.95" Width="65.41" Height="13.9" Text="[Boletos.Boleto_Especie]" HorzAlign="Center" Font="Arial, 7pt"/>
+            <TextObject Name="Text138" Left="68.48" Top="16.48" Width="67.73" Height="13.9" Text="[Boletos.Boleto_Aceite]" HorzAlign="Center" Font="Arial, 7pt"/>
+          </TableCell>
+          <TableCell Name="Cell99" Border.Lines="All" Text="Data Processamento" Font="Arial, 7pt">
+            <TextObject Name="Text141" Left="0.65" Top="15.12" Width="118.75" Height="13.9" AfterDataEvent="Text141_AfterData" Text="[Boletos.Boleto_DataDocumento]" Format="Date" Format.Format="d" HorzAlign="Center" Font="Arial, 7pt"/>
+          </TableCell>
+          <TableCell Name="Cell100" Border.Lines="All" Text="Nosso Número" Font="Arial, 7pt">
+            <TextObject Name="Text111" Left="1.71" Top="14.54" Width="179.3" Height="13.9" AfterDataEvent="Text111_AfterData" Text="[Boletos.CC_CodCedente][Boletos.Boleto_NossoNumeroComDV]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="1" Format.DecimalSeparator="-" Format.GroupSeparator="" Format.NegativePattern="1" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
+          </TableCell>
+        </TableRow>
+        <TableRow Name="Row19" Height="30.24">
+          <TableCell Name="Cell91" Border.Lines="All" Fill.Color="LightGray" Text="Uso do Banco" Font="Arial, 7pt"/>
+          <TableCell Name="Cell92" Border.Lines="All" Text="Carteira" Font="Arial, 7pt">
+            <TextObject Name="Text142" Left="75.19" Top="0.36" Width="68.42" Height="30.24" Border.Lines="Left" Text="Espécie" Font="Arial, 7pt"/>
+            <TextObject Name="Text140" Left="1.53" Top="14.87" Width="71.15" Height="13.9" Text="[Boletos.Banco_Carteira]" HorzAlign="Center" Font="Arial, 7pt"/>
+            <TextObject Name="Text139" Left="76.53" Top="14.88" Width="68.49" Height="13.9" Text="[Boletos.Boleto_Moeda]" HorzAlign="Center" Font="Arial, 7pt"/>
+          </TableCell>
+          <TableCell Name="Cell93" Border.Lines="All" Text="Quantidade" Font="Arial, 7pt"/>
+          <TableCell Name="Cell94" Border.Lines="All" Text="Valor" Font="Arial, 7pt"/>
+          <TableCell Name="Cell95" Border.Lines="All" Text="Valor do Documento" Font="Arial, 7pt">
+            <TextObject Name="Text112" Left="2.24" Top="14.17" Width="178.12" Height="13.9" Text="[Boletos.Boleto_ValorDocumento]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator="." Format.CurrencySymbol="R$" Format.PositivePattern="2" Format.NegativePattern="9" HorzAlign="Right" Font="Arial, 8pt, style=Bold"/>
+          </TableCell>
+        </TableRow>
+        <TableRow Name="Row14" Height="30.24">
+          <TableCell Name="Cell66" Border.Lines="All" Text="Instruções (texto de responsabilidade do beneficiário)" Font="Arial, 7pt" ColSpan="4" RowSpan="3">
+            <TextObject Name="Text135" Top="14.34" Width="532.2" Height="73.98" Text="[Boletos.CC_Instrucoes]" Font="Arial, 8pt"/>
+          </TableCell>
+          <TableCell Name="Cell67" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell68" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell69" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell70" Border.Lines="All" Text="( - ) Desconto / Abatimento" Font="Arial, 7pt"/>
+        </TableRow>
+        <TableRow Name="Row15" Height="30.24">
+          <TableCell Name="Cell71" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell72" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell73" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell74" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell75" Border.Lines="All" Text="( - ) Outras Deduções" Font="Arial, 7pt"/>
+        </TableRow>
+        <TableRow Name="Row16" Height="30.24">
+          <TableCell Name="Cell76" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell77" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell78" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell79" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell80" Border.Lines="All" Text="( + ) Mora / Multa" Font="Arial, 7pt"/>
+        </TableRow>
+        <TableRow Name="Row17" Height="30.24">
+          <TableCell Name="Cell81" Border.Lines="All" Text="Pagador" Font="Arial, 7pt" ColSpan="4" RowSpan="2">
+            <TextObject Name="Text124" Top="13.67" Width="302.4" Height="10.45" Text="[Boletos.Sacado_Nome]" Font="Arial, 7pt"/>
+            <TextObject Name="Text125" Top="30.02" Width="207.9" Height="10.45" Text="[Boletos.Sacado_Endereco]" Font="Arial, 7pt"/>
+            <TextObject Name="Text126" Left="236.25" Top="30.02" Width="207.9" Height="10.45" Text="[Boletos.Sacado_Bairro]" Font="Arial, 7pt"/>
+            <TextObject Name="Text127" Top="46.92" Width="207.9" Height="10.45" Text="[Boletos.Sacado_Cidade]" Font="Arial, 7pt"/>
+            <TextObject Name="Text128" Left="387.45" Top="46.92" Width="66.15" Height="10.45" Text="[Boletos.Sacado_Cep]" HorzAlign="Center" Font="Arial, 7pt"/>
+            <TextObject Name="Text129" Left="236.25" Top="46.92" Width="94.5" Height="10.45" Text="[Boletos.Sacado_Estado]" HorzAlign="Center" Font="Arial, 7pt"/>
+            <TextObject Name="Text130" Left="365.65" Top="13.67" Width="160.65" Height="10.45" Text="[Boletos.Sacado_CpfCnpj]" Font="Arial, 7pt"/>
+          </TableCell>
+          <TableCell Name="Cell82" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell83" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell84" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell85" Border.Lines="All" Text="( + ) Outros Acréscimos" Font="Arial, 7pt"/>
+        </TableRow>
+        <TableRow Name="Row18" Height="30.24">
+          <TableCell Name="Cell86" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell87" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell88" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell89" Border.Lines="All" Font="Arial, 7pt"/>
+          <TableCell Name="Cell90" Border.Lines="All" Text="( = ) Valor Cobrado" Font="Arial, 7pt"/>
+        </TableRow>
+      </TableObject>
+      <PictureObject Name="Picture5" Top="617.06" Width="198.45" Height="75.6" Image="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"/>
+      <PictureObject Name="Picture4" Width="198.45" Height="75.6" Image="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"/>
+      <TextObject Name="Text57" Left="-1.89" Top="309.83" Width="321.3" Height="10.45" Text="[Boletos.Sacado_Nome]" Font="Arial, 7pt"/>
+      <TextObject Name="Text131" Left="451.38" Top="983.3" Width="112.4" Height="12.9" Text="Autenticação mecânica -" Font="Arial, 7pt"/>
+      <TextObject Name="Text132" Left="565.33" Top="983.3" Width="118.4" Height="12.9" Text="Ficha de Compensação" Font="Arial, 7pt, style=Bold"/>
+      <TextObject Name="Text4" Left="444.15" Top="1001.7" Width="94.5" Height="18.9" Visible="false" AfterDataEvent="Text4_AfterData" Text="[Boletos.Boleto_PathImgCodBarras]"/>
+      <PictureObject Name="Picture1" Top="968.55" Width="419.1" Height="77" ImageLocation="D:\RGB Sistemas\Projetos\VsBoleto\VsBoleto\VsBoleto\bin\Debug/ArquivoSistema/barcode167.gif"/>
+    </DataBand>
+  </ReportPage>
+</Report>

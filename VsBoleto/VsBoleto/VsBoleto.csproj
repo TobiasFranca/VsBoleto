@@ -149,7 +149,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Relatorios\BancoBrasil.rdlc" />
     <EmbeddedResource Include="Sistema\FormConfig.resx">
       <DependentUpon>FormConfig.cs</DependentUpon>
     </EmbeddedResource>
@@ -161,7 +160,6 @@
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="packages.config" />
-    <None Include="Properties\DataSources\BoletoBancario.Conta.Boleto.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -179,6 +177,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Relatorios\Banco Do Brasil.frx" />
     <None Include="Relatorios\Bradesco.frx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
