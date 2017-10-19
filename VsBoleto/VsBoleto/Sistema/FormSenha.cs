@@ -21,7 +21,7 @@ namespace VsBoleto.Sistema
             get { return permitido; }
         }
 
-        public FormSenha(string senha = "123", string titulo = "Senha", bool mascaraPw = true)
+        public FormSenha(string senha = "dram", string titulo = "Senha", bool mascaraPw = true)
         {
             InitializeComponent();
             this.senha = senha.Trim();

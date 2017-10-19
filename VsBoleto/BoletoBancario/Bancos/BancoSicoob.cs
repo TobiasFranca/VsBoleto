@@ -501,6 +501,15 @@ namespace BoletoBancario.Bancos
                 multa = b.PercentualMultaAtraso;
                 ret += Utils.FormatNumber(b.PercentualMultaAtraso, 6, 4);//167-172
                 ret += "2";//173-173
+                if (b.ValorDesconto > 0)
+                {
+                    ret += b.DataVencimento.ToString("ddMMyy");//174-179
+                }
+                else
+                {
+                    ret += "000000";
+                    //ret += b.DataLimiteDesconto <= b.DataVencimento ? "000000" : b.DataLimiteDesconto.ToString("ddMMyy");//174-179
+                }
                 ret += b.DataLimiteDesconto <= b.DataVencimento ? "000000" : b.DataLimiteDesconto.ToString("ddMMyy");//174-179
                 ret += Utils.FormatNumber(b.ValorDesconto, 13, 2);//180-192
                 ret += EnumHelper.GetNumMoeda(b.Moeda) + "000000000000";//193-205

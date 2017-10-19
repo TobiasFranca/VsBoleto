@@ -700,7 +700,14 @@ namespace BoletoBancario.Bancos
                 ret += Utils.Insert(b.Instrucao2, 2);//2 instrução - verificar // alterado 19/03 (cliente configura)
                 ret += "0"; //tipo juros(mora)- 0 = valor por dia / 1 = porcentagem por mes
                 ret += Utils.FormatNumber(b.ValorJurosDiaAtraso, 12, 2);
-                ret += b.DataLimiteDesconto <= b.DataVencimento ? "000000" : b.DataLimiteDesconto.ToString("ddMMyy");
+                if (b.ValorDesconto > 0)
+                {
+                    ret += b.DataVencimento.ToString("ddMMyy");
+                }
+                else
+                {
+                    ret += "000000";
+                }                
                 ret += Utils.FormatNumber(b.ValorDesconto, 13, 2);
                 ret += Utils.ReplicarChar("0", 13); // valor ioc???
                 ret += Utils.FormatNumber(b.ValorAbatimento, 13, 2);

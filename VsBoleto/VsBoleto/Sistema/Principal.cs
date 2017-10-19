@@ -388,31 +388,31 @@ namespace VsBoleto.Sistema
                 int posic = gridParcelas.RowCount;
                 if (row[dt.Columns["st3"]].ToString() == "I")
                 {
-                    gridParcelas.SetRowCellValue(cont, gridColumn17, true);
-                    gridParcelas.SetRowCellValue(cont, gridColumn18, false);
+                    gridParcelas.SetRowCellValue(cont, colunaRemessa, false);
+                    gridParcelas.SetRowCellValue(cont, colunaImpresso, true);
                 }
                 else if (row[dt.Columns["st3"]].ToString() == "R")
                 {
-                    gridParcelas.SetRowCellValue(cont, gridColumn17, false);
-                    gridParcelas.SetRowCellValue(cont, gridColumn18, true);
+                    gridParcelas.SetRowCellValue(cont, colunaRemessa, false);
+                    gridParcelas.SetRowCellValue(cont, colunaImpresso, true);
                 }
                 else if (row[dt.Columns["st3"]].ToString() == "A")
                 {
-                    gridParcelas.SetRowCellValue(cont, gridColumn17, true);
-                    gridParcelas.SetRowCellValue(cont, gridColumn18, true);
+                    gridParcelas.SetRowCellValue(cont, colunaRemessa, true);
+                    gridParcelas.SetRowCellValue(cont, colunaImpresso, true);
                 }
                 else
                 {
-                    gridParcelas.SetRowCellValue(cont, gridColumn17, false);
-                    gridParcelas.SetRowCellValue(cont, gridColumn18, false);
+                    gridParcelas.SetRowCellValue(cont, colunaRemessa, false);
+                    gridParcelas.SetRowCellValue(cont, colunaImpresso, false);
                 }
                 if (row[dt.Columns["st2"]].ToString() == "E")
                 {
-                    gridParcelas.SetRowCellValue(cont, gridColumn19, true);
+                    gridParcelas.SetRowCellValue(cont, colunaEmail, true);
                 }
                 else
                 {
-                    gridParcelas.SetRowCellValue(cont, gridColumn19, false);
+                    gridParcelas.SetRowCellValue(cont, colunaEmail, false);
                 }
                 cont++;
 
@@ -804,13 +804,13 @@ namespace VsBoleto.Sistema
                 {
                     if (f.Extension.ToLower() == ".png" || f.Extension.ToLower() == ".gif")
                     {
-                        f.Delete();
+                        f.Delete();                        
                     }
                 }
             }
-            catch
+            catch(Exception ex)
             {
-
+                MessageBox.Show("Erro ao Excluir arquivos temporarios: " + ex.Message);               
             }
         }
 
@@ -1294,9 +1294,9 @@ namespace VsBoleto.Sistema
 
         private void BarBtnInfoBD_Click(object sender, EventArgs e)
         {
-            FormSenha pw = new FormSenha();
+            FormSenha pw = new FormSenha("dram");
             pw.ShowDialog();
-            if (!pw.Permitido)
+            if (pw.Permitido)
             {
                 FormConfig frm = new FormConfig();
                 frm.ShowDialog(this);
@@ -1865,6 +1865,28 @@ namespace VsBoleto.Sistema
             Show();
             WindowState = FormWindowState.Normal;
             CarregarGrids();
+        }
+
+        private void btnIconeSair_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Close();
+        }
+
+        private void Principal_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (MessageBox.Show("Sair do programa?", "VsBoleto", MessageBoxButtons.YesNo) != DialogResult.Yes)
+            {
+                e.Cancel = true;
+            }
+        }
+
+        private void btnIconeAbrir_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (WindowState == FormWindowState.Minimized)
+            {
+                Show();
+                WindowState = FormWindowState.Normal;
+            }
         }
 
         private void TbxPathLayoutBoleto_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)

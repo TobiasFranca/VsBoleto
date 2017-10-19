@@ -431,7 +431,15 @@ namespace BoletoBancario.Bancos
                 ret += Utils.Insert(b.Instrucao1, 2);//1 instrução - (cliente configura)
                 ret += Utils.Insert(b.Instrucao2, 2);//2 instrução - (cliente configura)
                 ret += Utils.FormatNumber(b.ValorJurosDiaAtraso, 13, 2);//valor juros por dia
-                ret += b.DataLimiteDesconto <= b.DataVencimento ? "000000" : b.DataLimiteDesconto.ToString("ddMMyy");
+                if (b.ValorDesconto > 0)
+                {
+                    ret += b.DataVencimento.ToString("ddMMyy");
+                }
+                else
+                {
+                    ret += "000000";
+                    //ret += b.DataLimiteDesconto <= b.DataVencimento ? "000000" : b.DataLimiteDesconto.ToString("ddMMyy");
+                }                
                 ret += Utils.FormatNumber(b.ValorDesconto, 13, 2);//valor desconto
                 ret += Utils.FormatNumber(0, 13, 2); //valor iof para nota de seguro
                 ret += Utils.FormatNumber(b.ValorAbatimento, 13, 2);// valor abatimento

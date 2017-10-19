@@ -542,7 +542,14 @@ namespace BoletoBancario.Bancos
                 ret += Utils.Insert(b.Instrucao1, 2);//1 instrução - verificar // alterado 19/03 (cliente configura)
                 ret += Utils.Insert(b.Instrucao2, 2);//2 instrução - verificar // alterado 19/03 (cliente configura)
                 ret += Utils.FormatNumber(b.ValorJurosDiaAtraso, 13, 2);
-                ret += b.DataLimiteDesconto <= b.DataVencimento ? "000000" : b.DataLimiteDesconto.ToString("ddMMyy");
+                if (b.ValorDesconto > 0)
+                {
+                    ret += b.DataVencimento.ToString("ddMMyy");
+                }
+                else
+                {
+                    ret += "000000";
+                }                
                 ret += Utils.FormatNumber(b.ValorDesconto, 13, 2);
                 ret += Utils.FormatNumber("", 13, 2); //iof
                 ret += Utils.FormatNumber(b.ValorAbatimento, 13, 2); //abatimento
