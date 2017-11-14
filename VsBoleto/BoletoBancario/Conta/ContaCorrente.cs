@@ -179,6 +179,8 @@ namespace BoletoBancario.Conta
         /// </summary>
         public decimal DescontoVencimento { get; set; }
 
+        public bool GeraRelatorioItens { get; set; }
+        
         private string outros1;
         /// <summary>
         /// Campo adicional com informações variadas de cada banco

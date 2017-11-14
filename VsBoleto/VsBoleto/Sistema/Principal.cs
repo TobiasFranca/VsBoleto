@@ -220,7 +220,8 @@ namespace VsBoleto.Sistema
             tbxOutros1.Text = ArquivoINI.LeString(pathPosicao, "CEDENTE", "OUTRODADO1", valorDefault: "");
             tbxOutros2.Text = ArquivoINI.LeString(pathPosicao, "CEDENTE", "OUTRODADO2", valorDefault: "");
 
-            if (CarregarNossoNumeroDoBD(((ListItem)lbxPosicoes.SelectedItem).Value.ToString(), out string num))
+            string num;
+            if (CarregarNossoNumeroDoBD(((ListItem)lbxPosicoes.SelectedItem).Value.ToString(), out num))
             {
                 tbxNNAtual.Text = num;
             }
@@ -237,10 +238,12 @@ namespace VsBoleto.Sistema
             tbxInstrucao1.Text = ArquivoINI.LeString(pathPosicao, "BOLETO", "INSTRUCAO1", valorDefault: "00");
             tbxInstrucao2.Text = ArquivoINI.LeString(pathPosicao, "BOLETO", "INSTRUCAO2", valorDefault: "00");
             tbxProtesto.Text = ArquivoINI.LeString(pathPosicao, "BOLETO", "DIASPROTESTO", valorDefault: "00");
-            tbxArquivoRemessa.Text = ArquivoINI.LeString(pathPosicao, "REMESSA", "CAMINHO", valorDefault: "");
-            ddlLayoutRemessa.SelectedItem = ArquivoINI.LeString(pathPosicao, "REMESSA", "LAYOUT", valorDefault: "");
             ddlEspecieTitulo.SelectedItem = ArquivoINI.LeString(pathPosicao, "BOLETO", "ESPECIE", valorDefault: "");
             txtDescontoVencimento.Text = ArquivoINI.LeString(pathPosicao, "BOLETO", "DESCVENCIMENTO", valorDefault: "0");
+            tbxArquivoRemessa.Text = ArquivoINI.LeString(pathPosicao, "REMESSA", "CAMINHO", valorDefault: "");
+            ddlLayoutRemessa.SelectedItem = ArquivoINI.LeString(pathPosicao, "REMESSA", "LAYOUT", valorDefault: "");
+            chkRelatorioItens.Checked = ArquivoINI.LeBool(pathPosicao, "REMESSA", "GERARELATORIO",valorDefault: false);
+
         }
 
         private bool CarregarNossoNumeroDoBD(string pos, out string numero)
@@ -431,6 +434,7 @@ namespace VsBoleto.Sistema
             Configuracoes.ImpressoraPadrao = ArquivoINI.LeString(pathConfig, "CONFIG", "IMPRESSORA", valorDefault: "");
 
             Configuracoes.LayoutArquivoRemessa = ArquivoINI.LeString(pathPosicao, "REMESSA", "LAYOUT", valorDefault: "");
+            
             Configuracoes.LayoutBoleto = ArquivoINI.LeString(pathPosicao, "BOLETO", "LAYOUT", valorDefault: "");
 
             Configuracoes.Email_Porta = ArquivoINI.LeString(pathConfig, "EMAIL", "PORTA", valorDefault: "");
@@ -527,9 +531,11 @@ namespace VsBoleto.Sistema
             conta.EspecieTitulo = ArquivoINI.LeString(pathPosicao, "BOLETO", "ESPECIE").Substring(0, 2);
             conta.InicioNossoNumero = ArquivoINI.LeString(pathPosicao, "CEDENTE", "NOSSONROI", valorDefault: "").ToLong();
             conta.FimNossoNumero = ArquivoINI.LeString(pathPosicao, "CEDENTE", "NOSSONROF", valorDefault: "").ToLong();
+            conta.GeraRelatorioItens = ArquivoINI.LeBool(pathPosicao, "REMESSA", "GERARELATORIO", valorDefault: false);
 
             long nn = 0;
-            if (CarregarNossoNumeroDoBD(posic, out string num))
+            string num;
+            if (CarregarNossoNumeroDoBD(posic, out num))
             {
                 nn = num.ToLong();
             }
@@ -746,6 +752,9 @@ namespace VsBoleto.Sistema
 
             ddlEspecieTitulo.Properties.Items.Clear();
             ddlEspecieTitulo.SelectedItem = null;
+
+            tbxArquivoRemessa.Text = "";
+            chkRelatorioItens.Checked = false;
 
             tbxNNAtual.Text = "";
             tbxPathLayoutBoleto.Text = "";
@@ -1346,11 +1355,10 @@ namespace VsBoleto.Sistema
 
                         if (string.IsNullOrEmpty(pathremessa))
                         {
-                            pathremessa = pathIni + "/Remessa/";
+                            pathremessa = pathIni + "\\Remessa\\";
                         }
 
-                        conta.GerarArquivoRemessa(Configuracoes.LayoutArquivoRemessa,
-                            pathremessa, ref nomeArquivo);
+                        conta.GerarArquivoRemessa(Configuracoes.LayoutArquivoRemessa, pathremessa, ref nomeArquivo);
                         MostrarMensagem("Arquivos de remessa gerado.", true);
                     }
                 }
@@ -1371,8 +1379,7 @@ namespace VsBoleto.Sistema
                             pathremessa = pathIni + "/Remessa/";
                         }
 
-                        conta.GerarArquivoRemessa(Configuracoes.LayoutArquivoRemessa,
-                            pathremessa, ref nomeArquivo);
+                        conta.GerarArquivoRemessa(Configuracoes.LayoutArquivoRemessa, pathremessa, ref nomeArquivo);
                         MostrarMensagem("Arquivo de remessa gerado.", true);
                     }
                 }
@@ -1641,6 +1648,7 @@ namespace VsBoleto.Sistema
                 ArquivoINI.EscreveString(pathPosicao, "BOLETO", "DESCVENCIMENTO", txtDescontoVencimento.Text);
                 ArquivoINI.EscreveString(pathPosicao, "REMESSA", "CAMINHO", tbxArquivoRemessa.Text);
                 ArquivoINI.EscreveString(pathPosicao, "REMESSA", "LAYOUT", ddlLayoutRemessa.SelectedItem.ToString());
+                ArquivoINI.EscreveBool(pathPosicao, "REMESSA", "GERARELATORIO", chkRelatorioItens.Checked);
 
 
 

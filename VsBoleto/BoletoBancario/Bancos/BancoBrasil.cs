@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 
 namespace BoletoBancario.Bancos
 {
@@ -83,9 +84,30 @@ namespace BoletoBancario.Bancos
                 {
                     sw.Write(remessa);
                 }
+
+                if(c.GeraRelatorioItens == true)
+                {
+                    // Tobias : Vou implementar quando voltar das férias
+
+                    //var lista = Relatorios.GetDataSetContaCorrente(c);
+                    //var nomeArquivo = path + "\\" + nome.Replace(".txt","");
+                    //var arquivoFrx = "D:\\RGB Sistemas\\Projetos\\VsBoleto\\VsBoleto\\VsBoleto\\bin\\Debug\\Relatorios\\ItensRemessa.frx";
+
+                    //FastReport.Report r = Relatorios.PrepararRelatório(arquivoFrx, lista);
+
+                    //if (MessageBox.Show("Editar relatorio?", "Editar", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    //{
+                    //    r.Design();
+                    //}
+                    //else
+                    //{
+                    //    Relatorios.ExportarRelatorioPDF(r, nomeArquivo);
+                    //}
+                }
             }
-            catch
+            catch(Exception ex)
             {
+                MessageBox.Show(ex.Message);
                 return false;
             }
             return true;
