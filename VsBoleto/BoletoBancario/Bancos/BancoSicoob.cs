@@ -574,8 +574,7 @@ namespace BoletoBancario.Bancos
         private static string MontarCnab240(ContaCorrente c)
         {
             try
-            {
-                int sequencial = 1;
+            {               
                 int sequenciaRegistro = 1;
 
                 string arquivo = "";
@@ -590,7 +589,7 @@ namespace BoletoBancario.Bancos
                 linha += Utils.Insert(c.Cedente.CpfCnpj.ToNoFormated().IsCpf() ? "1" : "2", 1); // 18-18 => Tipo de Inscrição da Empresa (1 = CPF, 2 = CNPJ)
                 linha += Utils.Insert(c.Cedente.CpfCnpj.ToNoFormated(), 14, "0", true); // 19-32 => Número de Inscrição da Empresa
                 linha += Utils.Insert(" ", 20); // 33-52 => Código do Convenio no Sicoob
-                linha += Utils.Insert(c.Agencia, 6, "0", true); // 53-58 => Agencia
+                linha += "030104"; // 53-58 => Agencia
                 linha += Utils.Insert(c.NumeroConta, 13, "0", true); // 59-71 => Conta Corrente
                 linha += "0"; // 72-72 => Digito Verificador Agencia/Conta
                 linha += Utils.Insert(c.Cedente.NomeCedente, 30); // 73-102 => Nome da Empresa
@@ -622,7 +621,7 @@ namespace BoletoBancario.Bancos
                 linha += Utils.Insert(c.Cedente.CpfCnpj.ToNoFormated().IsCpf() ? "1" : "2", 1); // 18-18 => Tipo de Inscrição da Empresa (1 = CPF, 2 = CNPJ)
                 linha += Utils.Insert(c.Cedente.CpfCnpj.ToNoFormated(), 15, "0", true); // 19-33 => Número de Inscrição da Empresa
                 linha += Utils.Insert(" ", 20); // 34-53 => Código do Convenio do Banco
-                linha += Utils.Insert(c.Agencia, 6, "0", true); // 54-59 => Agencia
+                linha += "030104"; // 54-59 => Agencia
                 linha += Utils.Insert(c.NumeroConta, 13, "0", true); // 60-72 => Conta Corrente
                 linha += " "; // 73-73 => Digito Verificador 
                 linha += Utils.Insert(c.Cedente.NomeCedente, 30); // 74-103 => Nome da Empresa
@@ -652,7 +651,7 @@ namespace BoletoBancario.Bancos
                     linha += "P"; // 14-14 => Código do Segmento do registro
                     linha += " "; // 15-15 => uso Exclusivo Febraban
                     linha += "01"; // 16-17 => Código Movimento da Remessa
-                    linha += Utils.Insert(c.Agencia, 6, "0", true); // 18-23 => Agencia
+                    linha += "030104"; // 18-23 => Agencia
                     linha += Utils.Insert(c.NumeroConta, 13, "0", true); // 24-36 => Conta Corrente
                     linha += " "; // 37-37 => Digito Verificador 
                     linha += Utils.Insert(b.NossoNumeroComDV, 10, "0", true); // 38-47 => Nosso Número
@@ -687,7 +686,7 @@ namespace BoletoBancario.Bancos
                     {
                         linha += "0"; // 142-142 => Código Desconto 1
                         linha += "00000000"; // 143-150 => Data do desconto
-                        linha += Utils.Insert("0", 15); // 151-165 => Valor do Desconto
+                        linha += Utils.Insert("0", 15, "0"); // 151-165 => Valor do Desconto
                     }
 
                     linha += Utils.Insert("0", 15); // 166-180 => Valor do IOF
@@ -708,7 +707,7 @@ namespace BoletoBancario.Bancos
                     linha += "0"; // 224-224 => Código para Baixa/Devolução
                     linha += Utils.Insert(" ", 3); // 225-227 => Prazo Para Baixa/Devolução
                     linha += "09"; // 228-229 => Código da Moeda
-                    linha += Utils.Insert("0", 10); // 230-239 => Número do Contrato 
+                    linha += Utils.Insert("0", 10, "0"); // 230-239 => Número do Contrato 
                     linha += " "; // 240-240 => Uso Exclusivo Febraban
 
                     arquivo += linha + Environment.NewLine;
@@ -731,9 +730,9 @@ namespace BoletoBancario.Bancos
                     linha += Utils.Insert(b.Sacado.Cep.Replace(".", "").Replace("-", ""), 8, " "); // 129-136 => CEP do Pagador
                     linha += Utils.Insert(b.Sacado.Cidade, 15, " "); // 137-151 => Cidade do Pagador
                     linha += Utils.Insert(b.Sacado.Estado, 2, " "); // 152-153 => UF do Pagador
-                    linha += "0"; // 154-154 => tipo de Inscrição do Sacador Avalista
-                    linha += Utils.Insert("0", 15); // 155-169 => Número de Inscrição do Sacador Avalista
-                    linha += Utils.Insert("0", 40); // 170-209 => Nome do Sacador Avalista
+                    linha += b.Sacado.CpfCnpj.ToNoFormated().IsCpf() ? "1" : "2"; ; // 154-154 => tipo de Inscrição do Sacador Avalista
+                    linha += Utils.Insert(b.Sacado.CpfCnpj.ToNoFormated(), 15, "0", true); // 155-169 => Número de Inscrição do Sacador Avalista
+                    linha += Utils.Insert(b.Sacado.Nome, 40, " "); // 170-209 => Nome do Sacador Avalista
                     linha += "000"; // 210-212 => Código Banco Correspondente na Compensação
                     linha += Utils.Insert(" ", 20); // 213-232 => Nosso Número banco Correspondente
                     linha += Utils.Insert(" ", 8); // 233-240 => Uso Exclusivo Febraban
@@ -806,22 +805,29 @@ namespace BoletoBancario.Bancos
                 linha += "5"; // 08-08 => Tipo de Registro
                 linha += Utils.Insert(" ", 9); // 09-17 => Uso Exclusivo Febraban
                 linha += Utils.Insert(sequenciaRegistro.ToString(), 6, "0", true); // 18-23 => Quantidade registros Lote
-                linha += Utils.Insert("0", 92); // 18-115
-                linha += Utils.Insert(" ", 8); // 116-123 => Número do Aviso de Lançamento
-                linha += Utils.Insert(" ", 117); // 124-240 => Uso Febraban
+                linha += Utils.Insert("0", 6, "0"); // 24-29 => Quantidade Titulos em Cobrança Simples
+                linha += Utils.Insert("0", 17, "0"); // 30-46 => Valor Total dos Titulos em Cobrança Simples
+                linha += Utils.Insert("0", 6, "0"); // 47-52 => Quantidade de Titulos em Cobrança Vinculada
+                linha += Utils.Insert("0", 17, "0"); // 53-69 => Valor Total dos Titulos em Cobrança Vinculada
+                linha += Utils.Insert("0", 6, "0"); // 70-75 => Quantidade Total dos Titulos em Cobrança Caucionada
+                linha += Utils.Insert("0", 17, "0"); // 76-92 => Valor Total dos Titulos em Cobrança Caucionada
+                linha += Utils.Insert("0", 6, "0"); // 93-98 => Quantidade dos Titulos em Cobrança Descontada
+                linha += Utils.Insert("0", 17, "0"); // 99-115 => Valor Total dos Titulos em Cobrança Descontada
+                linha += Utils.Insert(" ", 8, "0"); // 116-123 => Número do Aviso de Lançamento
+                linha += Utils.Insert(" ", 117, "0"); // 124-240 => Uso Febraban
 
                 arquivo += linha + Environment.NewLine;
                 sequenciaRegistro = sequenciaRegistro + 2;
                 //Fim Trailler do Lote
 
                 //Trailler do Arquivo
-                linha = "001"; // 01-03 => Código do Banco
+                linha = "756"; // 01-03 => Código do Banco
                 linha += "9999"; // 04-07 => lote do Serviço
                 linha += "9"; // 08-08 => Tipo de Registro
                 linha += Utils.Insert(" ", 9); // 09-17 => Uso Exclusivo do Febraban
                 linha += "000001"; // 18-23 => Quantidade de Lotes do Arquivo
                 linha += Utils.Insert(sequenciaRegistro.ToString(), 6, "0", true); // 24-29 => Quantidade de Registros do Arquivo
-                linha += Utils.Insert("0", 6); // 30-35 => Quantidade de Contas
+                linha += Utils.Insert("0", 6, "0"); // 30-35 => Quantidade de Contas
                 linha += Utils.Insert(" ", 205); // 36-240 => Uso Exclusivo do Febraban
 
 
