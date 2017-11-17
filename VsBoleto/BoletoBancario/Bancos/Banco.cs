@@ -215,6 +215,7 @@ namespace BoletoBancario.Bancos
             get { return especieTitulo; }
             internal set { especieTitulo = value; }
         }
+        
 
         #endregion
 

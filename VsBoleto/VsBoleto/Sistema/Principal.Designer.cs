@@ -30,11 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Principal));
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions4 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject13 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject14 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject15 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject16 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
@@ -45,6 +40,11 @@
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject7 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject8 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions3 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject9 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject10 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject11 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject12 = new DevExpress.Utils.SerializableAppearanceObject();
             this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
             this.xtraTabMonitor = new DevExpress.XtraTab.XtraTabPage();
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
@@ -862,21 +862,22 @@
             this.chkRelatorioItens.Properties.Caption = "Relatório de Itens ";
             this.chkRelatorioItens.Size = new System.Drawing.Size(109, 19);
             this.chkRelatorioItens.TabIndex = 16;
+            this.chkRelatorioItens.Visible = false;
             // 
             // tbxArquivoRemessa
             // 
             this.tbxArquivoRemessa.Location = new System.Drawing.Point(152, 43);
             this.tbxArquivoRemessa.Name = "tbxArquivoRemessa";
-            serializableAppearanceObject13.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject13.Image")));
-            serializableAppearanceObject13.Options.UseImage = true;
-            serializableAppearanceObject14.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject14.Image")));
-            serializableAppearanceObject14.Options.UseImage = true;
-            serializableAppearanceObject15.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject15.Image")));
-            serializableAppearanceObject15.Options.UseImage = true;
-            serializableAppearanceObject16.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject16.Image")));
-            serializableAppearanceObject16.Options.UseImage = true;
+            serializableAppearanceObject1.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject1.Image")));
+            serializableAppearanceObject1.Options.UseImage = true;
+            serializableAppearanceObject2.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject2.Image")));
+            serializableAppearanceObject2.Options.UseImage = true;
+            serializableAppearanceObject3.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject3.Image")));
+            serializableAppearanceObject3.Options.UseImage = true;
+            serializableAppearanceObject4.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject4.Image")));
+            serializableAppearanceObject4.Options.UseImage = true;
             this.tbxArquivoRemessa.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, true, false, editorButtonImageOptions4, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject13, serializableAppearanceObject14, serializableAppearanceObject15, serializableAppearanceObject16, "", null, null)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, true, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null)});
             this.tbxArquivoRemessa.Size = new System.Drawing.Size(417, 20);
             this.tbxArquivoRemessa.TabIndex = 6;
             this.tbxArquivoRemessa.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.TbxArquivoRemessa_ButtonClick);
@@ -1065,16 +1066,16 @@
             // 
             this.tbxPathLayoutBoleto.Location = new System.Drawing.Point(11, 134);
             this.tbxPathLayoutBoleto.Name = "tbxPathLayoutBoleto";
-            serializableAppearanceObject1.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject1.Image")));
-            serializableAppearanceObject1.Options.UseImage = true;
-            serializableAppearanceObject2.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject2.Image")));
-            serializableAppearanceObject2.Options.UseImage = true;
-            serializableAppearanceObject3.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject3.Image")));
-            serializableAppearanceObject3.Options.UseImage = true;
-            serializableAppearanceObject4.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject4.Image")));
-            serializableAppearanceObject4.Options.UseImage = true;
+            serializableAppearanceObject5.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject5.Image")));
+            serializableAppearanceObject5.Options.UseImage = true;
+            serializableAppearanceObject6.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject6.Image")));
+            serializableAppearanceObject6.Options.UseImage = true;
+            serializableAppearanceObject7.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject7.Image")));
+            serializableAppearanceObject7.Options.UseImage = true;
+            serializableAppearanceObject8.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject8.Image")));
+            serializableAppearanceObject8.Options.UseImage = true;
             this.tbxPathLayoutBoleto.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, true, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, true, false, editorButtonImageOptions2, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, serializableAppearanceObject6, serializableAppearanceObject7, serializableAppearanceObject8, "", null, null)});
             this.tbxPathLayoutBoleto.Size = new System.Drawing.Size(461, 20);
             this.tbxPathLayoutBoleto.TabIndex = 7;
             this.tbxPathLayoutBoleto.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.TbxPathLayoutBoleto_ButtonClick);
@@ -1148,22 +1149,22 @@
             // 
             // tbxNNAtual
             // 
-            this.tbxNNAtual.Location = new System.Drawing.Point(608, 43);
+            this.tbxNNAtual.Location = new System.Drawing.Point(582, 43);
             this.tbxNNAtual.Name = "tbxNNAtual";
             this.tbxNNAtual.Properties.Appearance.Image = ((System.Drawing.Image)(resources.GetObject("tbxNNAtual.Properties.Appearance.Image")));
             this.tbxNNAtual.Properties.Appearance.Options.UseImage = true;
-            editorButtonImageOptions2.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions2.Image")));
-            editorButtonImageOptions2.ImageUri.Uri = "Save;Size16x16";
-            serializableAppearanceObject5.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject5.Image")));
-            serializableAppearanceObject5.Options.UseImage = true;
-            serializableAppearanceObject6.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject6.Image")));
-            serializableAppearanceObject6.Options.UseImage = true;
-            serializableAppearanceObject7.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject7.Image")));
-            serializableAppearanceObject7.Options.UseImage = true;
-            serializableAppearanceObject8.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject8.Image")));
-            serializableAppearanceObject8.Options.UseImage = true;
+            editorButtonImageOptions3.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions3.Image")));
+            editorButtonImageOptions3.ImageUri.Uri = "Save;Size16x16";
+            serializableAppearanceObject9.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject9.Image")));
+            serializableAppearanceObject9.Options.UseImage = true;
+            serializableAppearanceObject10.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject10.Image")));
+            serializableAppearanceObject10.Options.UseImage = true;
+            serializableAppearanceObject11.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject11.Image")));
+            serializableAppearanceObject11.Options.UseImage = true;
+            serializableAppearanceObject12.Image = ((System.Drawing.Image)(resources.GetObject("serializableAppearanceObject12.Image")));
+            serializableAppearanceObject12.Options.UseImage = true;
             this.tbxNNAtual.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.OK, "", -1, true, true, false, editorButtonImageOptions2, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, serializableAppearanceObject6, serializableAppearanceObject7, serializableAppearanceObject8, "", null, null)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.OK, "", -1, true, true, false, editorButtonImageOptions3, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject9, serializableAppearanceObject10, serializableAppearanceObject11, serializableAppearanceObject12, "", null, null)});
             this.tbxNNAtual.Size = new System.Drawing.Size(102, 20);
             this.tbxNNAtual.TabIndex = 4;
             this.tbxNNAtual.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.TbxNNAtual_ButtonClick);
@@ -1175,7 +1176,7 @@
             this.ddlNomeCedente.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.ddlNomeCedente.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.ddlNomeCedente.Size = new System.Drawing.Size(309, 20);
+            this.ddlNomeCedente.Size = new System.Drawing.Size(283, 20);
             this.ddlNomeCedente.TabIndex = 1;
             // 
             // labelControl7
@@ -1188,14 +1189,14 @@
             // 
             // tbxConta
             // 
-            this.tbxConta.Location = new System.Drawing.Point(467, 43);
+            this.tbxConta.Location = new System.Drawing.Point(441, 43);
             this.tbxConta.Name = "tbxConta";
             this.tbxConta.Size = new System.Drawing.Size(135, 20);
             this.tbxConta.TabIndex = 3;
             // 
             // labelControl10
             // 
-            this.labelControl10.Location = new System.Drawing.Point(608, 23);
+            this.labelControl10.Location = new System.Drawing.Point(582, 23);
             this.labelControl10.Name = "labelControl10";
             this.labelControl10.Size = new System.Drawing.Size(97, 13);
             this.labelControl10.TabIndex = 2;
@@ -1203,7 +1204,7 @@
             // 
             // lblConta
             // 
-            this.lblConta.Location = new System.Drawing.Point(467, 23);
+            this.lblConta.Location = new System.Drawing.Point(441, 23);
             this.lblConta.Name = "lblConta";
             this.lblConta.Size = new System.Drawing.Size(29, 13);
             this.lblConta.TabIndex = 2;
@@ -1211,14 +1212,14 @@
             // 
             // tbxFimNossoN
             // 
-            this.tbxFimNossoN.Location = new System.Drawing.Point(575, 89);
+            this.tbxFimNossoN.Location = new System.Drawing.Point(563, 89);
             this.tbxFimNossoN.Name = "tbxFimNossoN";
-            this.tbxFimNossoN.Size = new System.Drawing.Size(135, 20);
+            this.tbxFimNossoN.Size = new System.Drawing.Size(118, 20);
             this.tbxFimNossoN.TabIndex = 3;
             // 
             // lblFimNN
             // 
-            this.lblFimNN.Location = new System.Drawing.Point(575, 69);
+            this.lblFimNN.Location = new System.Drawing.Point(563, 69);
             this.lblFimNN.Name = "lblFimNN";
             this.lblFimNN.Size = new System.Drawing.Size(62, 13);
             this.lblFimNN.TabIndex = 2;
@@ -1226,14 +1227,14 @@
             // 
             // tbxInicioNossoN
             // 
-            this.tbxInicioNossoN.Location = new System.Drawing.Point(434, 89);
+            this.tbxInicioNossoN.Location = new System.Drawing.Point(431, 89);
             this.tbxInicioNossoN.Name = "tbxInicioNossoN";
-            this.tbxInicioNossoN.Size = new System.Drawing.Size(135, 20);
+            this.tbxInicioNossoN.Size = new System.Drawing.Size(126, 20);
             this.tbxInicioNossoN.TabIndex = 3;
             // 
             // lblInicioNN
             // 
-            this.lblInicioNN.Location = new System.Drawing.Point(434, 69);
+            this.lblInicioNN.Location = new System.Drawing.Point(431, 69);
             this.lblInicioNN.Name = "lblInicioNN";
             this.lblInicioNN.Size = new System.Drawing.Size(71, 13);
             this.lblInicioNN.TabIndex = 2;
@@ -1241,14 +1242,14 @@
             // 
             // tbxOutros2
             // 
-            this.tbxOutros2.Location = new System.Drawing.Point(293, 89);
+            this.tbxOutros2.Location = new System.Drawing.Point(288, 89);
             this.tbxOutros2.Name = "tbxOutros2";
-            this.tbxOutros2.Size = new System.Drawing.Size(135, 20);
+            this.tbxOutros2.Size = new System.Drawing.Size(137, 20);
             this.tbxOutros2.TabIndex = 3;
             // 
             // lblOD2
             // 
-            this.lblOD2.Location = new System.Drawing.Point(293, 69);
+            this.lblOD2.Location = new System.Drawing.Point(288, 69);
             this.lblOD2.Name = "lblOD2";
             this.lblOD2.Size = new System.Drawing.Size(75, 13);
             this.lblOD2.TabIndex = 2;
@@ -1256,14 +1257,14 @@
             // 
             // tbxOutros1
             // 
-            this.tbxOutros1.Location = new System.Drawing.Point(152, 89);
+            this.tbxOutros1.Location = new System.Drawing.Point(135, 89);
             this.tbxOutros1.Name = "tbxOutros1";
-            this.tbxOutros1.Size = new System.Drawing.Size(135, 20);
+            this.tbxOutros1.Size = new System.Drawing.Size(147, 20);
             this.tbxOutros1.TabIndex = 3;
             // 
             // lblOD1
             // 
-            this.lblOD1.Location = new System.Drawing.Point(152, 69);
+            this.lblOD1.Location = new System.Drawing.Point(135, 69);
             this.lblOD1.Name = "lblOD1";
             this.lblOD1.Size = new System.Drawing.Size(75, 13);
             this.lblOD1.TabIndex = 2;
@@ -1273,7 +1274,7 @@
             // 
             this.tbxCodigo.Location = new System.Drawing.Point(11, 89);
             this.tbxCodigo.Name = "tbxCodigo";
-            this.tbxCodigo.Size = new System.Drawing.Size(135, 20);
+            this.tbxCodigo.Size = new System.Drawing.Size(118, 20);
             this.tbxCodigo.TabIndex = 3;
             // 
             // lblCodigo
@@ -1286,14 +1287,14 @@
             // 
             // tbxAgencia
             // 
-            this.tbxAgencia.Location = new System.Drawing.Point(326, 43);
+            this.tbxAgencia.Location = new System.Drawing.Point(300, 43);
             this.tbxAgencia.Name = "tbxAgencia";
             this.tbxAgencia.Size = new System.Drawing.Size(135, 20);
             this.tbxAgencia.TabIndex = 3;
             // 
             // lblAgencia
             // 
-            this.lblAgencia.Location = new System.Drawing.Point(326, 23);
+            this.lblAgencia.Location = new System.Drawing.Point(300, 23);
             this.lblAgencia.Name = "lblAgencia";
             this.lblAgencia.Size = new System.Drawing.Size(38, 13);
             this.lblAgencia.TabIndex = 2;

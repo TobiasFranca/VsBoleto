@@ -542,7 +542,7 @@ namespace BoletoBancario.Bancos
                 ret += Utils.Insert(c.NumeroConta, 13, "0", true); // 24-36 Conta
                 ret += " "; // 37-37 Não utilizado pelo Banco do Brasil
                 ret += Utils.Insert(Utils.FormataNossoNumeroCNAB240BB(b.NossoNumero, b.DigVerNossoNumero, c.CodigoCedente), 20, " "); // 38-57 Identificação do Título
-                ret += "7"; // 58-58 Código da Carteira (Verificar alterações no manual)
+                ret += "4"; // 58-58 Código da Carteira (Verificar alterações no manual)
                 ret += " "; // 59-59 Não Tratado pelo Banco do Brasil
                 ret += " "; // 60-60 Não Tratado pelo Banco do Brasil
                 ret += " "; // 61-61 Não Tratado pelo Banco do Brasil
