@@ -442,6 +442,152 @@ namespace BoletoBancario.Bancos
             return new DateTime(2000, 07, 03).AddDays(fatorVencimento - 1000);
         }
 
+        private static string GetDigitoAgencia(string agencia)
+        {
+            switch (agencia)
+            {
+                case "0001": return "9";
+                case "1001": return "4";
+                case "1002": return "2";
+                case "1003": return "0";
+                case "1004": return "9";
+                case "1005": return "7";
+                case "1006": return "5";
+                case "1007": return "3";
+                case "1008": return "1";
+                case "2001": return "0";
+                case "2002": return "8";
+                case "2003": return "6";
+                case "2004": return "4";
+                case "2005": return "2";
+                case "2006": return "0";
+                case "2007": return "9";
+                case "2008": return "7";
+                case "2009": return "5";
+                case "2010": return "9";
+                case "2011": return "7";
+                case "2012": return "5";
+                case "2013": return "3";
+                case "2014": return "1";
+                case "2015": return "0";
+                case "2016": return "8";
+                case "2017": return "6";
+                case "2018": return "4";
+                case "2019": return "2";
+                case "2020": return "6";
+                case "2021": return "4";
+                case "2022": return "2";
+                case "3001": return "5";
+                case "3003": return "1";
+                case "3007": return "4";
+                case "3008": return "2";
+                case "3009": return "0";
+                case "3010": return "4";
+                case "3017": return "1";
+                case "3019": return "8";
+                case "3020": return "1";
+                case "3021": return "0";
+                case "3023": return "6";
+                case "3025": return "2";
+                case "3027": return "9";
+                case "3031": return "7";
+                case "3032": return "5";
+                case "3033": return "3";
+                case "3034": return "1";
+                case "3035": return "0";
+                case "3036": return "8";
+                case "3037": return "6";
+                case "3038": return "4";
+                case "3039": return "2";
+                case "3041": return "4";
+                case "3042": return "2";
+                case "3043": return "0";
+                case "3045": return "7";
+                case "3046": return "5";
+                case "3047": return "3";
+                case "3049": return "0";
+                case "3050": return "3";
+                case "3053": return "8";
+                case "3054": return "6";
+                case "3055": return "4";
+                case "3056": return "2";
+                case "3058": return "9";
+                case "3059": return "7";
+                case "3060": return "0";
+                case "3061": return "9";
+                case "3062": return "7";
+                case "3064": return "3";
+                case "3066": return "0";
+                case "3067": return "8";
+                case "3068": return "6";
+                case "3069": return "4";
+                case "3070": return "8";
+                case "3071": return "6";
+                case "3072": return "4";
+                case "3074": return "0";
+                case "3075": return "9";
+                case "3076": return "7";
+                case "3078": return "3";
+                case "3080": return "5";
+                case "3081": return "3";
+                case "3084": return "8";
+                case "3087": return "2";
+                case "3088": return "0";
+                case "3089": return "9";
+                case "3091": return "0";
+                case "3092": return "9";
+                case "3093": return "7";
+                case "3094": return "5";
+                case "3095": return "3";
+                case "3096": return "1";
+                case "3098": return "8";
+                case "3099": return "6";
+                case "3100": return "3";
+                case "3101": return "1";
+                case "3102": return "0";
+                case "3103": return "8";
+                case "3104": return "6";
+                case "3105": return "4";
+                case "3106": return "2";
+                case "3107": return "0";
+                case "3108": return "9";
+                case "3109": return "7";
+                case "3112": return "7";
+                case "3113": return "5";
+                case "3114": return "3";
+                case "3116": return "0";
+                case "3117": return "8";
+                case "3118": return "6";
+                case "3119": return "4";
+                case "3120": return "8";
+                case "3121": return "6";
+                case "3122": return "4";
+                case "3123": return "2";
+                case "3125": return "9";
+                case "3127": return "5";
+                case "3129": return "1";
+                case "3131": return "3";
+                case "3132": return "1";
+                case "3133": return "0";
+                case "3134": return "8";
+                case "3135": return "6";
+                case "3136": return "4";
+                case "3137": return "2";
+                case "3138": return "0";
+                case "3140": return "2";
+                case "3141": return "0";
+                case "3143": return "7";
+                case "3144": return "5";
+                case "3145": return "3";
+                case "3150": return "0";
+                case "3152": return "6";
+                case "3154": return "2";
+                case "3155": return "0";
+                case "3157": return "7";
+                default: return "0";
+            }
+        }
+
         private static string MontarCnab400(ContaCorrente c)
         {
             try
@@ -589,7 +735,8 @@ namespace BoletoBancario.Bancos
                 linha += Utils.Insert(c.Cedente.CpfCnpj.ToNoFormated().IsCpf() ? "1" : "2", 1); // 18-18 => Tipo de Inscrição da Empresa (1 = CPF, 2 = CNPJ)
                 linha += Utils.Insert(c.Cedente.CpfCnpj.ToNoFormated(), 14, "0", true); // 19-32 => Número de Inscrição da Empresa
                 linha += Utils.Insert(" ", 20); // 33-52 => Código do Convenio no Sicoob
-                linha += "030104"; // 53-58 => Agencia
+                linha += Utils.Insert(c.Agencia, 5, "0"); //53-57 => Agência mantenedora
+                linha += GetDigitoAgencia(c.Agencia); // 58-58 => Dígito verificador da Agencia
                 linha += Utils.Insert(c.NumeroConta, 13, "0", true); // 59-71 => Conta Corrente
                 linha += "0"; // 72-72 => Digito Verificador Agencia/Conta
                 linha += Utils.Insert(c.Cedente.NomeCedente, 30); // 73-102 => Nome da Empresa
@@ -621,7 +768,8 @@ namespace BoletoBancario.Bancos
                 linha += Utils.Insert(c.Cedente.CpfCnpj.ToNoFormated().IsCpf() ? "1" : "2", 1); // 18-18 => Tipo de Inscrição da Empresa (1 = CPF, 2 = CNPJ)
                 linha += Utils.Insert(c.Cedente.CpfCnpj.ToNoFormated(), 15, "0", true); // 19-33 => Número de Inscrição da Empresa
                 linha += Utils.Insert(" ", 20); // 34-53 => Código do Convenio do Banco
-                linha += "030104"; // 54-59 => Agencia
+                linha += Utils.Insert(c.Agencia, 5, "0"); //54-58 => Agência mantenedora
+                linha += GetDigitoAgencia(c.Agencia); // 59-59 => Dígito verificador da Agencia
                 linha += Utils.Insert(c.NumeroConta, 13, "0", true); // 60-72 => Conta Corrente
                 linha += " "; // 73-73 => Digito Verificador 
                 linha += Utils.Insert(c.Cedente.NomeCedente, 30); // 74-103 => Nome da Empresa
@@ -651,7 +799,8 @@ namespace BoletoBancario.Bancos
                     linha += "P"; // 14-14 => Código do Segmento do registro
                     linha += " "; // 15-15 => uso Exclusivo Febraban
                     linha += "01"; // 16-17 => Código Movimento da Remessa
-                    linha += "030104"; // 18-23 => Agencia
+                    linha += Utils.Insert(c.Agencia, 5, "0"); // 18-22 => Agência mantenedora
+                    linha += GetDigitoAgencia(c.Agencia); // 23-23 => Dígito verificador da Agencia
                     linha += Utils.Insert(c.NumeroConta, 13, "0", true); // 24-36 => Conta Corrente
                     linha += " "; // 37-37 => Digito Verificador 
                     linha += Utils.Insert(b.NossoNumeroComDV, 10, "0", true); // 38-47 => Nosso Número
@@ -725,7 +874,7 @@ namespace BoletoBancario.Bancos
                     linha += b.Sacado.CpfCnpj.ToNoFormated().IsCpf() ? "1" : "2"; // 18-18 => Tipo de Inscrição do Pagador
                     linha += Utils.Insert(b.Sacado.CpfCnpj.ToNoFormated(), 15, "0", true); // 19-33 => Número de Inscrição do Pagador
                     linha += Utils.Insert(b.Sacado.Nome, 40, " "); // 34-73 => Nome do Pagador
-                    linha += Utils.Insert(b.Sacado.Endereco, 40, " "); // 74-113 => Endereço do Pagador
+                    linha += Utils.Insert(b.Sacado.Endereco + " - " + b.Sacado.NumEndereco, 40, " "); // 74-113 => Endereço do Pagador
                     linha += Utils.Insert(b.Sacado.Bairro, 15, " "); // 114-128 => Bairro do Pagador
                     linha += Utils.Insert(b.Sacado.Cep.Replace(".", "").Replace("-", ""), 8, " "); // 129-136 => CEP do Pagador
                     linha += Utils.Insert(b.Sacado.Cidade, 15, " "); // 137-151 => Cidade do Pagador
