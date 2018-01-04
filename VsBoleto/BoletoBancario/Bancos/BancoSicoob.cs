@@ -838,8 +838,8 @@ namespace BoletoBancario.Bancos
                         linha += Utils.Insert("0", 15, "0"); // 151-165 => Valor do Desconto
                     }
 
-                    linha += Utils.Insert("0", 15); // 166-180 => Valor do IOF
-                    linha += Utils.Insert("0", 15); // 181-195 => Valor do Abatimento
+                    linha += Utils.Insert("0", 15, "0"); // 166-180 => Valor do IOF
+                    linha += Utils.Insert("0", 15, "0"); // 181-195 => Valor do Abatimento
                     linha += Utils.Insert(b.NumeroDocumento, 25, "0", true); // 196-220 => Identificação do Título na Empresa
 
                     if (b.DiasProtesto.ToInt() > 0)
@@ -913,9 +913,9 @@ namespace BoletoBancario.Bancos
                     linha += Utils.Insert(" ", 20); // 180-199 => Uso Exclusivo Febraban
                     linha += Utils.Insert("0", 8); // 200-207 => Código Ocorrencia do Pagador
                     linha += "000"; // 208-210 => Código Banco Conta de Debito
-                    linha += Utils.Insert("0", 5); // 211-215 => Código da Agencia de Débito
+                    linha += Utils.Insert("0", 5,"0"); // 211-215 => Código da Agencia de Débito
                     linha += " "; // 216-216 => Dígito Verificador da Agencia
-                    linha += Utils.Insert("0", 12); // 217-228 => Conta Corrente para Débito
+                    linha += Utils.Insert("0", 12, "0"); // 217-228 => Conta Corrente para Débito
                     linha += " "; // 229-229 => Dígito Verificador Conta Corrente
                     linha += " "; // 230-230 => Dígito verificador Agencia/Conta
                     linha += "0"; // 231/231 => Aviso para Débito Automatico
