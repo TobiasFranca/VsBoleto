@@ -171,6 +171,7 @@ namespace VsBoleto.Sistema
                 }
 
                 ddlNomeCedente.Properties.Items.Clear();
+                ddlLayoutRemessa.Properties.Items.Clear();
 
                 FbDataAdapter daF = new FbDataAdapter(@"SELECT * FROM CDFILIAL", cnRET);
                 daF.Fill(dtF);

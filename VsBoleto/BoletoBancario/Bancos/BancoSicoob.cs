@@ -735,7 +735,7 @@ namespace BoletoBancario.Bancos
                 linha += Utils.Insert(c.Cedente.CpfCnpj.ToNoFormated().IsCpf() ? "1" : "2", 1); // 18-18 => Tipo de Inscrição da Empresa (1 = CPF, 2 = CNPJ)
                 linha += Utils.Insert(c.Cedente.CpfCnpj.ToNoFormated(), 14, "0", true); // 19-32 => Número de Inscrição da Empresa
                 linha += Utils.Insert(" ", 20); // 33-52 => Código do Convenio no Sicoob
-                linha += Utils.Insert(c.Agencia, 5, "0"); //53-57 => Agência mantenedora
+                linha += Utils.Insert(c.Agencia, 5, "0", true); //53-57 => Agência mantenedora
                 linha += GetDigitoAgencia(c.Agencia); // 58-58 => Dígito verificador da Agencia
                 linha += Utils.Insert(c.NumeroConta, 13, "0", true); // 59-71 => Conta Corrente
                 linha += "0"; // 72-72 => Digito Verificador Agencia/Conta
@@ -768,7 +768,7 @@ namespace BoletoBancario.Bancos
                 linha += Utils.Insert(c.Cedente.CpfCnpj.ToNoFormated().IsCpf() ? "1" : "2", 1); // 18-18 => Tipo de Inscrição da Empresa (1 = CPF, 2 = CNPJ)
                 linha += Utils.Insert(c.Cedente.CpfCnpj.ToNoFormated(), 15, "0", true); // 19-33 => Número de Inscrição da Empresa
                 linha += Utils.Insert(" ", 20); // 34-53 => Código do Convenio do Banco
-                linha += Utils.Insert(c.Agencia, 5, "0"); //54-58 => Agência mantenedora
+                linha += Utils.Insert(c.Agencia, 5, "0", true); //54-58 => Agência mantenedora
                 linha += GetDigitoAgencia(c.Agencia); // 59-59 => Dígito verificador da Agencia
                 linha += Utils.Insert(c.NumeroConta, 13, "0", true); // 60-72 => Conta Corrente
                 linha += " "; // 73-73 => Digito Verificador 
@@ -799,7 +799,7 @@ namespace BoletoBancario.Bancos
                     linha += "P"; // 14-14 => Código do Segmento do registro
                     linha += " "; // 15-15 => uso Exclusivo Febraban
                     linha += "01"; // 16-17 => Código Movimento da Remessa
-                    linha += Utils.Insert(c.Agencia, 5, "0"); // 18-22 => Agência mantenedora
+                    linha += Utils.Insert(c.Agencia, 5, "0", true); // 18-22 => Agência mantenedora
                     linha += GetDigitoAgencia(c.Agencia); // 23-23 => Dígito verificador da Agencia
                     linha += Utils.Insert(c.NumeroConta, 13, "0", true); // 24-36 => Conta Corrente
                     linha += " "; // 37-37 => Digito Verificador 
