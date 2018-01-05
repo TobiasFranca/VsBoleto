@@ -829,7 +829,7 @@ namespace BoletoBancario.Bancos
                     {
                         linha += "1"; // 142-142 => Código Desconto 1
                         linha += b.DataVencimento.ToString("ddMMyyyy"); // 143-150 => Data do Desconto
-                        linha += Utils.FormatNumber(b.ValorDesconto, 13, 2); // 151-165 => Valor do Desconto
+                        linha += Utils.FormatNumber(b.ValorDesconto, 15); // 151-165 => Valor do Desconto
                     }
                     else
                     {
